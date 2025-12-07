@@ -1,0 +1,60 @@
+/* Overlay */
+#cartOverlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.4);
+  z-index: 998;
+  display: none;
+}
+#cartOverlay.open { display: block; }
+
+/* Drawer */
+#cartSidebar {
+  position: fixed; top: 0; right: 0;
+  width: 360px; max-width: 86vw; height: 100vh;
+  background: #fff; box-shadow: -10px 0 24px rgba(0,0,0,.18);
+  transform: translateX(100%); transition: transform .25s ease;
+  z-index: 999; display: flex; flex-direction: column;
+}
+#cartSidebar.open { transform: translateX(0); }
+
+/* Header */
+#cartSidebar .cs-header{
+  display:flex; align-items:center; justify-content:space-between;
+  padding: 14px 16px; border-bottom: 1px solid #eee;
+}
+#cartSidebar .cs-title{ margin:0; font-size: 18px; font-weight: 700; }
+#cartSidebar .cs-close{
+  background:none; border:none; font-size:24px; cursor:pointer; line-height:1;
+}
+
+/* Items */
+#cartSidebar .cs-items{ flex:1; overflow:auto; padding: 10px 12px; }
+.cs-item{
+  display:grid; grid-template-columns: 64px 1fr auto; gap:10px;
+  align-items:center; padding:10px 0; border-bottom:1px solid #f1f1f1;
+}
+.cs-item img{ width:64px; height:64px; object-fit:cover; border-radius:8px; }
+.cs-name{ font-weight:600; }
+.cs-price{ font-size:13px; color:#666; margin-top:2px; }
+.cs-qtyrow{ display:flex; gap:6px; align-items:center; margin-top:6px; }
+.cs-qtyrow button{ padding:4px 8px; cursor:pointer; }
+.cs-qtyrow .cs-rm{ margin-left:auto; }
+
+/* Footer */
+#cartSidebar .cs-footer{ border-top:1px solid #eee; padding:12px 14px; }
+.cs-totalrow{ display:flex; justify-content:space-between; font-size:16px; margin-bottom:10px; }
+.cs-btn{
+  border-radius:8px; padding:10px 12px; cursor:pointer;
+}
+.cs-btn.primary{
+  background:#b71c1c; color:#fff; border:none;
+}
+.cs-btn.outline{
+  background:#fff; color:#b71c1c; border:1px solid #b71c1c; margin-right:8px;
+}
+
+/* Optional: bloquear scroll del body cuando esté abierto */
+body.cs-noscr { overflow: hidden; }
+
+/* Texto vacío */
+.cs-empty{ color:#777; text-align:center; padding:24px 8px; }

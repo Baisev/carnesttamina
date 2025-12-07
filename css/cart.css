@@ -1,0 +1,132 @@
+.carrito-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 200px;
+  padding: 25px;
+  max-width: 1300px;
+  margin: auto;
+}
+
+.carrito-left {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+
+  height: auto !important;
+  min-height: fit-content !important;
+  display: flex;
+  flex-direction: column;
+  gap: 15px ;
+}
+
+.carrito-left h2 {
+  margin-bottom: 10px;
+}
+
+.tabla-carrito {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 10px;
+}
+
+.tabla-carrito th {
+  background: #7b0000;
+  color: white;
+  padding: 10px;
+}
+
+.tabla-carrito td {
+  padding: 12px 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+.btn-pagar, .btn-vaciar, .btn-volver {
+  margin-bottom: 10px;
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.btn-pagar {
+  background: #2e7d32;
+  color: white;
+  padding: 12px;
+  border-radius: 6px;
+  border: none;
+  font-weight: bold;
+}
+
+.btn-vaciar {
+  background: #8b0000;
+  color: white;
+  padding: 12px;
+  border-radius: 6px;
+  border: none;
+  font-weight: bold;
+}
+
+.btn-volver {
+  background: #b71c1c;
+  color: white;
+  padding: 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.carrito-right {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.carrito-card {
+  background: white;
+  padding: 18px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+}
+
+.carrito-card input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.guardar-dir {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+.resumen-total {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-top: 10px;
+  text-align: right;
+}
+
+@media (max-width: 900px) {
+  .carrito-wrapper {
+    grid-template-columns: 1fr;
+  }
+}
+
+.carrito-producto {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.carrito-producto img.miniatura {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 6px;
+}

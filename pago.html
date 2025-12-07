@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Confirmar pago - Carnes Ttamiña</title>
+
+  <!-- FUENTES -->
+  <link href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- CSS Global -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/footer.css">
+
+  <!-- CSS Pago Mejorado -->
+  <link rel="stylesheet" href="css/pago.css">
+
+  <script type="module" src="js/navbar.js"></script>
+  <script type="module" src="js/searchbar.js"></script>
+</head>
+
+<body>
+
+<header class="navbar">
+  <div class="navbar-container">
+    <h1 class="navbar-logo">Carnes Ttamiña</h1>
+  </div>
+</header>
+
+<main class="pago-wrapper">
+
+  <section class="pago-card">
+    
+    <h2 class="pago-titulo">🧾 Confirmación de Pago</h2>
+
+    <p class="subtitulo">
+      Revisa tu compra antes de continuar. Este pago es una simulación segura.
+    </p>
+
+    <div id="lista-productos"></div>
+
+    <h3 class="total">Total a pagar: <span id="pago-total">$0</span></h3>
+
+    <div class="acciones">
+      <button id="btnCancelar" class="btn-cancelar">Cancelar</button>
+
+      <button id="btnConfirmar" class="btn-confirmar">
+        <span>Confirmar pago</span>
+        <div id="barra-progreso"></div>
+      </button>
+    </div>
+
+    <p id="estadoPago" class="estado"></p>
+
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p>Pagos simulados - Carnes Ttamiña © 2025</p>
+</footer>
+
+<script type="module" src="js/pago.js"></script>
+
+</body>
+</html>

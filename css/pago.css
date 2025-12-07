@@ -1,0 +1,117 @@
+/* CONTENEDOR GENERAL */
+.pago-wrapper {
+  max-width: 650px;
+  margin: 60px auto;
+  padding: 20px;
+  font-family: "Poppins", sans-serif;
+}
+
+/* TARJETA PRINCIPAL */
+.pago-card {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  border: 1px solid #ddd;
+}
+
+.pago-titulo {
+  font-family: "Caprasimo", cursive;
+  font-size: 32px;
+  margin-bottom: 10px;
+  color: #b22222;
+}
+
+.subtitulo {
+  font-size: 15px;
+  margin-bottom: 25px;
+  color: #444;
+}
+
+/* LISTA DE PRODUCTOS */
+#lista-productos .item {
+  display: flex;
+  gap: 15px;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+}
+
+#lista-productos img {
+  width: 70px;
+  height: 70px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+/* TOTAL */
+.total {
+  margin-top: 25px;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: right;
+  color: #b22222;
+}
+
+/* BOTONES */
+.acciones {
+  margin-top: 30px;
+  display: flex;
+  gap: 15px;
+}
+
+.btn-cancelar,
+.btn-confirmar {
+  flex: 1;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* Botón cancelar */
+.btn-cancelar {
+  background: #999;
+  color: white;
+}
+
+.btn-cancelar:hover {
+  background: #777;
+}
+
+/* Botón confirmar */
+.btn-confirmar {
+  position: relative;
+  background: #28a745;
+  color: white;
+  overflow: hidden;
+}
+
+.btn-confirmar:hover {
+  background: #1b7e35;
+}
+
+/* BARRA DE PROGRESO */
+#barra-progreso {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 6px;
+  width: 0%;
+  background: #ffffff;
+  opacity: 0.9;
+  transition: width 4s linear;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+/* ESTADO */
+.estado {
+  margin-top: 20px;
+  text-align: center;
+  font-weight: bold;
+  color: #444;
+  font-size: 16px;
+}

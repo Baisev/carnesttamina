@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Tu Carrito - Carnes Ttamiña</title>
+
+  <!-- CSS DEL PROYECTO -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/cart.css"> <!-- NUEVO -->
+
+  <!-- ICONOS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- NAVBAR SCRIPTS -->
+  <script type="module" src="js/navbar.js"></script>
+  <script type="module" src="js/searchbar.js"></script>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="navbar-container">
+    <div class="navbar-left">
+      <h1 class="navbar-logo">Carnes Ttamiña</h1>
+      <div class="navbar-search">
+        <input type="text" placeholder="Busca aquí tus productos..." />
+        <button><i class="fa fa-search"></i></button>
+      </div>
+    </div>
+
+    <nav class="navbar-right">
+      <ul>
+        <li><a href="pag_principal.html"><i class="fa fa-home"></i> Inicio</a></li>
+
+        <li class="dropdown align-right">
+          <a href="#"><i class="fa fa-user"></i> Bienvenido</a>
+          <ul class="dropdown-menu">
+            <li><a href="#"><i class="fa fa-id-card"></i> Mi cuenta</a></li>
+            <li><a href="login.html"><i class="fa fa-sign-in-alt"></i> Iniciar sesión</a></li>
+            <li class="no-cuenta">¿No tienes cuenta?
+              <a href="registro.html" class="crear-cuenta">Créala aquí</a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="dropdown">
+          <a href="#"><i class="fa fa-cut"></i> Categorías <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="vacuno.html">Vacuno</a></li>
+            <li><a href="ave.html">Ave</a></li>
+            <li><a href="cerdo.html">Cerdo</a></li>
+            <li><a href="todo_asado.html">Todo para el asado</a></li>
+            <li><a href="packs.html">Packs</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- CUERPO DEL CARRITO -->
+<main class="carrito-wrapper" style="margin-top: 45px;">
+
+  <!-- COLUMNA IZQUIERDA -->
+  <section class="carrito-left">
+    <h2>Tu Carrito</h2>
+
+    <table class="tabla-carrito">
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Cantidad</th>
+          <th>Precio</th>
+          <th>Subtotal</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody class="carrito-body">
+        <!-- SE LLENA DESDE carrito.js -->
+      </tbody>
+    </table>
+
+    <h3>Total: <span id="total">$0</span></h3>
+
+<button id="vaciarCarrito" class="btn-vaciar">🗑 Vaciar carrito</button>
+
+<a id="volverTienda" href="pag_principal.html" class="btn-volver">
+  ← Seguir comprando
+</a>
+
+  </section>
+
+  <!-- COLUMNA DERECHA (FORMULARIO + RESUMEN) -->
+  <section class="carrito-right">
+
+    <!-- FORMULARIO -->
+    <div class="carrito-card">
+      <h3>Datos de entrega</h3>
+
+      <form id="form-datos-cliente">
+        <label for="nombre">Nombre y apellido</label>
+        <input type="text" id="nombre">
+
+        <label for="rut">RUT</label>
+        <input type="text" id="rut">
+
+        <label for="email">Correo electrónico</label>
+        <input type="email" id="email">
+
+
+        <label for="direccion">Dirección</label>
+        <input type="text" id="direccion">
+
+        <label class="guardar-dir">
+          <input type="checkbox" id="guardar_direccion">
+          Guardar esta dirección para futuras compras
+        </label>
+
+        <label for="telefono">Teléfono o celular</label>
+        <input type="text" id="telefono">
+      </form>
+    </div>
+    </form>
+    <button id="btnPagar" class="btn-pagar">💳 Pagar ahora</button>
+
+    <!-- RESUMEN -->
+    <div class="carrito-card resumen">
+      <h3>Resumen de compra</h3>
+
+      <div id="resumen-productos"></div>
+
+      <p class="resumen-total">
+        Total: <span id="carrito-total">$0</span>
+      </p>
+    </div>
+
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-container">
+
+    <div class="footer-block">
+      <h3>Categorías</h3>
+      <ul>
+        <li><a href="vacuno.html">Vacuno</a></li>
+        <li><a href="ave.html">Ave</a></li>
+        <li><a href="cerdo.html">Cerdo</a></li>
+        <li><a href="todo_asado.html">Todo Asado</a></li>
+        <li><a href="packs.html">Packs</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-block">
+      <h3>Servicio al cliente</h3>
+      <ul>
+        <li><a href="#">Quiénes somos</a></li>
+        <li class="phone">📞 +56 9 1234 5678</li>
+      </ul>
+    </div>
+
+    <div class="footer-block">
+      <h3>Horarios</h3>
+      <p>De Martes a Domingo:<br>09:00 a 15:00 — 16:30 a 21:00</p>
+    </div>
+
+    <div class="footer-block">
+      <h3>Métodos de pago</h3>
+      <img src="img/webpay.png" alt="WebPay Plus" class="webpay-logo">
+    </div>
+
+  </div>
+
+  <div class="footer-legal">
+    Pagos seguros vía WebPay Plus. Despachos según disponibilidad del repartidor.
+  </div>
+</footer>
+
+<!-- LÓGICA DEL CARRITO (SEPARADA) -->
+<script type="module" src="js/carrito.js"></script>
+
+</body>
+</html>
+
+

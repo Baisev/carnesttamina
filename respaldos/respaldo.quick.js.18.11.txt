@@ -1,0 +1,72 @@
+  // === BOTÓN PAGAR (versión completa con Supabase Auth) ===
+  document.getElementById('btnPagar').addEventListener('click', async () => {
+    const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    if (carrito.length === 0) {
+      alert("Tu carrito está vacío 😅");
+      return;
+    }
+
+    const total = carrito.reduce((acc, item) => acc + (item.precio * item.cantidad), 0);
+
+    // 1️⃣ Obtener usuario autenticado
+    const { data: authData, error: authError } = await supabase.auth.getUser();
+    if (authError || !authData.user) {
+      alert("Debes iniciar sesión antes de comprar 🔒");
+      return;
+    }
+
+    const userId = authData.user.id;
+
+    // 2️⃣ Obtener cliente_id desde tabla usuario
+    const { data: usuarioData, error: usuarioError } = await supabase
+      .from('usuario')
+      .select('cliente_id')
+      .eq('auth_user_id', userId)
+      .single();
+
+    if (usuarioError || !usuarioData) {
+      console.error("Error al obtener cliente_id:", usuarioError?.message);
+      alert("No se encontró tu cliente asociado. Contacta soporte.");
+      return;
+    }
+
+    const clienteId = usuarioData.cliente_id;
+
+    // 3️⃣ Crear pedido
+    const { data: pedido, error: pedidoError } = await supabase
+      .from('pedido')
+      .insert([{
+        cliente_id: clienteId,
+        metodo_pago: 'simulado',
+        estado: 'pendiente',
+        total: total,
+        fecha: new Date()
+      }])
+      .select()
+      .single();
+
+    if (pedidoError) {
+      console.error("Error al crear pedido:", pedidoError.message);
+      alert("❌ Ocurrió un error al procesar tu compra.");
+      return;
+    }
+
+    // 4️⃣ Insertar ítems del pedido
+    for (const item of carrito) {
+      const { error: itemError } = await supabase
+        .from('pedido_item')
+        .insert([{
+          pedido_id: pedido.pedido_id,
+          producto_id: item.producto_id,
+          cantidad: item.cantidad,
+          precio_unitario: item.precio,
+          total_linea: item.precio * item.cantidad
+        }]);
+      if (itemError) console.error("Error al insertar ítem:", itemError.message);
+    }
+
+    // 5️⃣ Vaciar carrito y confirmar
+    localStorage.removeItem('carrito');
+    alert("✅ ¡Pedido registrado correctamente! Gracias por tu compra 💪");
+    window.location.href = "pag_principal.html";
+  });

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crear cuenta - Carnes Ttamiña</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="carnesStilos.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script type="module" src="js/reg.js"></script>
+  <script type="module" src="js/navbar.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script type="module" src="js/searchbar.js"></script>
+
+
+</head>
+<body>
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="navbar-container">
+
+    <!-- LOGO + barra de búsqueda -->
+    <div class="navbar-left">
+      <h1 class="navbar-logo">Carnes Ttamiña</h1>
+      <div class="navbar-search">
+        <input type="text" placeholder="Busca aquí tus productos..." />
+        <button><i class="fa fa-search"></i></button>
+      </div>
+    </div>
+
+    <!-- MENÚ DE NAVEGACIÓN -->
+    <nav class="navbar-right">
+      <ul>
+        <li><a href="pag_principal.html"><i class="fa fa-home"></i> Inicio</a></li>
+
+        <li class="dropdown align-right">
+          <a href="#"><i class="fa fa-user"></i> Bienvenido</a>
+          <ul class="dropdown-menu">
+            <li><a href="#"><i class="fa fa-id-card"></i> Mi cuenta</a></li>
+            <li><a href="login.html"><i class="fa fa-sign-in-alt"></i> Iniciar sesión</a></li>
+            <li class="no-cuenta">¿No tienes cuenta?
+              <a href="registro.html" class="crear-cuenta">Créala aquí</a>
+            </li>
+          </ul>
+        </li>
+
+        <!-- Menú Categorías -->
+        <li class="dropdown">
+          <a href="#"><i class="fa fa-cut"></i> Categorías <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="vacuno.html">Vacuno</a></li>
+            <li><a href="ave.html">Ave</a></li>
+            <li><a href="cerdo.html">Cerdo</a></li>
+            <li><a href="todo_asado.html">Todo para el asado</a></li>
+            <li><a href="packs.html">Packs</a></li>
+          </ul>
+        </li>
+
+        <!-- Carrito (debe estar dentro del UL) -->
+        <li class="cart-icon">
+          <a href="carrito.html">
+            <i class="fa fa-shopping-cart"></i>
+            <span class="cart-count">0</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+  <div class="login-container">
+    <div class="left-column">
+      <h2>¡Bienvenido!</h2>
+      <p>Introduce la siguiente información para crear tu cuenta.</p>
+    </div>
+    <div class="right-column">
+      <h2>Crear cuenta</h2>
+      <form id="registerForm">
+        <label for="nombre">Nombre y Apellido *</label>
+        <input type="text" id="nombre" placeholder="Nombre Completo" required />
+        <label for="rut">Rut *</label>
+        <input type="text" id="rut" placeholder="Rut" required />
+        <div class="form-group">
+  <label for="telefono">Teléfono *</label>
+  <div style="display:flex; align-items:center; gap:8px;">
+    <select id="codigoPais" required>
+  <!-- Chile por defecto -->
+  <option value="+56" selected>+56 (Chile)</option>
+
+  <optgroup label="América del Sur">
+    <option value="+58">+58 (Venezuela)</option>
+    <option value="+57">+57 (Colombia)</option>
+    <option value="+51">+51 (Perú)</option>
+    <option value="+54">+54 (Argentina)</option>
+    <option value="+591">+591 (Bolivia)</option>
+    <option value="+593">+593 (Ecuador)</option>
+    <option value="+55">+55 (Brasil)</option>
+  </optgroup>
+
+  <optgroup label="Caribe / Norteamérica">
+    <option value="+509">+509 (Haití)</option>
+    <option value="+1">+1 (EE.UU./Canadá)</option>
+    <option value="+52">+52 (México)</option>
+  </optgroup>
+
+  <optgroup label="Europa">
+    <option value="+34">+34 (España)</option>
+  </optgroup>
+</select>
+
+      <input
+        type="text"
+        id="telefono"
+        required
+        placeholder="Ej: 9 1234 5678"
+      >
+        </div>
+          <small style="font-size:12px; color:#999;">
+          Para Chile: debe comenzar con 9 y tener 9 dígitos (ej: 9 1234 5678).
+          </small>
+        </div>
+
+
+        <div class="form-group">
+        <label for="direccion">Dirección (opcional)</label>
+        <div style="display:flex; align-items:center; gap:8px;">
+        <input type="text" id="direccion" placeholder="Ej: Calle 123, depto 45" style="flex:1;">
+        <span style="font-size:12px; color:#999;">Puedes agregarla más adelante</span>
+  </div>
+</div>
+        <label for="email">Correo electronico *</label>
+        <input type="email" id="email" placeholder="Correo electrónico" required />
+        <label for="email">Contraseña *</label>     
+        <input type="password" id="password" placeholder="Contraseña" required />
+        <input type="password" id="confirmarPassword" placeholder="Confirmar contraseña" required />
+        <button type="submit">Registrarse</button>
+      </form>
+      <p id="mensaje" style="color:red;"></p>
+      <p><a href="login.html">¿Ya estás registrado? Iniciar sesión</a></p>
+    </div>
+  </div>
+<footer class="footer">
+  <div class="footer-container">
+
+    <!-- CATEGORÍAS -->
+    <div class="footer-block">
+      <h3>Categorías</h3>
+      <ul>
+        <li><a href="vacuno.html">Vacuno</a></li>
+        <li><a href="ave.html">Ave</a></li>
+        <li><a href="cerdo.html">Cerdo</a></li>
+        <li><a href="todo_asado.html">Todo Asado</a></li>
+        <li><a href="packs.html">Packs</a></li>
+      </ul>
+    </div>
+
+    <!-- SERVICIO AL CLIENTE -->
+    <div class="footer-block">
+      <h3>Servicio al cliente</h3>
+      <ul>
+        <li><a href="#">Quiénes somos</a></li>
+        <li class="phone">📞 +56 9 1234 5678</li>
+        <li class="social-icons">
+          <!-- gente yo no se si manejan redes la carniceria pero si quieren los quitan -->
+          <a href="#"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- HORARIOS -->
+    <div class="footer-block">
+      <h3>Horarios</h3>
+      <p>De Martes a Domingo:<br>De 09:00 hasta las 15:00 por colación <br> Luego reabre desde las 16:30 <br> hasta las 21:00 de la noche </p>
+    </div>
+
+    <!-- MÉTODOS DE PAGO -->
+    <div class="footer-block">
+      <h3>Métodos de pago</h3>
+      <img src="img/webpay.png" alt="WebPay Plus" class="webpay-logo">
+    </div>
+
+  </div>
+
+  <div class="footer-legal">
+    Pagos seguros vía WebPay Plus. Despachos según disponibilidad del repartidor.
+  </div>
+</footer>
+</body>
+</html>

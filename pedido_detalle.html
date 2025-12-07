@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detalle del Pedido | Carnes Ttamiña</title>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caprasimo&display=swap">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./css/navbar.css">
+  <link rel="stylesheet" href="./css/footer.css">
+  <link rel="stylesheet" href="./css/pedidos.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+</head>
+
+  <style>
+    body { margin-top: 90px; text-align:center; }
+    .wrap { max-width:1000px; margin:0 auto; padding:20px; }
+
+    .pedido-box {
+      background:#fff;
+      padding:25px;
+      border-radius:12px;
+      margin-top:20px;
+      box-shadow:0 2px 6px rgba(0,0,0,0.08);
+      text-align:left;
+    }
+
+    .item {
+      display:flex;
+      align-items:center;
+      gap:18px;
+      padding:14px 0;
+      border-bottom:1px solid #eee;
+    }
+
+    .item img {
+      width:85px;
+      height:85px;
+      border-radius:10px;
+      object-fit:cover;
+      background:#f8f8f8;
+    }
+
+    .item-info a {
+      font-size:1.1rem;
+      font-weight:600;
+      color:#8b0000;
+      text-decoration:none;
+    }
+
+    .item-info a:hover { text-decoration:underline; }
+
+    .back-btn {
+      margin-top:25px;
+      padding:10px 22px;
+      background:#8b0000;
+      color:#fff;
+      border-radius:8px;
+      text-decoration:none;
+      font-weight:600;
+      display:inline-block;
+    }
+
+      /* Panel de estado para empleados en detalle de pedido */
+  .estado-panel {
+    margin: 20px auto 10px;
+    padding: 16px 20px;
+    max-width: 1000px;
+    background: #fff6f6;
+    border: 1px solid #e3b4b4;
+    border-radius: 10px;
+    text-align: left;
+  }
+
+  .estado-panel-title {
+    margin: 0 0 6px;
+    font-size: 18px;
+    color: #8b0000;
+  }
+
+  .estado-panel-sub {
+    margin: 0 0 12px;
+    font-size: 14px;
+  }
+
+  .estado-panel-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .estado-btn {
+    background: #8b0000;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  .estado-btn:hover {
+    background: #a30000;
+  }
+
+  </style>
+
+
+
+</head>
+
+<body>
+    <!-- NAVBAR -->
+<header id="navbar" class="navbar">
+  <div class="navbar-container">
+
+    <!-- LOGO + barra de búsqueda -->
+    <div class="navbar-left">
+      <h1 class="navbar-logo">Carnes Ttamiña</h1>
+      <div class="navbar-search">
+        <input type="text" placeholder="Busca aquí tus productos." />
+        <button><i class="fa fa-search"></i></button>
+      </div>
+    </div>
+
+    <!-- MENÚ DE NAVEGACIÓN -->
+    <nav class="navbar-right">
+      <ul>
+        <li><a href="pag_principal.html"><i class="fa fa-home"></i> Inicio</a></li>
+
+        <li class="dropdown align-right">
+          <a href="#"><i class="fa fa-user"></i> Bienvenido</a>
+          <ul class="dropdown-menu">
+            <li><a href="#"><i class="fa fa-id-card"></i> Mi cuenta</a></li>
+            <li><a href="login.html"><i class="fa fa-sign-in-alt"></i> Iniciar sesión</a></li>
+            <li class="no-cuenta">¿No tienes cuenta?
+              <a href="registro.html" class="crear-cuenta">Créala aquí</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+  <a href="#" id="btnVolverNavbar">
+    <i class="fa fa-arrow-left"></i> Volver
+  </a>
+</li>
+        </li>
+
+      </ul>
+    </nav>
+
+  </div>
+</header>
+
+  <main class="wrap">
+    <h1>📦 Detalle del Pedido</h1>
+    <button id="btnBoleta" class="btn-boleta">📄 Descargar Boleta PDF</button>
+
+      <!-- Panel solo para empleados -->
+  <section id="panel-estado-empleado" class="estado-panel" style="display:none;">
+    <h2 class="estado-panel-title">Estado del pedido (empleado)</h2>
+    <p class="estado-panel-sub">
+      Estado actual: <span id="estado-actual-text">—</span>
+    </p>
+    <div class="estado-panel-buttons">
+      <button class="estado-btn" data-estado="Pagado">Pagado</button>
+      <button class="estado-btn" data-estado="Pendiente de envío">Pendiente de envío</button>
+      <button class="estado-btn" data-estado="En tránsito">En tránsito</button>
+      <button class="estado-btn" data-estado="Recibido">Recibido</button>
+    </div>
+  </section>
+
+
+  <style>
+  .btn-boleta {
+    background: #8b0000;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 8px;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+    margin-top: 15px;
+  }
+  .btn-boleta:hover {
+    background: #a30000;
+  }
+  </style>
+
+    <div id="detalle"></div>
+    <a href="pedidos.html" class="back-btn">← Volver a mis pedidos</a>
+  </main>
+
+<footer class="footer">
+  <div class="footer-container">
+
+    <!-- CATEGORÍAS -->
+    <div class="footer-block">
+      <h3>Categorías</h3>
+      <ul>
+        <li><a href="vacuno.html">Vacuno</a></li>
+        <li><a href="ave.html">Ave</a></li>
+        <li><a href="cerdo.html">Cerdo</a></li>
+        <li><a href="todo_asado.html">Todo Asado</a></li>
+        <li><a href="packs.html">Packs</a></li>
+      </ul>
+    </div>
+
+    <!-- SERVICIO AL CLIENTE -->
+    <div class="footer-block">
+      <h3>Servicio al cliente</h3>
+      <ul>
+        <li><a href="#">Quiénes somos</a></li>
+        <li class="phone">📞 +56 9 1234 5678</li>
+        <li class="social-icons">
+          <!-- gente yo no se si manejan redes la carniceria pero si quieren los quitan -->
+          <a href="#"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- HORARIOS -->
+    <div class="footer-block">
+      <h3>Horarios</h3>
+      <p>De Martes a Domingo:<br>De 09:00 hasta las 15:00 por colación <br> Luego reabre desde las 16:30 <br> hasta las 21:00 de la noche </p>
+    </div>
+
+    <!-- MÉTODOS DE PAGO -->
+    <div class="footer-block">
+      <h3>Métodos de pago</h3>
+      <img src="img/webpay.png" alt="WebPay Plus" class="webpay-logo">
+    </div>
+
+  </div>
+
+  <div class="footer-legal">
+    Pagos seguros vía WebPay Plus. Despachos según disponibilidad del repartidor.
+  </div>
+</footer>
+
+  <!-- Scripts al final -->
+  <script type="module" src="./js/navbar.js"></script>
+  <script type="module" src="./js/pedido_detalle.js"></script>
+  <script type="module" src="./js/navbar.js"></script>
+</body>
+</html>

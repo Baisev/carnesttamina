@@ -1,0 +1,274 @@
+/* ===== CONTENEDOR GENERAL ===== */
+.pedidos-container {
+  max-width: 1200px;
+  margin: 100px auto 40px;
+  padding: 0 16px;
+}
+
+/* Header de la sección (título + botón volver) */
+.header-pedidos {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.header-pedidos h1 {
+  font-size: 1.8rem;
+  color: #8b0000;
+}
+
+/* Botón volver */
+.btn-volver {
+  background: transparent;
+  border: 1px solid #8b0000;
+  color: #8b0000;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.btn-volver:hover {
+  background: #8b0000;
+  color: #fff;
+}
+
+/* Descripción */
+.descripcion {
+  margin-top: 8px;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+/* ===== FILTROS ===== */
+.filtros-contenedor {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.filtros-contenedor select,
+.filtros-contenedor .input-pedido {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+  min-width: 160px;
+}
+
+.filtros-contenedor .input-pedido {
+  max-width: 200px;
+}
+
+/* ======== CARD PEQUEÑA CON IMAGEN ======== */
+.pedido-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 16px;
+  width: 320px;                /* 👈 Tamaño fijo como una card real */
+  box-shadow: 0 4px 14px rgba(0,0,0,0.10);
+  transition: transform .2s ease, box-shadow .2s ease;
+  text-align: center;
+  margin: auto;
+}
+
+/* Hover */
+.pedido-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.16);
+}
+
+/* ======== Imagen pequeña ======== */
+.pedido-card img {
+  width: 100%;
+  height: 160px;               /* 👈 Imagen pequeña */
+  object-fit: cover;           /* 👈 Se recorta bonita */
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+/* ======== Contenido ======== */
+.pedido-card h3 {
+  font-size: 1.2rem;
+  margin: 6px 0;
+  color: #8b0000;
+}
+
+.pedido-card p {
+  margin: 4px 0;
+  font-size: 0.95rem;
+}
+
+.estado-chip {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 10px;
+  background: #ffe8a3;
+  font-weight: bold;
+  font-size: 0.85rem;
+  color: #7a5800;
+}
+
+.ver-detalle {
+  background: #8b0000;
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  margin-top: 12px;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.ver-detalle:hover {
+  background: #a40000;
+}
+
+/* ======== GRID ======== */
+.lista-pedidos {
+  display: grid;
+  width: 100%; /* 👈 importantísimo para que no se encoja al tamaño de la card */
+  grid-template-columns: repeat(3, minmax(0, 1fr)); /* 3 columnas fijas en escritorio */
+  gap: 25px;
+  margin-top: 20px;
+}
+
+/* Opcional: que la card llene mejor su columna */
+.pedido-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 16px;
+  width: 100%;             /* 👈 que se adapte a la columna */
+  max-width: 320px;        /* 👈 pero no se haga gigante */
+  box-shadow: 0 4px 14px rgba(0,0,0,0.10);
+  transition: transform .2s ease, box-shadow .2s ease;
+  text-align: center;
+  margin: 0 auto;          /* 👈 centra dentro de cada columna */
+}
+
+
+/* Loader */
+.lista-pedidos .loader {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 40px 0;
+  font-size: 1rem;
+  color: #555;
+}
+
+/* ===== PAGINACIÓN ===== */
+.paginacion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.paginacion button {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid #8b0000;
+  background: #fff;
+  color: #8b0000;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.paginacion button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.paginacion button:hover:not(:disabled) {
+  background: #8b0000;
+  color: #fff;
+}
+
+#pagina-actual {
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+/* ===== MODAL IMAGEN ===== */
+.img-modal {
+  display:none;
+  position: fixed;
+  z-index: 9999;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: rgba(0,0,0,0.75);
+  justify-content:center;
+  align-items:center;
+}
+
+.img-modal-content {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  animation: zoomIn .25s ease;
+}
+
+.img-close {
+  position: absolute;
+  top: 25px;
+  right: 35px;
+  font-size: 40px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.6); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+/* ===== MODAL IMAGEN AMPLIADA (OVERRIDE) ===== */
+.img-modal-content {
+  width: 70vw !important;        /* ancho grande */
+  height: auto !important;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  animation: zoomIn .25s ease;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 600px) {
+  .pedidos-container {
+    margin-top: 80px;
+  }
+
+  .header-pedidos h1 {
+    font-size: 1.5rem;
+  }
+
+  .filtros-contenedor {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filtros-contenedor select,
+  .filtros-contenedor .input-pedido {
+    width: 100%;
+  }
+
+  .id-real {
+  font-size: 0.9rem;
+  color: #555;
+  margin-left: 6px;
+  opacity: 0.8;
+}
+
+}

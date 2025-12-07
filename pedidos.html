@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mis Pedidos | Carnes Ttamiña</title>
+
+  <!-- Fuente oficial -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caprasimo&display=swap">
+
+  <!-- Estilos globales -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Estilos específicos -->
+  <link rel="stylesheet" href="./css/navbar.css">
+  <link rel="stylesheet" href="./css/footer.css">
+  <link rel="stylesheet" href="./css/pedidos.css">
+
+
+  <!-- Iconos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <!-- Scripts principales -->
+  <script type="module" src="./js/supabaseClient.js"></script>
+  <script type="module" src="./js/navbar.js"></script>
+  <script type="module" src="./js/pedidos.js"></script>
+  <script type="module" src="./js/searchbar.js"></script>
+
+</head>
+
+<body>
+  <!-- NAVBAR -->
+<header id="navbar" class="navbar">
+  <div class="navbar-container">
+
+    <!-- LOGO + barra de búsqueda -->
+    <div class="navbar-left">
+      <h1 class="navbar-logo">Carnes Ttamiña</h1>
+      <div class="navbar-search">
+        <input type="text" placeholder="Busca aquí tus productos." />
+        <button><i class="fa fa-search"></i></button>
+      </div>
+    </div>
+
+    <!-- MENÚ DE NAVEGACIÓN -->
+    <nav class="navbar-right">
+      <ul>
+        <li><a href="pag_principal.html"><i class="fa fa-home"></i> Inicio</a></li>
+
+        <li class="dropdown align-right">
+          <a href="#"><i class="fa fa-user"></i> Bienvenido</a>
+          <ul class="dropdown-menu">
+            <li><a href="#"><i class="fa fa-id-card"></i> Mi cuenta</a></li>
+            <li><a href="login.html"><i class="fa fa-sign-in-alt"></i> Iniciar sesión</a></li>
+            <li class="no-cuenta">¿No tienes cuenta?
+              <a href="registro.html" class="crear-cuenta">Créala aquí</a>
+            </li>
+          </ul>
+        </li>
+
+        </li>
+
+      </ul>
+    </nav>
+
+  </div>
+</header>
+
+
+  <main class="pedidos-container">
+
+    <div class="header-pedidos">
+      <!-- ID alineado con pedidos.js -->
+      <button id="btn-volver" class="btn-volver">
+        <i class="fa fa-arrow-left"></i> Volver
+      </button>
+
+      <h1>📦 Mis Pedidos</h1>
+    </div>
+
+    <p class="descripcion">
+      Revisa el estado y los detalles de tus pedidos realizados.
+    </p>
+
+    <!-- 🔍 Filtros -->
+    <div class="filtros-contenedor">
+
+      <!-- FILTRO ESTADO -->
+      <select id="filtro-estado">
+        <option value="todos">Todos los estados</option>
+        <option value="pagado">Pagado</option>
+        <option value="pendiente">Pendiente</option>
+      </select>
+
+      <!-- FILTRO POR NÚMERO DE PEDIDO -->
+      <input 
+        id="filtro-pedido" 
+        type="number" 
+        placeholder="Buscar pedido #" 
+        class="input-pedido"
+      />
+      
+      <!-- FILTRO FECHA -->
+      <select id="filtro-fecha">
+        <option value="recientes">Más recientes</option>
+        <option value="antiguos">Más antiguos</option>
+      </select>
+    </div>
+
+    <!-- 📋 Lista de pedidos -->
+    <section id="lista-pedidos" class="lista-pedidos">
+      <div class="loader">Cargando pedidos...</div>
+    </section>
+
+    <!-- 📄 Paginación -->
+    <div id="paginacion" class="paginacion" style="display:none; margin-bottom: 40px;">
+      <button id="btn-prev">⬅️ Anterior</button>
+      <span id="pagina-actual">Página 1</span>
+      <button id="btn-next">Siguiente ➡️</button>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+  <div class="footer-container">
+
+    <!-- CATEGORÍAS -->
+    <div class="footer-block">
+      <h3>Categorías</h3>
+      <ul>
+        <li><a href="vacuno.html">Vacuno</a></li>
+        <li><a href="ave.html">Ave</a></li>
+        <li><a href="cerdo.html">Cerdo</a></li>
+        <li><a href="todo_asado.html">Todo Asado</a></li>
+        <li><a href="packs.html">Packs</a></li>
+      </ul>
+    </div>
+
+    <!-- SERVICIO AL CLIENTE -->
+    <div class="footer-block">
+      <h3>Servicio al cliente</h3>
+      <ul>
+        <li><a href="#">Quiénes somos</a></li>
+        <li class="phone">📞 +56 9 1234 5678</li>
+        <li class="social-icons">
+          <!-- gente yo no se si manejan redes la carniceria pero si quieren los quitan -->
+          <a href="#"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- HORARIOS -->
+    <div class="footer-block">
+      <h3>Horarios</h3>
+      <p>De Martes a Domingo:<br>De 09:00 hasta las 15:00 por colación <br> Luego reabre desde las 16:30 <br> hasta las 21:00 de la noche </p>
+    </div>
+
+    <!-- MÉTODOS DE PAGO -->
+    <div class="footer-block">
+      <h3>Métodos de pago</h3>
+      <img src="img/webpay.png" alt="WebPay Plus" class="webpay-logo">
+    </div>
+
+  </div>
+
+  <div class="footer-legal">
+    Pagos seguros vía WebPay Plus. Despachos según disponibilidad del repartidor.
+  </div>
+</footer>
+
+  <!-- Acción del botón volver + carruseles -->
+  <script>
+    // Botón volver desde el header
+    document.getElementById("btn-volver")?.addEventListener("click", () => {
+      window.location.href = "pag_principal.html";
+    });
+
+    // Activar todos los carruseles (si existen en esta vista)
+    document.querySelectorAll(".carousel").forEach(carousel => {
+      let index = 0;
+      const imgs = carousel.querySelectorAll(".c-img");
+      const bullets = carousel.parentElement.querySelectorAll(".bullet");
+
+      function update(n){
+        imgs.forEach(img => img.style.display = "none");
+        bullets.forEach(b => b.classList.remove("active"));
+
+        imgs[n].style.display = "block";
+        bullets[n].classList.add("active");
+      }
+
+      update(0);
+
+      carousel.querySelector(".prev").onclick = () => {
+        index = (index - 1 + imgs.length) % imgs.length;
+        update(index);
+      };
+
+      carousel.querySelector(".next").onclick = () => {
+        index = (index + 1) % imgs.length;
+        update(index);
+      };
+
+      bullets.forEach(b =>
+        b.onclick = () => {
+          index = Number(b.dataset.index);
+          update(index);
+        }
+      );
+    });
+  </script>
+
+  <!-- 🖼️ Modal para imagen ampliada -->
+  <div id="img-modal" class="img-modal">
+    <span class="img-close">&times;</span>
+    <img class="img-modal-content" id="imgModalBig">
+  </div>
+
+  <!-- Footer dinámico -->
+  <script type="module" src="./js/footer.js"></script>
+
+</body>
+</html>

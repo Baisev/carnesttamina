@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Productos de Ave - Carnes Ttamiña</title>
+  <script type="module" src="js/navbar.js"></script>
+  <script type="module" src="js/carritoglobal.js"></script>
+  <script src="js/cartSidebar.js" defer></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="carnesStilos.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/cart-sidebar.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script type="module" src="js/searchbar.js"></script>
+
+</head>
+
+<body>
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="navbar-container">
+
+    <!-- LOGO + barra de búsqueda -->
+    <div class="navbar-left">
+      <h1 class="navbar-logo">Carnes Ttamiña</h1>
+      <div class="navbar-search">
+        <input type="text" placeholder="Busca aquí tus productos..." />
+        <button><i class="fa fa-search"></i></button>
+      </div>
+    </div>
+
+    <!-- MENÚ DE NAVEGACIÓN -->
+    <nav class="navbar-right">
+      <ul>
+        <li><a href="pag_principal.html"><i class="fa fa-home"></i> Inicio</a></li>
+
+        <li class="dropdown align-right">
+          <a href="#"><i class="fa fa-user"></i> Bienvenido</a>
+          <ul class="dropdown-menu">
+            <li><a href="#"><i class="fa fa-id-card"></i> Mi cuenta</a></li>
+            <li><a href="login.html"><i class="fa fa-sign-in-alt"></i> Iniciar sesión</a></li>
+            <li class="no-cuenta">¿No tienes cuenta?
+              <a href="registro.html" class="crear-cuenta">Créala aquí</a>
+            </li>
+          </ul>
+        </li>
+
+        <!-- Menú Categorías -->
+        <li class="dropdown">
+          <a href="#"><i class="fa fa-cut"></i> Categorías <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="vacuno.html">Vacuno</a></li>
+            <li><a href="ave.html">Ave</a></li>
+            <li><a href="cerdo.html">Cerdo</a></li>
+            <li><a href="todo_asado.html">Todo para el asado</a></li>
+            <li><a href="packs.html">Packs</a></li>
+          </ul>
+        </li>
+
+        <!-- Carrito (debe estar dentro del UL) -->
+        <li class="cart-icon">
+          <a href="carrito.html">
+            <i class="fa fa-shopping-cart"></i>
+            <span class="cart-count">0</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+  <!-- BOTONES DE CATEGORÍAS -->
+  <section class="categorias-destacadas">
+    <a href="vacuno.html" class="categoria-boton vacuno">Vacuno</a>
+    <a href="ave.html" class="categoria-boton ave">Ave</a>
+    <a href="cerdo.html" class="categoria-boton cerdo">Cerdo</a>
+    <a href="todo_asado.html" class="categoria-boton  todo-asado">Todo para el Asado</a>
+    <a href="packs.html" class="categoria-boton packs">Packs</a>
+  </section>
+
+  <!-- CONTENIDO ESPECÍFICO -->
+  <main class="catalogo-container">
+    <div class="breadcrumb">
+      <a href="pag_principal.html">Inicio</a> > <strong>Ave</strong>
+    </div>
+
+    <h1 class="titulo-categoria">🐔 Cortes de Ave</h1>
+    <p style="text-align: center; color: #666; margin-bottom: 30px;">
+      Pollo fresco, sabroso y de la mejor calidad para tus preparaciones.
+    </p>
+
+    <div class="filtros-container">
+      <div class="busqueda-vacuno">
+        <input type="text" id="busquedaAve" placeholder="Buscar en ave...">
+      </div>
+      <select class="filtro-orden" id="filtroOrden">
+        <option value="nombre">Ordenar por: Nombre</option>
+        <option value="precio_asc">Precio: Menor a Mayor</option>
+        <option value="precio_desc">Precio: Mayor a Menor</option>
+        <option value="stock">Más disponible</option>
+      </select>
+    </div>
+
+    <div class="skeleton-loader" id="skeletonLoader"></div>
+    <div class="productos-grid" id="productosGrid" style="display:none;"></div>
+    <div id="sinProductos" class="sin-productos" style="display:none;">
+      <i class="fas fa-search"></i>
+      <h3>No se encontraron productos de ave</h3>
+      <p>Intenta con otros términos de búsqueda</p>
+    </div>
+  </main>
+
+<footer class="footer">
+  <div class="footer-container">
+
+    <!-- CATEGORÍAS -->
+    <div class="footer-block">
+      <h3>Categorías</h3>
+      <ul>
+        <li><a href="vacuno.html">Vacuno</a></li>
+        <li><a href="ave.html">Ave</a></li>
+        <li><a href="cerdo.html">Cerdo</a></li>
+        <li><a href="todo_asado.html">Todo Asado</a></li>
+        <li><a href="packs.html">Packs</a></li>
+      </ul>
+    </div>
+
+    <!-- SERVICIO AL CLIENTE -->
+    <div class="footer-block">
+      <h3>Servicio al cliente</h3>
+      <ul>
+        <li><a href="#">Quiénes somos</a></li>
+        <li class="phone">📞 +56 9 1234 5678</li>
+        <li class="social-icons">
+          <!-- gente yo no se si manejan redes la carniceria pero si quieren los quitan -->
+          <a href="#"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- HORARIOS -->
+    <div class="footer-block">
+      <h3>Horarios</h3>
+      <p>De Martes a Domingo:<br>De 09:00 hasta las 15:00 por colación <br> Luego reabre desde las 16:30 <br> hasta las 21:00 de la noche </p>
+    </div>
+
+    <!-- MÉTODOS DE PAGO -->
+    <div class="footer-block">
+      <h3>Métodos de pago</h3>
+      <img src="img/webpay.png" alt="WebPay Plus" class="webpay-logo">
+    </div>
+
+  </div>
+
+  <div class="footer-legal">
+    Pagos seguros vía WebPay Plus. Despachos según disponibilidad del repartidor.
+  </div>
+</footer>
+
+
+  <!-- SCRIPT PRINCIPAL -->
+  <script type="module">
+    import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+    import { agregarAlCarrito } from './js/carritoglobal.js'
+
+    const supabase = createClient(
+      'https://bagilcaibwidyewiqqzd.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJhZ2lsY2FpYndpZHlld2lxcXpkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTkwMjY3NDEsImV4cCI6MjA3NDYwMjc0MX0.VsVsH8c9fpjKxgmuNWYUCqE8e8DDcXicUELTexNJaAU'
+    );
+
+    class ProductosAve {
+      constructor() {
+        this.productos = [];
+        this.init();
+      }
+
+      async init() {
+        await this.cargarProductos();
+        this.setupEventListeners();
+      }
+
+      async cargarProductos() {
+        const skeleton = document.getElementById('skeletonLoader');
+        const grid = document.getElementById('productosGrid');
+        const sinProductos = document.getElementById('sinProductos');
+
+        try {
+          skeleton.style.display = 'grid';
+          grid.style.display = 'none';
+          sinProductos.style.display = 'none';
+
+          // ✅ Cargar productos de categoría "ave"
+          const { data: productos, error } = await supabase
+            .from('producto')
+            .select('*')
+            .eq('categoria', 'ave')
+            .order('nombre', { ascending: true });
+
+          if (error) throw error;
+          this.productos = productos || [];
+
+          skeleton.style.display = 'none';
+          this.mostrarProductos(this.productos);
+
+        } catch (error) {
+          console.error('Error al cargar productos:', error);
+          skeleton.style.display = 'none';
+          sinProductos.style.display = 'block';
+        }
+      }
+
+      mostrarProductos(productos) {
+        const grid = document.getElementById('productosGrid');
+        grid.innerHTML = '';
+
+        if (!productos.length) {
+          document.getElementById('sinProductos').style.display = 'block';
+          return;
+        }
+
+        grid.style.display = 'grid';
+        productos.forEach(p => {
+          const card = document.createElement('div');
+          card.className = 'producto-card';
+          const precioFormateado = new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP' }).format(p.precio);
+
+          card.innerHTML = `
+            <div class="imagen-container">
+              <img src="${p.imagen_url || 'img/placeholder-producto.jpg'}" alt="${p.nombre}" class="producto-imagen">
+              <button class="btn-flotante" data-id="${p.producto_id}">
+                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+              </button>
+            </div>
+            <h3 class="producto-nombre">
+            <a class="link-producto" href="producto.html?id=${p.producto_id}">
+            ${p.nombre}
+            </a>
+            </h3>
+            <div class="producto-descripcion">${p.descripcion || ''}</div>
+            <div class="producto-precio">${precioFormateado}</div>
+          `;
+
+          const boton = card.querySelector('.btn-flotante');
+          boton.addEventListener('click', () => {
+            agregarAlCarrito(p);
+            boton.innerHTML = '<i class="fas fa-check"></i> ¡Agregado!';
+            boton.disabled = true;
+            setTimeout(() => {
+              boton.innerHTML = '<i class="fas fa-cart-plus"></i> Agregar al Carrito';
+              boton.disabled = false;
+            }, 1500);
+          });
+
+          grid.appendChild(card);
+        });
+      }
+
+      setupEventListeners() {
+        document.getElementById('busquedaAve').addEventListener('input', () => this.filtrar());
+        document.getElementById('filtroOrden').addEventListener('change', () => this.filtrar());
+      }
+
+      filtrar() {
+        const busqueda = document.getElementById('busquedaAve').value.toLowerCase();
+        const orden = document.getElementById('filtroOrden').value;
+
+        let filtrados = this.productos.filter(p =>
+          p.nombre.toLowerCase().includes(busqueda) ||
+          (p.descripcion && p.descripcion.toLowerCase().includes(busqueda))
+        );
+
+        switch (orden) {
+          case 'precio_asc': filtrados.sort((a, b) => a.precio - b.precio); break;
+          case 'precio_desc': filtrados.sort((a, b) => b.precio - a.precio); break;
+          case 'stock': filtrados.sort((a, b) => b.stock - a.stock); break;
+          default: filtrados.sort((a, b) => a.nombre.localeCompare(b.nombre));
+        }
+
+        this.mostrarProductos(filtrados);
+      }
+    }
+
+    const productosAve = new ProductosAve();
+  </script>
+</body>
+</html>

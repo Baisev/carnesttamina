@@ -1,0 +1,389 @@
+/* === FUENTE GLOBAL === */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caprasimo&display=swap');
+
+/* === CONTENEDOR DE BOTONES DE CATEGORÍAS === */
+.categorias-destacadas {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 25px;
+  justify-items: center;
+  align-items: center;
+  max-width: 1500px;
+  margin: 60px auto -50px auto; /* espacio desde navbar y hacia el título */
+  padding: 20px 40px;
+  box-sizing: border-box;
+}
+
+/* === BOTÓN DE CATEGORÍA === */
+.categoria-boton {
+  width: 200px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Caprasimo', cursive;
+  font-size: 1.2rem;
+  color: #fff;
+  border-radius: 4px;
+  border: 3px solid transparent;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+}
+
+/* === COLORES POR CATEGORÍA === */
+.categoria-boton.vacuno {
+  background-color: #bd1c1a; /* rojo carne */
+}
+.categoria-boton.ave {
+  background-color: #e0ab18; /* amarillo pollo */
+}
+.categoria-boton.cerdo {
+  background-color: #df862d; /* naranja cerdo */
+}
+.categoria-boton.todo-asado {
+  background-color: #5c5c5c; /* gris oscuro */
+}
+.categoria-boton.packs {
+  background-color: #d32f2f; /* rojo más fuerte */
+}
+
+/* === EFECTO HOVER === */
+.categoria-boton:hover {
+  transform: translateY(-5px);
+  border-color: #ffcb05;
+  color: #ffcb05;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 1200px) {
+  .categorias-destacadas {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .categorias-destacadas {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .categorias-destacadas {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 400px) {
+  .categorias-destacadas {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+body, .catalogo-container, .producto-card, .filtros-container, .btn-flotante {
+  font-family: 'IBM Plex Serif', serif;
+}
+/* === CONTENEDOR GENERAL === */
+.catalogo-container {
+  max-width: 1500px;
+  margin: 60px auto;
+  padding: 20px 50px;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+/* === BREADCRUMB Y TÍTULO === */
+.breadcrumb {
+  font-size: 1rem;
+  margin-bottom: 10px;
+  color: #8b0000;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.breadcrumb a {
+  text-decoration: none;
+  color: #b71c1c;
+  transition: color 0.3s ease;
+}
+
+.breadcrumb a:hover {
+  color: #ffcc00;
+}
+
+.titulo-categoria {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #2a2a2a;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/* === DESCRIPCIÓN === */
+.catalogo-container > p {
+  text-align: center;
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 35px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+/* === FILTROS Y BÚSQUEDA === */
+.filtros-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.busqueda-vacuno input {
+  padding: 10px 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  width: 250px;
+  font-family: 'IBM Plex Serif', serif;
+}
+
+.filtro-orden {
+  padding: 10px 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: white;
+  cursor: pointer;
+  font-family: 'IBM Plex Serif', serif;
+}
+
+/* === GRID DE PRODUCTOS === */
+.productos-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  justify-content: center;
+  align-items: start;
+  width: 100%;
+  padding: 20px 0;
+  box-sizing: border-box;
+}
+
+/* === TARJETAS DE PRODUCTOS === */
+.producto-card {
+  position: relative;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 370px;
+  cursor: pointer;
+}
+
+.producto-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* === IMAGEN === */
+.producto-imagen {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  background-color: #f8f8f8;
+  transition: filter 0.4s ease, transform 0.4s ease;
+}
+
+/* === BOTÓN FLOTANTE SOBRE LA IMAGEN === */
+.producto-card .btn-flotante {
+  position: absolute;
+  top: 30%; /* ajusta altura */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 150px;              /* cuadrado */
+  height: 80px;
+  background-color: rgba(183, 28, 28, 0.85); /* rojo oscuro semitransparente */
+  color: #fff;
+  border: 2px solid #fff;   /* bordes blancos */
+  border-radius: 10px;      /* esquinas suaves */
+  display: flex;            /* centra el ícono */
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.35s ease;
+  z-index: 2;
+  cursor: pointer;
+}
+
+/* Hover del botón */
+.producto-card .btn-flotante:hover {
+  background-color: #fff;
+  color: #b71c1c;
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Mostrar en hover de la tarjeta */
+.producto-card:hover .btn-flotante {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+/* === EFECTO IMAGEN AL HOVER === */
+.producto-card:hover .producto-imagen {
+  filter: grayscale(60%) brightness(70%);
+  transform: scale(1.04);
+}
+
+/* === TEXTOS DE PRODUCTO === */
+.producto-nombre {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #8b0000;
+  margin: 10px 0 4px 0;
+}
+
+.producto-descripcion {
+  font-size: 0.95rem;
+  color: #444;
+  margin-bottom: 6px;
+  min-height: 30px;
+}
+
+.producto-precio {
+  font-size: 1.3rem;
+  color: #b71c1c;
+  font-weight: 700;
+  margin: 4px 0;
+}
+
+.producto-unidad {
+  color: #777;
+  font-size: 0.9rem;
+  margin-bottom: 6px;
+}
+
+.producto-stock {
+  color: #2e7d32;
+  font-size: 0.9rem;
+  margin-top: 6px;
+  font-weight: 500;
+}
+
+.producto-agotado {
+  color: #c0392b;
+  font-size: 0.9rem;
+  margin-top: 6px;
+}
+
+/* === SIN PRODUCTOS === */
+.sin-productos {
+  text-align: center;
+  padding: 50px;
+  color: #666;
+}
+
+.sin-productos i {
+  font-size: 2rem;
+  color: #b71c1c;
+}
+
+/* === SKELETON LOADER === */
+.skeleton-loader {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  justify-content: center;
+  padding: 10px;
+}
+
+.skeleton-card {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeleton-image,
+.skeleton-text,
+.skeleton-button {
+  background: linear-gradient(90deg, #f0f0f0 25%, #eaeaea 37%, #f0f0f0 63%);
+  background-size: 400% 100%;
+  border-radius: 6px;
+  margin: 8px 0;
+}
+
+.skeleton-image {
+  width: 100%;
+  height: 200px;
+}
+
+.skeleton-text {
+  height: 16px;
+  width: 80%;
+  margin: 10px auto;
+}
+
+.skeleton-text.short {
+  width: 50%;
+}
+
+.skeleton-button {
+  width: 60%;
+  height: 36px;
+  margin: 12px auto;
+  border-radius: 8px;
+}
+
+@keyframes pulse {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 1200px) {
+  .productos-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .productos-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .productos-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .titulo-categoria {
+    font-size: 1.8rem;
+  }
+}
+.producto-nombre { text-align:center; margin-top:10px; }
+.producto-nombre .link-producto{
+  color:#8b0000;
+  text-decoration:none;
+  font-weight:700;
+}
+.producto-nombre .link-producto:hover{ text-decoration:underline; }
+
+

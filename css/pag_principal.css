@@ -1,0 +1,244 @@
+/* ===============================
+   Estilos exclusivos de página principal (mejorado y responsive)
+   =============================== */
+
+/* Fuente Caprasimo */
+@import url('https://fonts.googleapis.com/css2?family=Caprasimo&display=swap');
+
+
+main {
+  font-family: 'Caprasimo', cursive;
+  padding: 40px 20px;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+/* ==== CARRUSEL ==== */
+.carousel-section {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 60px;
+  border-radius: 15px;
+}
+
+.carousel-container {
+  display: flex;
+  transition: transform 1s ease-in-out;
+}
+
+.carousel-slide {
+  flex: 0 0 100%;
+  height: 350px;
+  background: #b22222; /* temporal */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.carousel-slide:hover .carousel-content {
+  background-color: rgba(0, 0, 0, 0.45);
+  padding: 20px;
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+.carousel-content h2 {
+  font-size: 2.2rem;
+  margin-bottom: 5px;
+}
+.carousel-content p {
+  font-size: 1.2rem;
+}
+
+/* Botones del carrusel */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(160, 0, 0, 0.8);
+  color: #fff;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  transition: all 0.3s ease;
+  z-index: 5;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+}
+
+/* Efecto hover */
+.carousel-btn:hover {
+  background: rgba(200, 0, 0, 0.9);
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* Posiciones a los lados del carrusel */
+.carousel-btn.prev {
+  left: -20px;   /* fuera del carrusel */
+}
+
+.carousel-btn.next {
+  right: -20px;  /* fuera del carrusel */
+}
+
+/* Ajuste responsive: acercar los botones en móvil */
+@media (max-width: 768px) {
+  .carousel-btn.prev { left: 5px; }
+  .carousel-btn.next { right: 5px; }
+}
+
+
+.carousel-btn:hover {
+  background: rgba(255,255,255,0.9);
+  transform: scale(1.1);
+}
+
+.carousel-btn.prev { left: 12px; }
+.carousel-btn.next { right: 12px; }
+
+
+/* ==== CATEGORÍAS ==== */
+/* ==== CATEGORÍAS ==== */
+.categories-section {
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2rem;
+  color: #a00;
+  margin-bottom: 35px;
+}
+
+/* === Cards de categorías === */
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+  padding: 20px;
+}
+
+.category-card {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* centra vertical y horizontal */
+  height: 200px;
+  border-radius: 15px;
+  text-decoration: none;
+  overflow: hidden;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.4rem;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4); /* resalta el texto sin fondo */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.category-card h3 {
+  margin: 0;
+  background: none; /* quita fondo */
+  padding: 0;
+}
+
+.category-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+}
+
+
+/* === Fondos por categoría === */
+.category-card.vacuno {
+  background-image: url("/img/cards_principal/vacuno.png");
+}
+
+.category-card.ave {
+  background-image: url("/img/cards_principal/ave.png");
+}
+
+.category-card.cerdo {
+  background-image: url("/img/cards_principal/cerdo.png");
+}
+
+.category-card.miscelaneos {
+  background-image: url("/img/cards_principal/todo_para_tu_asado.png");
+}
+
+.category-card.packs {
+  background-image: url("/img/cards_principal/packs.png");
+}
+
+
+/* ==== RESPONSIVE ==== */
+
+/* Tablets (<= 992px) */
+@media (max-width: 992px) {
+  main { padding: 30px 15px; }
+  .carousel-slide { height: 280px; }
+  .carousel-content h2 { font-size: 1.8rem; }
+  .category-card { width: 200px; height: 150px; }
+  .section-title { font-size: 1.7rem; }
+}
+
+/* Celulares grandes (<= 768px) */
+@media (max-width: 768px) {
+  .carousel-slide { height: 220px; }
+  .carousel-content h2 { font-size: 1.5rem; }
+  .categories-grid { flex-direction: column; align-items: center; }
+  .category-card { width: 80%; max-width: 320px; height: 140px; }
+}
+
+/* Celulares pequeños (<= 480px) */
+@media (max-width: 480px) {
+  main { padding: 20px 10px; }
+  .carousel-slide { height: 180px; }
+  .carousel-content h2 { font-size: 1.2rem; }
+  .carousel-content p { font-size: 0.8rem; }
+  .category-card { width: 100%; height: 120px; }
+  .category-card h3 { font-size: 1.1rem; }
+}
+
+#banner-superior {
+  position: relative;
+  top: 40px;
+  left: 0; 
+  width: 100%;
+  background-color: #ffeb3b; 
+  color: #b71c1c; 
+  font-family: 'Caprasimo', cursive;
+  font-size: 1.30rem;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+
+#banner-superior div {
+  display: inline-block;
+  animation: scroll-promo 20s linear infinite;
+  will-change: transform;
+  padding-left: 180%;
+  animation-duration: 12s;
+}
+
+@keyframes scroll-promo {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+

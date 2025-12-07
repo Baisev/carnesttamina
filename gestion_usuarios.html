@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestión de Usuarios - Carnes Ttamiña</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script type="module" src="js/gestion_usuarios.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+
+<body>
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="navbar-container">
+
+    
+
+    <!-- LOGO + barra de búsqueda -->
+    <div class="navbar-left">
+      <h1 class="navbar-logo">Carnes Ttamiña</h1>
+      <div class="navbar-search">
+        <input type="text" placeholder="Busca aquí tus productos..." />
+        <button><i class="fa fa-search"></i></button>
+      </div>
+    </div>
+
+    <!-- MENÚ DE NAVEGACIÓN -->
+    <nav class="navbar-right">
+      <ul>
+        <li><a href="pag_principal.html"><i class="fa fa-home"></i> Inicio</a></li>
+
+        <li class="dropdown align-right">
+          <a href="#"><i class="fa fa-user"></i> Bienvenido</a>
+          <ul class="dropdown-menu">
+            <li><a href="#"><i class="fa fa-id-card"></i> Mi cuenta</a></li>
+            <li><a href="login.html"><i class="fa fa-sign-in-alt"></i> Iniciar sesión</a></li>
+            <li class="no-cuenta">¿No tienes cuenta?
+              <a href="registro.html" class="crear-cuenta">Créala aquí</a>
+            </li>
+          </ul>
+        </li>
+
+        <!-- Menú Categorías -->
+        <li class="dropdown">
+          <a href="#"><i class="fa fa-cut"></i> Categorías <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="vacuno.html">Vacuno</a></li>
+            <li><a href="ave.html">Ave</a></li>
+            <li><a href="cerdo.html">Cerdo</a></li>
+            <li><a href="todo_asado.html">Todo para el asado</a></li>
+            <li><a href="packs.html">Packs</a></li>
+          </ul>
+        </li>
+
+       
+        <li class="cart-icon">
+          <a href="carrito.html">
+            <i class="fa fa-shopping-cart"></i>
+            <span class="cart-count">0</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+  <!-- CONTENIDO -->
+  <main class="container" style="margin-top:90px;">
+    <h2>Gestión de Usuarios</h2>
+    <p>Desde aquí puedes cambiar el rol de los usuarios entre <strong>cliente</strong> y <strong>empleado</strong>.</p>
+
+    <table id="tabla-usuarios">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Correo</th>
+          <th>Nombre</th>
+          <th>Rol actual</th>
+          <th>Cambiar a</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </main>
+
+<footer class="footer">
+  <div class="footer-container">
+
+    <!-- CATEGORÍAS -->
+    <div class="footer-block">
+      <h3>Categorías</h3>
+      <ul>
+        <li><a href="vacuno.html">Vacuno</a></li>
+        <li><a href="ave.html">Ave</a></li>
+        <li><a href="cerdo.html">Cerdo</a></li>
+        <li><a href="todo_asado.html">Todo Asado</a></li>
+        <li><a href="packs.html">Packs</a></li>
+      </ul>
+    </div>
+
+    <!-- SERVICIO AL CLIENTE -->
+    <div class="footer-block">
+      <h3>Servicio al cliente</h3>
+      <ul>
+        <li><a href="#">Quiénes somos</a></li>
+        <li class="phone">📞 +56 9 1234 5678</li>
+        <li class="social-icons">
+          <!-- gente yo no se si manejan redes la carniceria pero si quieren los quitan -->
+          <a href="#"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- HORARIOS -->
+    <div class="footer-block">
+      <h3>Horarios</h3>
+      <p>De Martes a Domingo:<br>De 09:00 hasta las 15:00 por colación <br> Luego reabre desde las 16:30 <br> hasta las 21:00 de la noche </p>
+    </div>
+
+    <!-- MÉTODOS DE PAGO -->
+    <div class="footer-block">
+      <h3>Métodos de pago</h3>
+      <img src="img/webpay.png" alt="WebPay Plus" class="webpay-logo">
+    </div>
+
+  </div>
+
+  <div class="footer-legal">
+    Pagos seguros vía WebPay Plus. Despachos según disponibilidad del repartidor.
+  </div>
+</footer>
+  <script type="module" src="js/protegerEmpleado.js"></script>
+  <script type="module" src="js/navbarEmpleado.js"></script>
+  <script type="module" src="js/navbar.js"></script>
+</body>
+</html>
+

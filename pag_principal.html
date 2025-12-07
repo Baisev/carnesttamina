@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carnes Ttamiña</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/navbar.css">
+  <script type="module" src="js/navbar.js"></script>
+  <script type="module" src="js/carritoglobal.js"></script>
+  <script src="js/cartSidebar.js" defer></script>
+  <script type="module" src="js/navbarEmpleado.js"></script>
+<link rel="stylesheet" href="css/footer.css">
+<link rel="stylesheet" href="css/pag_principal.css">
+<link rel="stylesheet" href="css/cart-sidebar.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script type="module" src="js/searchbar.js"></script>
+
+
+  <style>
+    /* Mostrar submenús al pasar el mouse */
+    .nav-item:hover > .submenu {
+      opacity: 1;
+      visibility: visible;
+    }
+  </style>
+</head>
+<body>
+
+      <!-- BANNER PROMOCIONAL SUPERIOR -->
+<div id="banner-superior">
+  <div>
+    🥩 ¡Ahora puedes comprar en línea! 🚚 Pedidos sobre $55.000 tienen envío GRATIS. 💥 Ingresa a nuestra tienda y descubre todas las promociones 🔥
+  </div>
+</div>
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="navbar-container">
+
+    
+
+    <!-- LOGO + barra de búsqueda -->
+    <div class="navbar-left">
+      <h1 class="navbar-logo">Carnes Ttamiña</h1>
+      <div class="navbar-search">
+        <input type="text" placeholder="Busca aquí tus productos..." />
+        <button><i class="fa fa-search"></i></button>
+      </div>
+    </div>
+
+    <!-- MENÚ DE NAVEGACIÓN -->
+    <nav class="navbar-right">
+      <ul>
+        <li><a href="pag_principal.html"><i class="fa fa-home"></i> Inicio</a></li>
+
+        <li class="dropdown align-right">
+          <a href="#"><i class="fa fa-user"></i> Bienvenido</a>
+          <ul class="dropdown-menu">
+            <li><a href="#"><i class="fa fa-id-card"></i> Mi cuenta</a></li>
+            <li><a href="login.html"><i class="fa fa-sign-in-alt"></i> Iniciar sesión</a></li>
+            <li class="no-cuenta">¿No tienes cuenta?
+              <a href="registro.html" class="crear-cuenta">Créala aquí</a>
+            </li>
+          </ul>
+        </li>
+
+        <!-- Menú Categorías -->
+        <li class="dropdown">
+          <a href="#"><i class="fa fa-cut"></i> Categorías <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="vacuno.html">Vacuno</a></li>
+            <li><a href="ave.html">Ave</a></li>
+            <li><a href="cerdo.html">Cerdo</a></li>
+            <li><a href="todo_asado.html">Todo para el asado</a></li>
+            <li><a href="packs.html">Packs</a></li>
+">Ver más</a></li>
+
+          </ul>
+        </li>
+
+       
+        <li class="cart-icon">
+          <a href="carrito.html">
+            <i class="fa fa-shopping-cart"></i>
+            <span class="cart-count">0</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+</body>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+
+  <main>
+    <main>
+<section class="carousel-section">
+  <div class="carousel-container">
+
+    <div class="carousel-slide" style="background-image: url('img/carrusel/banner_1.png'); background-size: cover; background-position: center;"></div>
+
+
+    <div class="carousel-slide" style="background-image: url('img/carrusel/banner_1.png'); background-size: cover; background-position: center;"></div>
+
+
+    <div class="carousel-slide" style="background-image: url('img/carrusel/banner_1.png'); background-size: cover; background-position: center;"></div>
+  </div>
+</section>
+
+
+
+<section class="categories-section">
+  <h2 class="section-title">Explora nuestras categorías</h2>
+  <div class="categories-grid">
+    <a href="vacuno.html" class="category-card vacuno">
+      <h3>Vacuno</h3>
+    </a>
+    <a href="ave.html" class="category-card ave">
+      <h3>Ave</h3>
+    </a>
+    <a href="cerdo.html" class="category-card cerdo">
+      <h3>Cerdo</h3>
+    </a>
+    <a href="todo_asado.html" class="category-card miscelaneos">
+      <h3>Todo para el asado</h3>
+    </a>
+    <a href="packs.html" class="category-card packs">
+      <h3>Packs</h3>
+    </a>
+  </div>
+</section>
+
+</main>
+
+
+  </main>
+
+  <script type="module" src="js/auth.js"></script>
+
+<footer class="footer">
+  <div class="footer-container">
+
+    <!-- CATEGORÍAS -->
+    <div class="footer-block">
+      <h3>Categorías</h3>
+      <ul>
+        <li><a href="vacuno.html">Vacuno</a></li>
+        <li><a href="ave.html">Ave</a></li>
+        <li><a href="cerdo.html">Cerdo</a></li>
+        <li><a href="todo_asado.html">Todo Asado</a></li>
+        <li><a href="packs.html">Packs</a></li>
+      </ul>
+    </div>
+
+    <!-- SERVICIO AL CLIENTE -->
+    <div class="footer-block">
+      <h3>Servicio al cliente</h3>
+      <ul>
+        <li><a href="#">Quiénes somos</a></li>
+        <li class="phone">📞 +56 9 1234 5678</li>
+        <li class="social-icons">
+          <!-- gente yo no se si manejan redes la carniceria pero si quieren los quitan -->
+          <a href="#"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- HORARIOS -->
+    <div class="footer-block">
+      <h3>Horarios</h3>
+      <p>De Martes a Domingo:<br>De 09:00 hasta las 15:00 por colación <br> Luego reabre desde las 16:30 <br> hasta las 21:00 de la noche </p>
+    </div>
+
+    <!-- MÉTODOS DE PAGO -->
+    <div class="footer-block">
+      <h3>Métodos de pago</h3>
+      <img src="img/webpay.png" alt="WebPay Plus" class="webpay-logo">
+    </div>
+
+  </div>
+
+  <div class="footer-legal">
+    Pagos seguros vía WebPay Plus. Despachos según disponibilidad del repartidor.
+  </div>
+</footer>
+
+
+<script>
+  const carousel = document.querySelector('.carousel-container');
+  const slides = document.querySelectorAll('.carousel-slide');
+  const prevBtn = document.createElement('button');
+  const nextBtn = document.createElement('button');
+  prevBtn.className = 'carousel-btn prev';
+  nextBtn.className = 'carousel-btn next';
+  prevBtn.innerHTML = '‹';
+  nextBtn.innerHTML = '›';
+  carousel.parentElement.appendChild(prevBtn);
+  carousel.parentElement.appendChild(nextBtn);
+
+  let index = 0;
+  const total = slides.length;
+  let autoSlide;
+
+  function moveCarousel(i) {
+    index = (i + total) % total;
+    carousel.style.transform = `translateX(-${index * 100}%)`;
+  }
+
+  function next() { moveCarousel(index + 1); }
+  function prev() { moveCarousel(index - 1); }
+
+  nextBtn.addEventListener('click', () => { next(); resetAuto(); });
+  prevBtn.addEventListener('click', () => { prev(); resetAuto(); });
+
+  function startAuto() { autoSlide = setInterval(next, 8000); } // 8 s por slide
+  function resetAuto() { clearInterval(autoSlide); startAuto(); }
+
+  startAuto();
+</script>
+
+</body>
+<script>
+
+  const sesionIniciada = localStorage.getItem("usuarioLogeado") === "true";
+
+  const usuarioBtn = document.getElementById("usuarioBtn");
+  const loginBtn = document.getElementById("loginBtn");
+
+  if (sesionIniciada) {
+    usuarioBtn.innerHTML = '<i class="fa fa-sign-out-alt"></i> Cerrar sesión';
+    usuarioBtn.href = "#";
+
+    if (loginBtn) loginBtn.parentElement.style.display = "none";
+    document.querySelector(".no-cuenta").style.display = "none";
+
+    usuarioBtn.addEventListener("click", () => {
+      localStorage.removeItem("usuarioLogeado");
+      alert("Sesión cerrada correctamente.");
+      location.reload();
+    });
+  } else {
+    if (loginBtn) {
+      loginBtn.addEventListener("click", () => {
+        localStorage.setItem("usuarioLogeado", "true");
+      });
+    }
+  }
+</script>
+
+ </html>

@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gestión de Productos - Carnes Ttamiña</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script type="module" src="js/navbar.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script type="module" src="js/navbarEmpleado.js"></script>
+  <script type="module" src="js/searchbar.js"></script>
+
+  <style>
+    /* 💬 Mensaje flotante */
+    #mensaje {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      background: #323232;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 10px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 9999;
+    }
+    #mensaje.mostrar {
+      opacity: 1;
+    }
+
+    /* ESTILOS PARA FORMULARIO */
+    main {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    #formProducto {
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+    }
+
+    #formProducto label {
+      font-weight: bold;
+      display: block;
+      margin-top: 10px;
+      margin-bottom: 5px;
+    }
+
+    #formProducto input,
+    #formProducto select,
+    #formProducto textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1em;
+      margin-bottom: 15px;
+      box-sizing: border-box;
+    }
+    
+    /* Estilo especial para el input de archivo */
+    #formProducto input[type="file"] {
+      padding: 8px;
+      background: #fff;
+    }
+
+    #formProducto button {
+      background: #c00;
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: background 0.3s ease;
+    }
+
+    #formProducto button:hover {
+      background: #a00;
+    }
+
+    /* ESTILOS PARA LISTA DE PRODUCTOS */
+    .producto-item {
+      border: 1px solid #ddd;
+      padding: 20px;
+      margin: 15px 0;
+      border-radius: 8px;
+      background: white;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .producto-item label {
+      font-weight: bold;
+      display: block;
+      margin-top: 10px;
+      margin-bottom: 5px;
+    }
+    
+    .producto-item img {
+        width: 100px; 
+        height: 100px; 
+        object-fit: cover; 
+        border-radius: 5px;
+        border: 1px solid #eee;
+    }
+
+    .producto-item input,
+    .producto-item select,
+    .producto-item textarea {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+
+    .producto-item textarea {
+      height: 80px;
+      resize: vertical;
+    }
+
+    .btn-editar {
+      background: #28a745;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+
+    .btn-editar:hover {
+      background: #218838;
+    }
+
+    .btn-eliminar {
+      background: #b71c1c;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .btn-eliminar:hover {
+      background: #9a1a1a;
+    }
+
+    .producto-item small {
+      color: #666;
+      font-size: 0.9em;
+    }
+
+    .lista-toolbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:10px;
+      flex-wrap: wrap;
+    }
+
+    #edit-search{
+      flex:1;
+      max-width:260px;
+      padding:8px 10px;
+      border-radius:8px;
+      border:1px solid #ccc;
+      font-size:14px;
+    }
+
+    .btn-excel{
+      background:#1f7a3d;
+      color:#fff;
+      border:none;
+      padding:10px 14px;
+      border-radius:8px;
+      cursor:pointer;
+      font-weight:600;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+    }
+    .btn-excel:disabled{ opacity:.6; cursor:not-allowed; }
+
+    /* === GRID DE 2 COLUMNAS === */
+    .gestion-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 20px;
+    }
+
+    /* En móviles se vuelve una columna */
+    @media (max-width: 900px) {
+      .gestion-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* === CARD AUDITORÍA === */
+    .auditoria-card {
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+    }
+
+    /* Ajustar inputs */
+    .auditoria-card input,
+    .auditoria-card select,
+    .auditoria-card textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #bbb;
+      border-radius: 6px;
+      margin-bottom: 12px;
+      font-size: 15px;
+    }
+
+    .btn-aud {
+      background: #c30000;
+      color: white;
+      border: none;
+      padding: 12px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      width: 100%;
+      font-weight: bold;
+    }
+
+    .btn-aud:hover {
+      background: #9e0000;
+    }
+
+    /* === BUSCADOR AUDITORÍA === */
+    .aud-search-container{
+      position:relative;
+      margin-top:10px;
+    }
+
+    #aud-search{
+      width:100%;
+      padding:10px;
+      border-radius:8px;
+      border:1px solid #ccc;
+      font-size:15px;
+    }
+
+    .aud-results{
+      position:absolute;
+      left:0;
+      right:0;
+      top:100%;
+      margin-top:4px;
+      background:#fff;
+      border-radius:8px;
+      box-shadow:0 2px 8px rgba(0,0,0,.15);
+      max-height:220px;
+      overflow-y:auto;
+      display:none;
+      z-index:1000;
+    }
+
+    .aud-item{
+      padding:8px 10px;
+      cursor:pointer;
+    }
+
+    .aud-item:hover{
+      background:#f2f2f2;
+    }
+    /* Nota / globo para el empleado */
+.info-bubble{
+  background:#fff7e6;
+  border:1px solid #f0c36d;
+  border-left-width:5px;
+  border-radius:10px;
+  padding:12px 16px;
+  margin-bottom:15px;
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  font-size:14px;
+}
+
+.info-bubble i{
+  margin-top:2px;
+  color:#e0a100;
+}
+
+.info-bubble strong{
+  display:block;
+  margin-bottom:3px;
+}
+
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="navbar-container">
+    <!-- LOGO + barra de búsqueda -->
+    <div class="navbar-left">
+      <h1 class="navbar-logo">Carnes Ttamiña</h1>
+      <div class="navbar-search">
+        <input type="text" placeholder="Busca aquí tus productos..." />
+        <button><i class="fa fa-search"></i></button>
+      </div>
+    </div>
+
+    <!-- MENÚ DE NAVEGACIÓN -->
+    <nav class="navbar-right">
+      <ul>
+        <li><a href="pag_principal.html"><i class="fa fa-home"></i> Inicio</a></li>
+
+        <li class="dropdown align-right">
+          <a href="#"><i class="fa fa-user"></i> Bienvenido</a>
+          <ul class="dropdown-menu">
+            <li><a href="#"><i class="fa fa-id-card"></i> Mi cuenta</a></li>
+            <li><a href="login.html"><i class="fa fa-sign-in-alt"></i> Iniciar sesión</a></li>
+            <li class="no-cuenta">¿No tienes cuenta?
+              <a href="registro.html" class="crear-cuenta">Créala aquí</a>
+            </li>
+          </ul>
+        </li>
+
+        <!-- Menú Categorías -->
+        <li class="dropdown">
+          <a href="#"><i class="fa fa-cut"></i> Categorías <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="vacuno.html">Vacuno</a></li>
+            <li><a href="ave.html">Ave</a></li>
+            <li><a href="cerdo.html">Cerdo</a></li>
+            <li><a href="todo_asado.html">Todo para el asado</a></li>
+            <li><a href="packs.html">Packs</a></li>
+          </ul>
+        </li>
+
+        <li class="cart-icon">
+          <a href="carrito.html">
+            <i class="fa fa-shopping-cart"></i>
+            <span class="cart-count">0</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div style="margin-top: 40px;" class="info-bubble">
+  <i class="fa-solid fa-circle-info"></i>
+  <div>
+    <strong>Nota para el empleado</strong>
+    Cada vez que agregues o edites un producto en esta página, 
+    recuerda registrar su auditoría en el panel <em>"Registrar auditoría"</em> 
+    (a la derecha) solo tienes que buscar el producto por su nombre y rellenar el formulario. Esa información se usará para el Excel de inventario y control semanal.
+  </div>
+</div>
+  <h2 style="margin-top:50px;">Gestión de Productos</h2>
+
+  <div class="gestion-grid">
+
+    <!-- COLUMNA IZQUIERDA: AGREGAR PRODUCTO -->
+    <section id="formulario">
+      <h3>Agregar producto</h3>
+      <form id="formProducto" autocomplete="off">
+
+        <label for="nombre">Nombre del producto:</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Nombre del producto" required />
+
+        <label for="imagen">Imagen del producto:</label>
+        <input type="file" id="imagen" name="imagen" accept="image/*" required />
+
+        <label for="categoria">Categoría:</label>
+        <select id="categoria" name="categoria" required>
+          <option value="">Selecciona una categoría</option>
+          <option value="vacuno">🐄 Vacuno</option>
+          <option value="ave">🐔 Ave</option>
+          <option value="cerdo">🐖 Cerdo</option>
+          <option value="Todo para el asado">🥩 Todo para el asado</option>
+          <option value="packs">📦 Packs</option>
+        </select>
+
+        <label for="precio">Precio ($):</label>
+        <input type="text" id="precio" name="precio" placeholder="Precio ($)" inputmode="decimal" required />
+
+        <label for="stock">Stock:</label>
+        <input type="text" id="stock" name="stock" placeholder="Stock disponible" inputmode="decimal" required />
+
+        <label for="descripcion">Descripción:</label>
+        <textarea id="descripcion" name="descripcion" placeholder="Descripción (opcional)"></textarea>
+
+        <button type="submit">Guardar</button>
+      </form>
+    </section>
+
+    <!-- COLUMNA DERECHA: AUDITORÍA -->
+    <section id="auditoria">
+      <h3>Registrar auditoría</h3>
+
+      <!-- Buscador de producto para auditoría -->
+      <div class="aud-search-container">
+        <input type="text" id="aud-search" placeholder="Buscar producto para auditoría...">
+        <div id="aud-search-results" class="aud-results"></div>
+      </div>
+
+      <!-- Formulario, oculto hasta seleccionar producto -->
+      <div id="aud-form" class="auditoria-card" style="display:none; margin-top:20px;">
+        <label>Semana:</label>
+        <input id="aud-semana" type="text" placeholder="Ej: sem1">
+
+        <label>Stock sistema:</label>
+        <input id="aud-stock-sistema" type="number" readonly>
+
+        <label>Stock físico:</label>
+        <input id="aud-stock-fisico" type="number">
+
+        <label>Compra:</label>
+        <input id="aud-compra" type="number" value="0">
+
+        <label>Venta:</label>
+        <input id="aud-venta" type="number" value="0">
+
+        <label>Ajuste auditoría:</label>
+        <input id="aud-ajuste" type="number" value="0">
+
+        <label>Stock mínimo:</label>
+        <input id="aud-minimo" type="number" value="0">
+
+        <label>Precio compra unitario ($):</label>
+        <input id="aud-precio-compra" type="number" step="0.01" value="0">
+
+        <label>Precio venta unitario ($):</label>
+        <input id="aud-precio-venta" type="number" step="0.01" value="0">
+
+
+        <label>Observación:</label>
+        <textarea id="aud-observacion" placeholder="Opcional"></textarea>
+
+        <button id="btn-guardar-auditoria" class="btn-aud">Guardar Auditoría</button>
+      </div>
+    </section>
+
+  </div>
+
+  <section id="lista">
+    <div class="lista-toolbar">
+      <h3>Lista de productos</h3>
+      <input type="text" id="edit-search" placeholder="Buscar en la lista...">
+      <button id="btn-exportar-inventario" class="btn-excel" title="Exportar inventario a Excel">
+        <i class="fa-solid fa-file-excel"></i> Exportar Excel
+      </button>
+    </div>
+
+    <div id="productos">Cargando productos...</div>
+  </section>
+</main>
+
+<div id="mensaje"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script type="module" src="js/protegerEmpleado.js"></script>
+<script type="module" src="js/navbarEmpleado.js"></script>
+<script type="module" src="js/navbar.js"></script>
+
+<script type="module">
+  import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+
+  const SUPABASE_URL = 'https://bagilcaibwidyewiqqzd.supabase.co'
+  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJhZ2lsY2FpYndpZHlld2lxcXpkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTkwMjY3NDEsImV4cCI6MjA3NDYwMjc0MX0.VsVsH8c9fpjKxgmuNWYUCqE8e8DDcXicUELTexNJaAU'
+  const supabase = createClient(SUPABASE_URL, SUPABASE_KEY)
+
+  const form = document.getElementById('formProducto')
+  const contenedor = document.getElementById('productos')
+  const mensaje = document.getElementById('mensaje')
+
+  function mostrarMensaje(texto, color = "green") {
+    mensaje.textContent = texto
+    mensaje.style.background = color === "red" ? "#b71c1c" : "#323232"
+    mensaje.classList.add("mostrar")
+    setTimeout(() => mensaje.classList.remove("mostrar"), 2000)
+  }
+
+  function autoAnchoColumnas(rows){
+    if(!rows?.length) return [];
+    const headers = Object.keys(rows[0]);
+    return headers.map(h=>{
+      const maxLen = Math.max(h.length, ...rows.map(r=>String(r[h] ?? '').length));
+      return { wch: Math.min(40, Math.max(10, maxLen + 2)) };
+    });
+  }
+
+  function nombreArchivoInventario(){
+    const d = new Date();
+    const yyyy = d.getFullYear();
+    const mm = String(d.getMonth()+1).padStart(2,'0');
+    const dd = String(d.getDate()).padStart(2,'0');
+    const hh = String(d.getHours()).padStart(2,'0');
+    const mi = String(d.getMinutes()).padStart(2,'0');
+    return `Inventario_Carnes_Ttamina_${yyyy}-${mm}-${dd}_${hh}${mi}.xlsx`;
+  }
+
+async function obtenerInventario(){
+  const { data, error } = await supabase
+    .from('producto')
+    .select('producto_id, nombre, categoria, unidad, precio, stock, activo, creado_en')
+    .order('stock',{ ascending:true });   // 👈 ahora ordena por stock (menor a mayor)
+
+  if(error) throw error;
+
+  return (data || []).map(p=>{
+    const stockNum = Number(p.stock ?? 0);
+    return {
+      'ID'              : p.producto_id,
+      'Producto'        : p.nombre ?? '',
+      'Categoría'       : p.categoria ?? '',
+      'Unidad'          : p.unidad ?? '',
+      'Precio ($)'      : Number(p.precio ?? 0),
+      'Stock actual'    : stockNum,                  // número real
+      'Unidades vendidas': '' ,      
+      'Stock bajo (<=10)': stockNum <= 10 ? 'Sí' : 'No', // filtro rápido opcional
+      'Activo'          : (p.activo === true ? 'Sí' : 'No'),
+      'Creado en'       : p.creado_en ? new Date(p.creado_en).toLocaleString() : ''
+    };
+  });
+}
+
+
+
+  async function obtenerAuditorias(){
+  const { data: productos, error: errorProd } = await supabase
+    .from('producto')
+    .select('producto_id, nombre, categoria');
+
+  if (errorProd) throw errorProd;
+
+  const mapaProd = new Map((productos || []).map(p => [p.producto_id, p]));
+
+  const { data, error } = await supabase
+    .from('producto_auditoria')
+    .select('*')
+    .order('creado_en', { ascending: true });  
+
+  if (error) throw error;
+
+return (data || []).map((aud, index) => {
+  const prod = mapaProd.get(aud.producto_id) || {};
+  const row = index + 2; // Fila real en Excel (1 = encabezados)
+
+  const stockSistema = Number(aud.stock_sistema ?? 0);
+  const stockFisico  = Number(aud.stock_fisico ?? 0);
+  const diferencia   = stockFisico - stockSistema;
+  const compra       = Number(aud.compra ?? 0);
+  const venta        = Number(aud.venta ?? 0);
+  const precioCompra = Number(aud.precio_compra ?? 0);
+  const precioVenta  = Number(aud.precio_venta ?? 0);
+
+  return {
+    'ID auditoría' : aud.auditoria_id ?? null,
+    'ID producto'  : aud.producto_id,
+    'Producto'     : prod.nombre ?? '',
+    'Categoría'    : prod.categoria ?? '',
+    'Semana'       : aud.semana ?? '',
+
+    'Stock sistema': stockSistema,
+    'Stock físico' : stockFisico,
+    'Diferencia'   : diferencia,
+
+    'Compra (unidades)': compra,
+    'Venta (unidades)' : venta,
+
+    'Precio compra unitario ($)': precioCompra,
+    'Precio venta unitario ($)' : precioVenta,
+
+    // 🔥 FORMULAS DINÁMICAS (100% Excel)
+    'Total compra ($)' : { f: `H${row}*I${row}` },
+    'Total venta ($)'  : { f: `J${row}*K${row}` },
+    'Utilidad bruta ($)': { f: `M${row}-L${row}` },
+
+'Diferencia valorizada ($)' : { f: `(G${row}-F${row})*L${row}` },
+
+'% Variación inventario' : { 
+  f: `IF(F${row}<>0,(G${row}-F${row})/F${row},"")` 
+},
+
+    'Observación'  : aud.observacion ?? '',
+    'Registrado en': aud.creado_en ? new Date(aud.creado_en).toLocaleString() : ''
+  };
+});
+}
+
+async function exportarExcelInventario(){
+  const btn = document.getElementById('btn-exportar-inventario');
+  btn.disabled = true;
+  const old = btn.innerHTML;
+  btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Generando...';
+
+  try{
+    const filasInv = await obtenerInventario();
+    const filasAud = await obtenerAuditorias();
+    const wb = XLSX.utils.book_new();
+
+    // === Hoja 1: Inventario ===
+   if (filasInv.length > 0) {
+      const wsInv = XLSX.utils.json_to_sheet(filasInv);
+      wsInv['!cols'] = autoAnchoColumnas(filasInv);
+
+      const headersInv = Object.keys(filasInv[0]);
+      const lastColInv = XLSX.utils.encode_col(headersInv.length - 1);
+      const lastRowInv = filasInv.length + 1;
+
+      if (!wsInv['!ref']) {
+        wsInv['!ref'] = `A1:${lastColInv}${lastRowInv}`;
+      }
+
+      wsInv['!autofilter'] = { ref: wsInv['!ref'] }; 
+
+      XLSX.utils.book_append_sheet(wb, wsInv, 'Inventario');
+// === 🆕 HOJA 3: DASHBOARD ===
+// === HOJA 3: DASHBOARD CON FÓRMULAS REALES ===
+const wsDashboard = {};
+
+// Encabezados
+wsDashboard["A1"] = { t: "s", v: "Indicador" };
+wsDashboard["B1"] = { t: "s", v: "Valor" };
+
+// Fila 2
+wsDashboard["A2"] = { t: "s", v: "Total de productos" };
+wsDashboard["B2"] = { t: "n", f: "COUNTA(Inventario!A:A)-1" };
+
+// Fila 3
+wsDashboard["A3"] = { t: "s", v: "Stock total" };
+wsDashboard["B3"] = { t: "n", f: "SUM(Inventario!F:F)" };
+
+// Fila 4
+wsDashboard["A4"] = { t: "s", v: "Productos con stock bajo (<=10)" };
+wsDashboard["B4"] = { t: "n", f: 'COUNTIF(Inventario!F:F,"<=10")' };
+
+// Fila 5
+wsDashboard["A5"] = { t: "s", v: "Total compras ($)" };
+wsDashboard["B5"] = { t: "n", f: "SUM(Auditoría!M:M)" };
+
+// Fila 6
+wsDashboard["A6"] = { t: "s", v: "Total ventas ($)" };
+wsDashboard["B6"] = { t: "n", f: "SUM(Auditoría!N:N)" };
+
+// Fila 7
+wsDashboard["A7"] = { t: "s", v: "Utilidad bruta total ($)" };
+wsDashboard["B7"] = { t: "n", f: "SUM(Auditoría!O:O)" };
+
+// Fila 8
+wsDashboard["A8"] = { t: "s", v: "Utilidad promedio ($)" };
+wsDashboard["B8"] = { t: "n", f: "AVERAGE(Auditoría!O:O)" };
+
+// Título Top 5
+wsDashboard["A10"] = { t: "s", v: "Top 5 productos más vendidos" };
+
+wsDashboard["A11"] = { t: "s", v: "Producto" };
+wsDashboard["B11"] = { t: "s", v: "Unidades vendidas" };
+
+// Top 1
+wsDashboard["A12"] = { t: "s", f: "INDEX(Auditoría!C:C, MATCH(LARGE(Auditoría!J:J,1), Auditoría!J:J,0))" };
+wsDashboard["B12"] = { t: "n", f: "LARGE(Auditoría!J:J,1)" };
+
+// Top 2
+wsDashboard["A13"] = { t: "s", f: "INDEX(Auditoría!C:C, MATCH(LARGE(Auditoría!J:J,2), Auditoría!J:J,0))" };
+wsDashboard["B13"] = { t: "n", f: "LARGE(Auditoría!J:J,2)" };
+
+// Top 3
+wsDashboard["A14"] = { t: "s", f: "INDEX(Auditoría!C:C, MATCH(LARGE(Auditoría!J:J,3), Auditoría!J:J,0))" };
+wsDashboard["B14"] = { t: "n", f: "LARGE(Auditoría!J:J,3)" };
+
+// Top 4
+wsDashboard["A15"] = { t: "s", f: "INDEX(Auditoría!C:C, MATCH(LARGE(Auditoría!J:J,4), Auditoría!J:J,0))" };
+wsDashboard["B15"] = { t: "n", f: "LARGE(Auditoría!J:J,4)" };
+
+// Top 5
+wsDashboard["A16"] = { t: "s", f: "INDEX(Auditoría!C:C, MATCH(LARGE(Auditoría!J:J,5), Auditoría!J:J,0))" };
+wsDashboard["B16"] = { t: "n", f: "LARGE(Auditoría!J:J,5)" };
+
+// Rango visible
+wsDashboard["!ref"] = "A1:B16";
+
+// Estética
+wsDashboard["!cols"] = [
+  { wch: 35 },
+  { wch: 22 }
+];
+
+
+
+wsDashboard["!cols"] = [
+  { wch: 35 }, 
+  { wch: 20 }  
+];
+
+// negrita en headers
+wsDashboard["A1"].s = { font: { bold: true } };
+wsDashboard["B1"].s = { font: { bold: true } };
+
+wsDashboard["A10"].s = { font: { bold: true } };
+wsDashboard["A11"].s = { font: { bold: true } };
+wsDashboard["B11"].s = { font: { bold: true } };
+
+XLSX.utils.book_append_sheet(wb, wsDashboard, "Dashboard");
+
+    }
+
+    // === Hoja 2: Auditoría ===
+    if (filasAud.length > 0) {
+      const wsAud = XLSX.utils.json_to_sheet(filasAud);
+      wsAud['!cols'] = autoAnchoColumnas(filasAud);
+
+      const headersAud = Object.keys(filasAud[0]);
+      const lastColAud = XLSX.utils.encode_col(headersAud.length - 1);
+      const lastRowAud = filasAud.length + 1;
+      wsAud['!autofilter'] = { ref: `A1:${lastColAud}${lastRowAud}` };
+
+      XLSX.utils.book_append_sheet(wb, wsAud, 'Auditoría');
+    }
+
+    XLSX.writeFile(wb, nombreArchivoInventario());
+  }catch(e){
+    console.error(e);
+    alert('No se pudo generar el Excel. Revisa la consola para más detalles.');
+  }finally{
+    btn.disabled = false;
+    btn.innerHTML = old;
+  }
+}
+
+
+
+
+  document.getElementById('btn-exportar-inventario')
+    ?.addEventListener('click', exportarExcelInventario);
+
+  // === CARGAR LISTA DE PRODUCTOS (EDICIÓN) ===
+  async function cargarProductos() {
+    const { data: productos, error } = await supabase
+      .from('producto')
+      .select('*')
+      .order('producto_id', { ascending: true })
+
+    if (error) {
+      contenedor.innerHTML = `<p style="color:red;">Error: ${error.message}</p>`
+      return
+    }
+
+    if (!productos || productos.length === 0) {
+      contenedor.innerHTML = '<p>No hay productos registrados.</p>'
+      return
+    }
+
+    contenedor.innerHTML = productos.map(p => `
+      <div class="producto-item" id="prod-${p.producto_id}">
+        <img src="${p.imagen_url || 'https://via.placeholder.com/150?text=Sin+Imagen'}" alt="${p.nombre}">
+        <br>
+        <strong>
+          <a href="producto.html?id=${p.producto_id}" class="link-producto" target="_blank">
+            ${p.nombre}
+          </a>
+        </strong><br>
+        <small>ID: ${p.producto_id}</small><br>
+
+        <label>Categoría:</label>
+        <select id="categoria-${p.producto_id}" class="categoria-editar">
+          <option value="vacuno" ${p.categoria === 'vacuno' ? 'selected' : ''}>🐄 Vacuno</option>
+          <option value="ave" ${p.categoria === 'ave' ? 'selected' : ''}>🐔 Ave</option>
+          <option value="cerdo" ${p.categoria === 'cerdo' ? 'selected' : ''}>🐖 Cerdo</option>
+          <option value="Todo para el asado" ${p.categoria === 'Todo para el asado' ? 'selected' : ''}>🥩 Misceláneos</option>
+          <option value="packs" ${p.categoria === 'packs' ? 'selected' : ''}>📦 Packs</option>
+        </select>
+        
+        <label>Precio ($):</label>
+        <input type="number" id="precio-${p.producto_id}" value="${p.precio}" step="0.01">
+        
+        <label>Stock:</label>
+        <input type="number" id="stock-${p.producto_id}" value="${p.stock}" step="0.001">
+        
+        <label>Descripción:</label>
+        <textarea id="desc-${p.producto_id}">${p.descripcion ?? ''}</textarea>
+        
+        <label>Cambiar imagen (opcional):</label>
+        <input type="file" id="imagen-${p.producto_id}" accept="image/*">
+        
+        <br><br>
+        <button class="btn-editar" data-id="${p.producto_id}">✏️ Guardar cambios</button>
+        <button class="btn-eliminar" data-id="${p.producto_id}">🗑️ Eliminar</button>
+      </div>
+    `).join('')
+
+    document.querySelectorAll('.btn-editar').forEach(btn => {
+      btn.addEventListener('click', async (e) => {
+        const id = e.target.dataset.id
+        await editarProducto(id)
+      })
+    })
+
+    document.querySelectorAll('.btn-eliminar').forEach(btn => {
+      btn.addEventListener('click', async (e) => {
+        const id = e.target.dataset.id
+        if (confirm('¿Seguro que quieres eliminar este producto?')) {
+          await eliminarProducto(id)
+        }
+      })
+    })
+  }
+
+  // === INSERT nuevo producto ===
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault()
+
+    const nombre = document.getElementById('nombre').value.trim()
+    const descripcion = document.getElementById('descripcion').value.trim() || null
+    const precio = parseFloat(document.getElementById('precio').value.replace(',', '.')) || 0
+    const stock = parseFloat(document.getElementById('stock').value.replace(',', '.')) || 0
+    const categoria = document.getElementById('categoria').value
+    const file = document.getElementById('imagen').files[0]
+
+    if (!nombre) return mostrarMensaje('Ingrese un nombre', 'red')
+    if (isNaN(precio) || isNaN(stock)) return mostrarMensaje('Precio o stock inválido', 'red')
+    if (!categoria) return mostrarMensaje('Selecciona una categoría', 'red')
+    if (!file) return mostrarMensaje('Debes seleccionar una imagen', 'red')
+
+    let finalImageUrl = null
+    try {
+      const filePath = `public/${Date.now()}-${file.name}`
+
+      const { error: uploadError } = await supabase.storage
+        .from('imagcar')
+        .upload(filePath, file, { upsert: false })
+
+      if (uploadError) throw uploadError
+
+      const { data: urlData } = supabase.storage.from('imagcar').getPublicUrl(filePath)
+      finalImageUrl = urlData.publicUrl
+
+    } catch (error) {
+      mostrarMensaje('Error al subir la imagen: ' + error.message, 'red')
+      return
+    }
+
+    const { error: insertError } = await supabase.from('producto').insert([{ 
+      nombre, descripcion, precio, stock, categoria, imagen_url: finalImageUrl 
+    }])
+
+    if (insertError) return mostrarMensaje('Error: ' + insertError.message, 'red')
+
+    mostrarMensaje('✅ Producto agregado correctamente')
+    form.reset()
+    cargarProductos()
+  })
+
+  // === EDITAR producto ===
+  async function editarProducto(id) {
+    const descripcion = document.getElementById(`desc-${id}`).value.trim() || null
+    const precio = parseFloat(document.getElementById(`precio-${id}`).value.replace(',', '.')) || 0
+    const stock = parseFloat(document.getElementById(`stock-${id}`).value.replace(',', '.')) || 0
+    const categoria = document.getElementById(`categoria-${id}`).value
+    const newFile = document.getElementById(`imagen-${id}`).files[0]
+
+    let updateObject = { descripcion, precio, stock, categoria }
+
+    if (newFile) {
+      try {
+        const filePath = `public/${Date.now()}-${newFile.name}`
+        const { error: uploadError } = await supabase.storage
+          .from('imagcar')
+          .upload(filePath, newFile, { upsert: false })
+        if (uploadError) throw uploadError
+
+        const { data: urlData } = supabase.storage.from('imagcar').getPublicUrl(filePath)
+        updateObject.imagen_url = urlData.publicUrl
+
+      } catch (error) {
+        mostrarMensaje('Error al subir la nueva imagen: ' + error.message, 'red')
+        return
+      }
+    }
+
+    const { error } = await supabase.from('producto')
+      .update(updateObject)
+      .eq('producto_id', id)
+
+    if (error) return mostrarMensaje('Error al actualizar: ' + error.message, 'red')
+    mostrarMensaje('✅ Cambios guardados')
+    cargarProductos()
+  }
+
+  // === ELIMINAR producto ===
+  async function eliminarProducto(id) {
+    const { error } = await supabase.from('producto').delete().eq('producto_id', id)
+    if (error) return mostrarMensaje('Error al eliminar: ' + error.message, 'red')
+    mostrarMensaje('🗑️ Producto eliminado')
+    cargarProductos()
+  }
+
+  // === BUSCADOR PARA FILTRAR LISTA DE PRODUCTOS (EDICIÓN) ===
+  const editSearch = document.getElementById('edit-search');
+  if (editSearch) {
+    editSearch.addEventListener('input', (e)=>{
+      const q = e.target.value.toLowerCase().trim();
+      document.querySelectorAll('#productos .producto-item').forEach(card=>{
+        const name = card.querySelector('.link-producto')?.textContent.toLowerCase() || '';
+        const desc = card.querySelector('textarea')?.value.toLowerCase() || '';
+        const match = !q || name.includes(q) || desc.includes(q);
+        card.style.display = match ? '' : 'none';
+      });
+    });
+  }
+
+  // === BUSCADOR PARA AUDITORÍA ===
+  let audProductoSeleccionado = null;
+
+  async function audBuscar(query) {
+    const resultsBox = document.getElementById('aud-search-results');
+    if (!query || query.length < 2) {
+      resultsBox.style.display = 'none';
+      resultsBox.innerHTML = '';
+      return;
+    }
+
+    const { data, error } = await supabase
+      .from('producto')
+      .select('producto_id, nombre, stock')
+      .ilike('nombre', `%${query}%`)
+      .order('nombre')
+      .limit(10);
+
+    if (error) {
+      console.error(error);
+      return;
+    }
+
+    if (!data || data.length === 0) {
+      resultsBox.innerHTML = '<div class="aud-item">Sin resultados</div>';
+      resultsBox.style.display = 'block';
+      return;
+    }
+
+    resultsBox.innerHTML = data.map(p =>
+      `<div class="aud-item" data-id="${p.producto_id}" data-stock="${p.stock}">
+         ${p.nombre} (ID: ${p.producto_id})
+       </div>`
+    ).join('');
+    resultsBox.style.display = 'block';
+  }
+
+  const audSearchInput = document.getElementById('aud-search');
+  if (audSearchInput) {
+    audSearchInput.addEventListener('input', (e)=>{
+      audBuscar(e.target.value.trim());
+    });
+  }
+
+  const audResults = document.getElementById('aud-search-results');
+  if (audResults) {
+    audResults.addEventListener('click', (e)=>{
+      const item = e.target.closest('.aud-item');
+      if (!item) return;
+      const id = Number(item.dataset.id);
+      const nombre = item.textContent;
+      const stock = item.dataset.stock ?? 0;
+
+      audProductoSeleccionado = id;
+      document.getElementById('aud-search').value = nombre;
+      audResults.style.display = 'none';
+
+      // Mostrar formulario y llenar stock sistema
+      const formAud = document.getElementById('aud-form');
+      formAud.style.display = 'block';
+      document.getElementById('aud-stock-sistema').value = stock;
+    });
+  }
+
+  // Guardar auditoría
+  const btnGuardarAud = document.getElementById('btn-guardar-auditoria');
+  if (btnGuardarAud) {
+    btnGuardarAud.addEventListener('click', async ()=>{
+      if (!audProductoSeleccionado) {
+        alert('Primero selecciona un producto para la auditoría.');
+        return;
+      }
+
+      const semana = document.getElementById('aud-semana').value.trim();
+      const stock_sistema = Number(document.getElementById('aud-stock-sistema').value || 0);
+      const stock_fisico = Number(document.getElementById('aud-stock-fisico').value || 0);
+      const compra = Number(document.getElementById('aud-compra').value || 0);
+      const venta = Number(document.getElementById('aud-venta').value || 0);
+      const auditoria_ajuste = Number(document.getElementById('aud-ajuste').value || 0);
+      const stock_minimo = Number(document.getElementById('aud-minimo').value || 0);
+      const observacion = document.getElementById('aud-observacion').value.trim() || null;
+      const precio_compra = Number(document.getElementById('aud-precio-compra').value || 0);
+      const precio_venta  = Number(document.getElementById('aud-precio-venta').value || 0);
+
+      if (!semana) {
+        alert('Ingresa la semana de la auditoría (ej: sem1).');
+        return;
+      }
+
+      const { error } = await supabase
+        .from('producto_auditoria')
+        .insert({
+          producto_id: audProductoSeleccionado,
+          semana,
+          stock_sistema,
+          stock_fisico,
+          compra,
+          venta,
+          auditoria_ajuste,
+          stock_minimo,
+          observacion,
+          precio_compra,
+          precio_venta
+        });
+
+      if (error) {
+        console.error(error);
+        mostrarMensaje('Error al guardar auditoría: ' + error.message, 'red');
+        return;
+      }
+
+      mostrarMensaje('✅ Auditoría registrada correctamente');
+
+      // Limpiar campos del formulario de auditoría (dejamos el buscador igual)
+      document.getElementById('aud-semana').value = '';
+      document.getElementById('aud-stock-fisico').value = '';
+      document.getElementById('aud-compra').value = 0;
+      document.getElementById('aud-venta').value = 0;
+      document.getElementById('aud-ajuste').value = 0;
+      document.getElementById('aud-minimo').value = 0;
+      document.getElementById('aud-observacion').value = '';
+      document.getElementById('aud-precio-compra').value = 0;
+      document.getElementById('aud-precio-venta').value = 0;
+    });
+  }
+
+  // Cargar lista inicial
+  cargarProductos();
+</script>
+</body>
+</html>

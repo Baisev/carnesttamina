@@ -1,0 +1,354 @@
+/* Fuente Caprasimo */
+@import url('https://fonts.googleapis.com/css2?family=Caprasimo&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #fafafa;
+  color: #222;
+  padding: 0;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden; 
+}
+
+h2 {
+  color: #8B0000;
+  font-size: 1.8rem;
+}
+
+main {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+header {
+  background-color: #b71c1c;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+
+/* --- BANNER PROMOCIONAL --- */
+.banner-promocion {
+  background-color: #b71c1c;
+  color: white;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 10px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  height: 35px; /* 🔹 Fijamos altura estable */
+  z-index: 10;  /* 🔹 Asegura que no se superponga con otros elementos */
+}
+
+.banner-texto {
+  display: inline-block;
+  padding-left: 100%;
+  animation: moverTexto 18s linear infinite;
+  will-change: transform; /* 🔹 Evita parpadeo */
+}
+
+@keyframes moverTexto {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+
+/* --- PRODUCTOS --- */
+#lista-productos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 15px;
+}
+
+.producto-item {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+  padding: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.producto-item input, .producto-item textarea {
+  width: 95%;
+  margin-bottom: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 5px;
+}
+
+.producto-item button {
+  margin-top: 5px;
+  margin-right: 8px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #8B0000;
+  color: white;
+  cursor: pointer;
+}
+
+.producto-item button:hover {
+  background-color: #a31515;
+}
+
+/* --- COLUMNA DE LA PÁGINA PRINCIPAL --- */
+.contenedor-bienvenida {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  padding: 40px;
+  background-color: #fafafa;
+}
+
+.card-bienvenida {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+.card-bienvenida:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.2);
+}
+
+.card-imagen img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  transition: transform 0.4s ease, filter 0.4s ease;
+  border-radius: 12px;
+}
+
+.card-imagen:hover img {
+  transform: scale(1.05);
+  filter: brightness(60%);
+}
+
+.card-imagen .overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.card-imagen:hover .overlay {
+  opacity: 1;
+}
+
+.card-imagen .overlay h2 {
+  color: white;
+  font-size: 2rem;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
+/* --- MENU VERTICAL DE CATEGORÍAS --- */
+.menu-vertical {
+  background-color: #FFD700;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  color: #111;
+  position: relative;
+  overflow: visible;
+}
+
+.menu-vertical h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #8B0000;
+  border-bottom: 2px solid #8B0000;
+  padding-bottom: 8px;
+  font-weight: bold;
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+}
+
+.menu-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-lista > li {
+  margin: 15px 0;
+  position: relative;
+}
+
+.menu-lista > li > a {
+  display: block;
+  background-color: white;
+  color: #111;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 14px 18px;
+  font-size: 1.15rem;
+  letter-spacing: 1.5px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.menu-lista > li > a:hover {
+  background-color: #8B0000;
+  color: white;
+  transform: translateX(5px);
+}
+
+/* Submenú oculto por defecto 
+.submenu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(380%);
+  background-color: #333;
+  color: #fff;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+  border-radius: 8px;
+  padding: 10px;
+  min-width: 180px;
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.nav-item:hover > .submenu {
+  opacity: 1;
+  visibility: visible;
+}
+
+.submenu a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  display: block;
+}
+
+.submenu a:hover {
+  background-color: #555;
+  color: #ffcc00;
+}
+*/
+
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .menu-vertical {
+    margin-top: 20px;
+    padding: 20px;
+  }
+
+  .menu-lista > li > a {
+    font-size: 1rem;
+    padding: 12px;
+  }
+}
+
+.login-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 50px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  margin-top: 130px;
+}
+
+.left-column {
+  width: 40%;
+  padding: 20px;
+  background-color: #b71c1c;
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.right-column {
+  width: 55%;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+input, button {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+button {
+  background-color: #8B0000;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #a31515;
+}
+
+a {
+  color: #8B0000;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.left-column h2, .right-column h2 {
+  text-align: center;
+}
+
+.left-column p, .right-column p {
+  font-size: 1rem;
+}
+
+.right-column form {
+  display: flex;
+  flex-direction: column;
+}
+
+.register-btn {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.register-btn:hover {
+  background-color: #45a049;
+}

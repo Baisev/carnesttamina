@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Producto | Carnes Ttamiña</title>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/cart-sidebar.css">
+  
+
+  <style>
+    body { margin-top: 90px; }
+    .wrap { max-width: 1200px; margin: 24px auto; padding: 0 16px; }
+    .miga { font-size:.9rem; margin-bottom:12px; opacity:.85 }
+    .miga a { color:inherit; text-decoration:none; opacity:.9 }
+    .grid { display:grid; grid-template-columns: 1.1fr .9fr; gap:28px; }
+    @media (max-width: 920px){ .grid{ grid-template-columns:1fr; } }
+    .main-img { width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:12px; background:#f7f7f7; }
+    .title { margin:6px 0 8px; }
+    .sku-stock { font-size:.95rem; opacity:.8; display:flex; gap:12px; }
+    .stock.ok { color:#2e7d32 } .stock.low { color:#b26a00 } .stock.out { color:#b00020 }
+    .precios { display:flex; align-items:baseline; gap:10px; margin:12px 0; }
+    .precio { font-size:1.8rem; font-weight:700; }
+    .unidad { font-size:.95rem; opacity:.85 }
+    .desc { opacity:.95; }
+    .qty-add { display:flex; gap:12px; align-items:center; margin:18px 0 8px; }
+    .qty { display:inline-flex; border:1px solid #ddd; border-radius:10px; overflow:hidden; }
+    .qty button { width:36px; border:0; background:#f4f4f4; font-size:20px; }
+    .qty input { width:56px; text-align:center; border:0; }
+    .btn { background:#8b0000; color:#ffffff; cursor:pointer; font-weight:600;  width: 500px;}
+    .btn:disabled { opacity:.5; cursor:not-allowed }
+    .tabs { display:flex; gap:8px; margin:28px 0 8px; }
+    .tab-btn { border:1px solid #fcd31e; background:#c96868; padding:8px 12px; border-radius:10px; cursor:pointer; }
+    .tab-btn.activo { border-color:#8b0000 }
+    .tab-panel { display:none; }
+    .tab-panel.activo { display:block; }
+    .relacionados { margin-top:32px; }
+    .rel-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(190px,1fr)); gap:16px; }
+    .card { border:1px solid #eee; border-radius:12px; overflow:hidden; background:#fff; text-decoration:none; color:inherit }
+    .card img { width:100%; aspect-ratio:1/1; object-fit:cover; }
+    .card .c-body { padding:10px; }
+    .card .c-title { font-weight:600; margin:6px 0; }
+    .card .c-precio { font-weight:700; }
+  </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script type="module" src="js/navbar.js"></script>
+  <script type="module" src="js/carritoglobal.js"></script>
+  <script defer src="js/cartSidebar.js"></script>
+</head>
+<body>
+  <header class="navbar">
+    <div class="navbar-container">
+      <a href="pag_principal.html" class="navbar-logo">Carnes Ttamiña</a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <nav class="miga" id="miga"></nav>
+ 
+    <section class="grid" id="producto">
+      <div><img id="img" class="main-img" alt="Producto"></div>
+
+      <div>
+        <h1 id="nombre" class="title">Cargando…</h1>
+        <div class="sku-stock">
+          <span id="categoria"></span>
+          <span id="stock" class="stock"></span>
+        </div>
+
+        <div class="precios">
+          <span id="precio" class="precio">$0</span>
+          <span id="unidad" class="unidad"></span>
+        </div>
+
+        <p id="descripcion" class="desc"></p>
+
+        <div class="qty-add">
+          <div class="qty">
+            <button id="menos">−</button>
+            <input id="cantidad" type="number" min="1" value="1" />
+            <button id="mas">+</button>
+          </div>
+          <button id="agregar" class="btn">Agregar al carrito</button>
+        </div>
+
+        <section class="info-extra">
+  <div class="info-item">
+    <div class="info-header">
+      <h3><i class="fa-solid fa-truck-fast"></i> Envío a Domicilio</h3>
+      <span class="arrow">&#9656;</span>
+    </div>
+    <div class="info-body">
+      <p>Los envíos son despachados desde nuestra tienda en un plazo maximo de 72 horas hábiles posteriores a la compra.<strong>Su compra esta segura con nosotros.</strong></p>
+    </div>
+  </div>
+
+  <div class="info-item">
+    <div class="info-header">
+      <h3><i class="fa-solid fa-store"></i> Retiro en Tienda</h3>
+      <span class="arrow">&#9656;</span>
+    </div>
+    <div class="info-body">
+      <p>Los retiros se realizan en nuestra sucursal de <strong>(pongan la direccion aca porque no me la se)</strong>, en un plazo maximo de 72 horas hábiles posteriores a la compra.</p>
+    </div>
+  </div>
+
+  <div class="info-item">
+    <div class="info-header">
+      <h3><i class="fa-solid fa-rotate-left"></i> Cambios y Devoluciones</h3>
+      <span class="arrow">&#9656;</span>
+    </div>
+    <div class="info-body">
+      <p>Si tu producto llego en mal estado o no es lo que querias, aceptamos cambios y devoluciones con tu boleta o factura con un plazo maximo de 10 dias habiles.</p>
+    </div>
+  </div>
+
+  <div class="icons-footer">
+    <div><i class="fa-solid fa-truck"></i><p>Envío rápido</p></div>
+    <div><i class="fa-solid fa-badge-check"></i><p>Calidad garantizada</p></div>
+  </div>
+</section>
+
+<!-- Font Awesome -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js"></script>
+
+      </div>
+    </section>
+
+    <section class="tabs">
+      <button class="tab-btn activo" data-tab="desc" >Descripción</button>
+    </section>
+    <section id="tab-desc" class="tab-panel activo"><div id="desc-larga"></div></section>
+    <section id="tab-specs" class="tab-panel"><ul id="specs"></ul></section>
+
+    <section class="relacionados">
+      <h2>También te puede interesar</h2>
+      <div class="rel-grid" id="rel"></div>
+    </section>
+  </main>
+
+  <footer class="footer"></footer>
+
+  <script type="module" src="js/producto.js"></script>
+</body>
+</html>

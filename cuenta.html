@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mi cuenta – Carnes Ttamiña</title>
+
+  <!-- estilos base del sitio -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script type="module" src="js/searchbar.js"></script>
+
+  <!-- estilos de esta página -->
+  <link rel="stylesheet" href="css/mi_cuenta.css">
+</head>
+<body>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="navbar-container">
+      <div class="navbar-left">
+        <h1 class="navbar-logo">Carnes Ttamiña</h1>
+        <div class="navbar-search">
+          <input type="text" placeholder="Busca aquí tus productos..." />
+          <button><i class="fa fa-search"></i></button>
+        </div>
+      </div>
+
+      <nav class="navbar-right">
+        <ul>
+          <li><a href="pag_principal.html"><i class="fa fa-home"></i> Inicio</a></li>
+          <li class="dropdown align-right">
+            <a href="#"><i class="fa fa-user"></i> Bienvenido</a>
+            <ul class="dropdown-menu">
+              <li><a href="mi_cuenta.html"><i class="fa fa-id-card"></i> Mi cuenta</a></li>
+              <li><a href="login.html"><i class="fa fa-sign-in-alt"></i> Iniciar sesión</a></li>
+              <li class="no-cuenta">¿No tienes cuenta?
+                <a href="registro.html" class="crear-cuenta">Créala aquí</a>
+              </li>
+            </ul>
+          </li>
+          <li class="cart-icon">
+            <a href="carrito.html">
+              <i class="fa fa-shopping-cart"></i>
+              <span class="cart-count">0</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTENIDO -->
+  <main class="account-wrap" style="margin-top: 45px ; ">
+    <!-- breadcrumb + volver -->
+    <div class="topbar">
+      <nav class="breadcrumb">
+        <a href="pag_principal.html">Inicio</a>
+        <span>›</span>
+        <a href="mi_cuenta.html" class="current">Mi cuenta</a>
+      </nav>
+      <button id="btnVolver" class="btn btn-back"><i class="fa fa-arrow-left"></i> Volver</button>
+    </div>
+
+    <!-- encabezado -->
+    <div class="profile-header">
+      <div id="avatar" class="avatar">U</div>
+      <div>
+        <h2>Mi cuenta</h2>
+        <div id="emailView" class="muted">—</div>
+      </div>
+    </div>
+
+    <!-- tarjetas -->
+    <section class="panel">
+      <header>
+        <div class="panel-title"><i class="fa fa-id-card"></i> Información personal</div>
+        <span id="badgeIdentidad" class="badge badge-ok">Identidad validada</span>
+      </header>
+
+      <div class="panel-row">
+        <div class="field">
+          <div class="label">Nombre y apellido</div>
+          <div class="value" id="vNombre">—</div>
+
+          <div class="edit" id="eNombre">
+            <input type="text" id="inpNombre" placeholder="Tu nombre completo" />
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="label">RUT</div>
+          <div class="value" id="vRut">—</div>
+
+          <div class="edit" id="eRut">
+            <input type="text" id="inpRut" placeholder="11.111.111-1" />
+          </div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn-light" data-cancel="perfil">Cancelar</button>
+        <button class="btn btn-primary" data-save="perfil">Guardar</button>
+      </div>
+    </section>
+
+    <section class="panel">
+      <header>
+        <div class="panel-title"><i class="fa fa-user-shield"></i> Datos de tu cuenta</div>
+      </header>
+
+      <div class="panel-row">
+        <div class="field">
+          <div class="label">E-mail</div>
+          <div class="value" id="vEmail">—</div>
+
+          <div class="edit" id="eEmail">
+            <input type="email" id="inpEmail" placeholder="tu@correo.com" />
+          </div>
+          <div class="muted small">Cambiar el email, Puede requerir confirmación.</div>
+        </div>
+
+        <div class="field">
+          <div class="label">Nueva contraseña</div>
+          <div class="edit only" style="max-width:520px">
+            <div class="grid2">
+              <input type="password" id="inpPass1" placeholder="Mínimo 6 caracteres" />
+              <input type="password" id="inpPass2" placeholder="Repite la contraseña" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn-light" data-cancel="cuenta">Descartar</button>
+        <button class="btn btn-primary" data-save="cuenta">Actualizar acceso</button>
+      </div>
+    </section>
+  </main>
+
+<footer class="footer">
+  <div class="footer-container">
+
+    <!-- CATEGORÍAS -->
+    <div class="footer-block">
+      <h3>Categorías</h3>
+      <ul>
+        <li><a href="vacuno.html">Vacuno</a></li>
+        <li><a href="ave.html">Ave</a></li>
+        <li><a href="cerdo.html">Cerdo</a></li>
+        <li><a href="todo_asado.html">Todo Asado</a></li>
+        <li><a href="packs.html">Packs</a></li>
+      </ul>
+    </div>
+
+    <!-- SERVICIO AL CLIENTE -->
+    <div class="footer-block">
+      <h3>Servicio al cliente</h3>
+      <ul>
+        <li><a href="#">Quiénes somos</a></li>
+        <li class="phone">📞 +56 9 1234 5678</li>
+        <li class="social-icons">
+          <!-- gente yo no se si manejan redes la carniceria pero si quieren los quitan -->
+          <a href="#"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- HORARIOS -->
+    <div class="footer-block">
+      <h3>Horarios</h3>
+      <p>De Martes a Domingo:<br>De 09:00 hasta las 15:00 por colación <br> Luego reabre desde las 16:30 <br> hasta las 21:00 de la noche </p>
+    </div>
+
+    <!-- MÉTODOS DE PAGO -->
+    <div class="footer-block">
+      <h3>Métodos de pago</h3>
+      <img src="img/webpay.png" alt="WebPay Plus" class="webpay-logo">
+    </div>
+
+  </div>
+
+  <div class="footer-legal">
+    Pagos seguros vía WebPay Plus. Despachos según disponibilidad del repartidor.
+  </div>
+</footer>
+
+  <!-- librerías y lógica -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script type="module" src="js/sessionUser.js"></script>
+  <script type="module" src="js/mi_cuenta.js"></script>
+
+  <script>
+    document.getElementById('btnVolver').addEventListener('click', () => {
+      if (history.length > 1) history.back();
+      else window.location.href = 'pag_principal.html';
+    });
+  </script>
+</body>
+</html>
