@@ -156,24 +156,25 @@ main {
 
 /* === Fondos por categoría === */
 .category-card.vacuno {
-  background-image: url("/img/cards_principal/vacuno.png");
+  background-image: url("../img/cards_principal/vacuno.png");
 }
 
 .category-card.ave {
-  background-image: url("/img/cards_principal/ave.png");
+  background-image: url("../img/cards_principal/ave.png");
 }
 
 .category-card.cerdo {
-  background-image: url("/img/cards_principal/cerdo.png");
+  background-image: url("../img/cards_principal/cerdo.png");
 }
 
 .category-card.miscelaneos {
-  background-image: url("/img/cards_principal/todo_para_tu_asado.png");
+  background-image: url("../img/cards_principal/todo_para_tu_asado.png");
 }
 
 .category-card.packs {
-  background-image: url("/img/cards_principal/packs.png");
+  background-image: url("../img/cards_principal/packs.png");
 }
+
 
 
 /* ==== RESPONSIVE ==== */
@@ -241,4 +242,5 @@ main {
     transform: translateX(-100%);
   }
 }
+
 
