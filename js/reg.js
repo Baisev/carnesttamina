@@ -92,7 +92,8 @@ document.addEventListener("DOMContentLoaded", () => {
         ciudad: null,
         referencia: null,
         estado: 'activo',
-        creado_en: new Date()
+        creado_en: new Date(),
+        auth_user_id: authUserId,
       }])
       .select('cliente_id')
       .single();
@@ -142,6 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.href = "login.html";
   });
 });
+
 
 
 
