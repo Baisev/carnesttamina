@@ -79,24 +79,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const authUserId = authData.user.id;
 
-    // 2️⃣ Crear cliente (incluye teléfono y dirección)
-    const { data: clienteData, error: clienteError } = await supabase
-      .from('cliente')
-      .insert([{
-        nombre_razon: nombre,
-        email: email,
-        rut: rut || null,
-        telefono: telefono,          // 📱 Teléfono completo con código
-        calle: direccion || null,    // Dirección simple (opcional)
-        comuna: null,
-        ciudad: null,
-        referencia: null,
-        estado: 'activo',
-        creado_en: new Date(),
-        auth_user_id: authUserId,
-      }])
-      .select('cliente_id')
-      .single();
+  //Crear cliente (incluye teléfono y dirección)
+const { data: clienteData, error: clienteError } = await supabase
+  .from('cliente')
+  .insert([{
+    nombre_razon: nombre,
+    email: email,
+    rut: rut || null,
+    telefono: telefono,      
+    calle: direccion || null, 
+    comuna: null,
+    ciudad: null,
+    referencia: null,
+    estado: 'activo',
+  }])
+  .select('cliente_id')
+  .single();
+
 
     if (clienteError) {
       console.error(clienteError);
@@ -143,6 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.href = "login.html";
   });
 });
+
 
 
 
