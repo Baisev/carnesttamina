@@ -62,6 +62,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const { data: authData, error: authError } = await supabase.auth.signUp({
       email,
       password,
+      options: {
+      emailRedirectTo: 'https://baisev.github.io/carnesttamina/login.html',
+    },
     });
 
     if (authError) {
@@ -142,6 +145,7 @@ const { data: clienteData, error: clienteError } = await supabase
     window.location.href = "login.html";
   });
 });
+
 
 
 
