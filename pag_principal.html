@@ -16,14 +16,37 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script type="module" src="js/searchbar.js"></script>
 
+<style>
+  .nav-item:hover > .submenu {
+    opacity: 1;
+    visibility: visible;
+  }
 
-  <style>
-    /* Mostrar submenús al pasar el mouse */
-    .nav-item:hover > .submenu {
-      opacity: 1;
-      visibility: visible;
+  @media (max-width: 768px) {
+    #banner-superior {
+      font-size: 0.9rem;
+      height: auto;
+      padding: 6px 10px;
+      white-space: normal; 
     }
-  </style>
+
+    #banner-superior div {
+      animation: none;     
+      padding-left: 0;
+    }
+
+    main {
+      padding: 20px 12px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .section-title {
+      font-size: 1.4rem;
+    }
+  }
+</style>
+
 </head>
 <body>
 
