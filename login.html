@@ -12,7 +12,52 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script type="module" src="js/searchbar.js"></script>
+  <style>
 
+  @media (max-width: 900px) {
+    .login-container {
+      flex-direction: column;
+      max-width: 95%;
+      margin: 110px auto 20px; 
+      padding: 16px;
+      gap: 16px;
+    }
+
+    .left-column,
+    .right-column {
+      width: 100%;
+      padding: 16px;
+    }
+
+    .left-column {
+      text-align: center;
+    }
+
+    .left-column h2,
+    .left-column p,
+    .right-column h2 {
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .login-container {
+      margin-top: 100px;
+      padding: 12px;
+    }
+
+    .left-column h2,
+    .right-column h2 {
+      font-size: 1.4rem;
+    }
+
+    input,
+    button,
+    .register-btn {
+      font-size: 0.95rem;
+    }
+  }
+</style>
 </head>
 <body>
 <!-- NAVBAR -->
