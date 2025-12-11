@@ -37,7 +37,6 @@ body { margin-top: 70px; }
   white-space: nowrap;
 }
 
-/* Agrupa logo + búsqueda y deja espacio entre ellos */
 .navbar-left{
   display:flex;
   align-items:center;
@@ -47,7 +46,7 @@ body { margin-top: 70px; }
 
 /* ===== BÚSQUEDA ===== */
 .navbar-search {
-  position: relative;                /* <-- necesario para el panel */
+  position: relative;               
   display: flex;
   align-items: center;
   background-color: #fff;
@@ -133,7 +132,6 @@ body { margin-top: 70px; }
   background:#fff2b3; color:#111; padding:0 .1em; border-radius:4px;
 }
 
-/* Panel como modal centrado en móviles */
 @media (max-width: 640px){
   #search-panel{
     position: fixed;
@@ -316,3 +314,31 @@ body { margin-top: 70px; }
 .side-menu-content li { margin-bottom: 12px; }
 .side-menu-content a { color: white; text-decoration: none; font-size: 1.1rem; }
 .side-menu-content a:hover { text-decoration: underline; }
+
+@media (max-width: 768px) {
+
+  .navbar-container {
+    position: relative;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+
+  .menu-btn {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0;
+    font-size: 1.4rem;   
+  }
+
+  .navbar-logo {
+    padding-left: 40px; 
+    font-size: 1.4rem;
+    text-align: center;
+  }
+  .side-menu {
+    width: 230px;
+  }
+}
+
