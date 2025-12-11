@@ -315,14 +315,13 @@ body { margin-top: 70px; }
 .side-menu-content a { color: white; text-decoration: none; font-size: 1.1rem; }
 .side-menu-content a:hover { text-decoration: underline; }
 
-/* ==== Ajustes solo para móviles del botón hamburguesa y menú lateral ==== */
 @media (max-width: 768px) {
 
   .navbar-container {
     padding: 8px 12px;
   }
 
-  /* Colocamos botón + logo en fila */
+
   .navbar-left {
     display: flex;
     align-items: center;
@@ -330,18 +329,43 @@ body { margin-top: 70px; }
   }
 
   .menu-btn {
-    position: static;      /* nada de absolute */
+    position: static;    
     margin: 0;
-    font-size: 1.4rem;     /* si lo ves grande, baja a 1.3 */
+    font-size: 1.4rem;     
   }
 
   .navbar-logo {
     padding: 0;
     font-size: 1.4rem;
-    text-align: left;      /* [☰] [Carnes Ttamiña] */
+    text-align: left;     
   }
 
-  /* Menú lateral un poco más angosto en móviles */
+  .side-menu {
+    width: 230px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-container {
+    position: relative;
+    padding: 8px 12px;
+  }
+
+  .menu-btn {
+    position: absolute !important;
+    left: 10px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    margin: 0 !important;
+    font-size: 1.3rem !important;
+  }
+
+  .navbar-logo {
+    padding-left: 40px;      
+    font-size: 1.4rem;
+    text-align: left;
+  }
+
   .side-menu {
     width: 230px;
   }
