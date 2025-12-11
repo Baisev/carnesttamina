@@ -234,13 +234,62 @@ body { margin-top: 70px; }
   padding: 2px 7px; border-radius: 50%; font-size: 0.85rem;
 }
 
-/* ===== RESPONSIVE ===== */
+
 @media (max-width: 900px) {
-  .navbar-container { flex-direction: column; align-items: flex-start; gap: 15px; }
-  .navbar-right { margin-left: 0; width: 100%; }
-  .navbar-right ul { flex-wrap: wrap; gap: 20px; justify-content: center; }
-  .navbar-search { width: 100%; }
+  .navbar-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+  }
+
+  .navbar-logo {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .navbar-left {
+    width: 100%;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .navbar-search {
+    width: 100%;
+    max-width: 100%;
+    height: 36px;
+  }
+
+  .navbar-right {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .navbar-right ul {
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+  }
+
+  .navbar-right a {
+    font-size: 0.95rem;
+  }
 }
+
+@media (max-width: 576px) {
+  .navbar-container {
+    padding: 6px 10px;
+  }
+
+  .navbar-logo {
+    font-size: 1.3rem;
+  }
+
+  .navbar-right a {
+    font-size: 0.85rem;
+  }
+}
+
 
 /* ===== BOTÓN HAMBURGUESA ===== */
 .menu-btn {
