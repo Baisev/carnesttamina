@@ -286,7 +286,7 @@ function configurarPanelEstadoEmpleado() {
 
 async function generarBoletaPDF() {
   if (!pedidoGlobal || !itemsGlobal.length) {
-    alert("No hay datos del pedido para generar la boleta.");
+    alert("No hay datos del pedido para generar el comprobante.");
     return;
   }
 
@@ -308,7 +308,7 @@ async function generarBoletaPDF() {
   pdf.setFontSize(12);
   pdf.setFont("helvetica", "normal");
   pdf.setTextColor(0, 0, 0);
-  pdf.text("Boleta de compra", 20, 30);
+  pdf.text("Comprobante de pago", 20, 30);
 
   const fecha = new Date(pedidoGlobal.fecha).toLocaleString("es-CL");
   pdf.text(`Pedido N°: ${pedidoGlobal.pedido_id || pedidoID}`, 20, 45);
@@ -343,7 +343,7 @@ async function generarBoletaPDF() {
     y
   );
 
-  pdf.save(`Boleta_Pedido_${pedidoID}.pdf`);
+  pdf.save(`Pedido_Comprobante_${pedidoID}.pdf`);
 }
 
 
