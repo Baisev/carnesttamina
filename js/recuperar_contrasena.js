@@ -1,4 +1,3 @@
-// js/recuperar_contrasena.js
 import { supabase } from './supabaseClient.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -19,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     try {
       const { error } = await supabase.auth.resetPasswordForEmail(email, {
-        // A futuro, cuando tengan dominio, esta URL debe estar registrada en Supabase
         redirectTo: `${window.location.origin}/cambiar_contrasena.html`,
       });
 

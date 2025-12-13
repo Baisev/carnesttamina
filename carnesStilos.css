@@ -1,8 +1,7 @@
-/* === FUENTE GLOBAL === */
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Caprasimo&display=swap');
 
-/* === CONTENEDOR DE BOTONES DE CATEGORÍAS === */
+
 .categorias-destacadas {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -10,7 +9,7 @@
   justify-items: center;
   align-items: center;
   max-width: 1500px;
-  margin: 60px auto -50px auto; /* espacio desde navbar y hacia el título */
+  margin: 60px auto -50px auto; 
   padding: 20px 40px;
   box-sizing: border-box;
 }
@@ -33,21 +32,20 @@
   cursor: pointer;
 }
 
-/* === COLORES POR CATEGORÍA === */
 .categoria-boton.vacuno {
-  background-color: #bd1c1a; /* rojo carne */
+  background-color: #bd1c1a; 
 }
 .categoria-boton.ave {
-  background-color: #e0ab18; /* amarillo pollo */
+  background-color: #e0ab18; 
 }
 .categoria-boton.cerdo {
-  background-color: #df862d; /* naranja cerdo */
+  background-color: #df862d; 
 }
 .categoria-boton.todo-asado {
-  background-color: #5c5c5c; /* gris oscuro */
+  background-color: #5c5c5c; 
 }
 .categoria-boton.packs {
-  background-color: #d32f2f; /* rojo más fuerte */
+  background-color: #d32f2f;
 }
 
 /* === EFECTO HOVER === */
@@ -88,7 +86,7 @@
 body, .catalogo-container, .producto-card, .filtros-container, .btn-flotante {
   font-family: 'IBM Plex Serif', serif;
 }
-/* === CONTENEDOR GENERAL === */
+
 .catalogo-container {
   max-width: 1500px;
   margin: 60px auto;
@@ -97,7 +95,7 @@ body, .catalogo-container, .producto-card, .filtros-container, .btn-flotante {
   background-color: #fff;
 }
 
-/* === BREADCRUMB Y TÍTULO === */
+
 .breadcrumb {
   font-size: 1rem;
   margin-bottom: 10px;
@@ -124,7 +122,7 @@ body, .catalogo-container, .producto-card, .filtros-container, .btn-flotante {
   margin-bottom: 10px;
 }
 
-/* === DESCRIPCIÓN === */
+
 .catalogo-container > p {
   text-align: center;
   font-size: 1rem;
@@ -136,7 +134,7 @@ body, .catalogo-container, .producto-card, .filtros-container, .btn-flotante {
   line-height: 1.6;
 }
 
-/* === FILTROS Y BÚSQUEDA === */
+
 .filtros-container {
   display: flex;
   justify-content: space-between;
@@ -164,7 +162,7 @@ body, .catalogo-container, .producto-card, .filtros-container, .btn-flotante {
   font-family: 'IBM Plex Serif', serif;
 }
 
-/* === GRID DE PRODUCTOS === */
+
 .productos-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -176,7 +174,7 @@ body, .catalogo-container, .producto-card, .filtros-container, .btn-flotante {
   box-sizing: border-box;
 }
 
-/* === TARJETAS DE PRODUCTOS === */
+
 .producto-card {
   position: relative;
   background-color: #fff;
@@ -198,7 +196,6 @@ body, .catalogo-container, .producto-card, .filtros-container, .btn-flotante {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
 }
 
-/* === IMAGEN === */
 .producto-imagen {
   width: 100%;
   height: 220px;
@@ -207,19 +204,19 @@ body, .catalogo-container, .producto-card, .filtros-container, .btn-flotante {
   transition: filter 0.4s ease, transform 0.4s ease;
 }
 
-/* === BOTÓN FLOTANTE SOBRE LA IMAGEN === */
+
 .producto-card .btn-flotante {
   position: absolute;
-  top: 30%; /* ajusta altura */
+  top: 30%; 
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 150px;              /* cuadrado */
+  width: 150px;            
   height: 80px;
-  background-color: rgba(183, 28, 28, 0.85); /* rojo oscuro semitransparente */
+  background-color: rgba(183, 28, 28, 0.85); 
   color: #fff;
-  border: 2px solid #fff;   /* bordes blancos */
-  border-radius: 10px;      /* esquinas suaves */
-  display: flex;            /* centra el ícono */
+  border: 2px solid #fff; 
+  border-radius: 10px;      
+  display: flex;           
   align-items: center;
   justify-content: center;
   font-size: 1.2rem;
@@ -230,27 +227,22 @@ body, .catalogo-container, .producto-card, .filtros-container, .btn-flotante {
   cursor: pointer;
 }
 
-/* Hover del botón */
 .producto-card .btn-flotante:hover {
   background-color: #fff;
   color: #b71c1c;
   transform: translate(-50%, -50%) scale(1.1);
 }
 
-/* Mostrar en hover de la tarjeta */
 .producto-card:hover .btn-flotante {
   opacity: 1;
   visibility: visible;
 }
 
-
-/* === EFECTO IMAGEN AL HOVER === */
 .producto-card:hover .producto-imagen {
   filter: grayscale(60%) brightness(70%);
   transform: scale(1.04);
 }
 
-/* === TEXTOS DE PRODUCTO === */
 .producto-nombre {
   font-size: 1.05rem;
   font-weight: 600;
@@ -291,7 +283,6 @@ body, .catalogo-container, .producto-card, .filtros-container, .btn-flotante {
   margin-top: 6px;
 }
 
-/* === SIN PRODUCTOS === */
 .sin-productos {
   text-align: center;
   padding: 50px;
@@ -303,7 +294,6 @@ body, .catalogo-container, .producto-card, .filtros-container, .btn-flotante {
   color: #b71c1c;
 }
 
-/* === SKELETON LOADER === */
 .skeleton-loader {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -356,7 +346,6 @@ body, .catalogo-container, .producto-card, .filtros-container, .btn-flotante {
   100% { background-position: -200% 0; }
 }
 
-/* === RESPONSIVE === */
 @media (max-width: 1200px) {
   .productos-grid {
     grid-template-columns: repeat(3, 1fr);

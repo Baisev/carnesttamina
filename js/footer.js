@@ -1,10 +1,9 @@
-// Mostrar el footer solo cuando se llega al final de la página
 window.addEventListener('scroll', () => {
   const footer = document.getElementById('footer');
   if (window.scrollY + window.innerHeight >= document.body.scrollHeight) {
-    footer.classList.add('show'); // Mostrar footer
+    footer.classList.add('show'); 
   } else {
-    footer.classList.remove('show'); // Ocultar footer
+    footer.classList.remove('show'); 
   }
 });
 

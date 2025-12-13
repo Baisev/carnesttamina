@@ -4,7 +4,6 @@
 
   document.addEventListener('DOMContentLoaded', init);
 
-  // Por si otras partes del sitio disparan este evento al cambiar el carrito
   window.addEventListener('cart:changed', () => {
     render();
   });
@@ -20,7 +19,6 @@
     els.btnEmpty.addEventListener('click', emptyCart);
     els.btnCheckout.addEventListener('click', onCheckoutClick);
 
-    // Si en algún momento se borra la sesión en otro lugar (otra pestaña)
     window.addEventListener('storage', (e) => {
       if (e.key === 'usuario') {
         updateCheckoutState();

@@ -4,23 +4,19 @@
   <meta charset="UTF-8">
   <title>Tu Carrito - Carnes Ttamiña</title>
 
-  <!-- CSS DEL PROYECTO -->
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="css/navbar.css">
   <link rel="stylesheet" href="css/footer.css">
-  <link rel="stylesheet" href="css/cart.css"> <!-- NUEVO -->
+  <link rel="stylesheet" href="css/cart.css"> 
 
-  <!-- ICONOS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  <!-- NAVBAR SCRIPTS -->
   <script type="module" src="js/navbar.js"></script>
   <script type="module" src="js/searchbar.js"></script>
 </head>
 
 <body>
 
-<!-- NAVBAR -->
 <header class="navbar">
   <div class="navbar-container">
     <div class="navbar-left">
@@ -61,10 +57,8 @@
   </div>
 </header>
 
-<!-- CUERPO DEL CARRITO -->
 <main class="carrito-wrapper" style="margin-top: 45px;">
 
-  <!-- COLUMNA IZQUIERDA -->
   <section class="carrito-left">
     <h2>Tu Carrito</h2>
 
@@ -79,7 +73,6 @@
         </tr>
       </thead>
       <tbody class="carrito-body">
-        <!-- SE LLENA DESDE carrito.js -->
       </tbody>
     </table>
 
@@ -93,10 +86,8 @@
 
   </section>
 
-  <!-- COLUMNA DERECHA (FORMULARIO + RESUMEN) -->
   <section class="carrito-right">
 
-    <!-- FORMULARIO -->
     <div class="carrito-card">
       <h3>Datos de entrega</h3>
 
@@ -126,7 +117,6 @@
     </form>
     <button id="btnPagar" class="btn-pagar">💳 Pagar ahora</button>
 
-    <!-- RESUMEN -->
     <div class="carrito-card resumen">
       <h3>Resumen de compra</h3>
 
@@ -141,7 +131,6 @@
 
 </main>
 
-<!-- FOOTER -->
 <footer class="footer">
   <div class="footer-container">
 
@@ -181,7 +170,6 @@
   </div>
 </footer>
 
-<!-- LÓGICA DEL CARRITO (SEPARADA) -->
 <script type="module" src="js/carrito.js"></script>
 
 </body>

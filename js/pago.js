@@ -1,19 +1,16 @@
 import { supabase } from "./supabaseClient.js";
 
-// ========= FORMATEO DE CLP ==========
 const fmtCLP = v => new Intl.NumberFormat("es-CL", {
   style: "currency",
   currency: "CLP",
 }).format(v);
 
-// ========= DOM ==========
 const lista = document.getElementById("lista-productos");
 const totalElem = document.getElementById("pago-total");
 const btnConfirmar = document.getElementById("btnConfirmar");
 const barra = document.getElementById("barra-progreso");
 const estadoPago = document.getElementById("estadoPago");
 
-// ========= DATOS ==========
 const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 const datosCliente = JSON.parse(localStorage.getItem("datosCliente")) || {};
 
@@ -22,9 +19,6 @@ console.log("📌 Datos cliente cargados:", datosCliente);
 let procesando = false;
 let timeoutCompra;
 
-// ================================
-//     1) RENDER LISTA PRODUCTOS
-// ================================
 if (!carrito.length) {
   lista.innerHTML = "<p>Tu carrito está vacío.</p>";
 } else {
@@ -48,16 +42,12 @@ if (!carrito.length) {
   totalElem.textContent = fmtCLP(total);
 }
 
-// ===================================
-//        2) PROCESAR EL PAGO
-// ===================================
 async function procesarPago() {
   if (procesando) return;
   procesando = true;
 
   estadoPago.textContent = "Procesando pago...";
 
-  // A) Obtener usuario actual
   const { data: authData, error: authError } = await supabase.auth.getUser();
   if (authError || !authData.user) {
     alert("Debes iniciar sesión para continuar.");
@@ -67,7 +57,6 @@ async function procesarPago() {
 
   const uid = authData.user.id;
 
-  // B) Obtener cliente_id
   const { data: usuarioData, error: usuarioError } = await supabase
     .from("usuario")
     .select("cliente_id")
@@ -82,7 +71,6 @@ async function procesarPago() {
 
   const clienteId = usuarioData.cliente_id;
 
-  // C) GUARDAR DIRECCIÓN SI MARCÓ CHECK
   if (datosCliente.guardarDireccion) {
     const { error: updateError } = await supabase
       .from("cliente")
@@ -97,7 +85,6 @@ async function procesarPago() {
     }
   }
 
-  // D) Crear pedido
   const total = carrito.reduce((acc, p) => acc + p.precio * p.cantidad, 0);
 
   const { data: pedido, error: pedidoErr } = await supabase
@@ -122,7 +109,6 @@ async function procesarPago() {
     return;
   }
 
-  // E) Insertar productos
   for (const item of carrito) {
     await supabase.from("pedido_item").insert([{
       pedido_id: pedido.pedido_id,
@@ -133,11 +119,7 @@ async function procesarPago() {
     }]);
   }
 
-  // =========================
-  //  📩 ENVIAR BOLETA POR EMAIL
-  // =========================
 
-  // ⚠️ VALIDACIÓN CRÍTICA
   if (!datosCliente.email) {
     console.error("❌ ERROR: No existe datosCliente.email en localStorage");
     alert("No se pudo enviar la boleta porque falta tu correo.");
@@ -173,9 +155,7 @@ async function procesarPago() {
     }
   }
 
-    // =========================
-  //  📲 NOTIFICAR A MAKE (WHATSAPP BOT)
-  // =========================
+
   try {
     await fetch("https://hook.us2.make.com/ne1tqo86ekvmspyjjk2fe1gfkj72gnvf", {
       method: "POST",
@@ -201,25 +181,17 @@ async function procesarPago() {
     console.error("Error al llamar al webhook de Make:", e);
   }
 
-  // F) Limpiar carrito
-
-
-  // F) Limpiar carrito
   localStorage.removeItem("carrito");
   localStorage.removeItem("datosCliente");
   localStorage.setItem("carrito", JSON.stringify([]));
 
   estadoPago.textContent = "✔ Pago confirmado";
 
-  // G) Redirigir
   setTimeout(() => {
     window.location.href = `pedido_detalle.html?id=${pedido.pedido_id}`;
   }, 1500);
 }
 
-// ===================================
-//      3) CLICK EN CONFIRMAR
-// ===================================
 btnConfirmar.addEventListener("click", () => {
   if (procesando) return;
 
@@ -227,9 +199,6 @@ btnConfirmar.addEventListener("click", () => {
   procesarPago();
 });
 
-// ===================================
-//   4) PAGO AUTOMÁTICO POR TIMEOUT
-// ===================================
 timeoutCompra = setTimeout(() => {
   if (!procesando) {
     barra.style.width = "100%";
@@ -237,9 +206,6 @@ timeoutCompra = setTimeout(() => {
   }
 }, 4500);
 
-// ===================================
-//        5) CANCELAR COMPRA
-// ===================================
 document.getElementById("btnCancelar").addEventListener("click", () => {
   clearTimeout(timeoutCompra);
   window.location.href = "carrito.html";

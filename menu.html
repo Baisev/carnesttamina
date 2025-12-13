@@ -404,17 +404,14 @@
       </form>
     </section>
 
-    <!-- COLUMNA DERECHA: AUDITORÍA -->
     <section id="auditoria">
       <h3>Registrar auditoría</h3>
 
-      <!-- Buscador de producto para auditoría -->
       <div class="aud-search-container">
         <input type="text" id="aud-search" placeholder="Buscar producto para auditoría...">
         <div id="aud-search-results" class="aud-results"></div>
       </div>
 
-      <!-- Formulario, oculto hasta seleccionar producto -->
       <div id="aud-form" class="auditoria-card" style="display:none; margin-top:20px;">
         <label>Semana:</label>
         <input id="aud-semana" type="text" placeholder="Ej: sem1">
@@ -514,7 +511,7 @@ async function obtenerInventario(){
   const { data, error } = await supabase
     .from('producto')
     .select('producto_id, nombre, categoria, unidad, precio, stock, activo, creado_en')
-    .order('stock',{ ascending:true });   // 👈 ahora ordena por stock (menor a mayor)
+    .order('stock',{ ascending:true }); 
 
   if(error) throw error;
 
@@ -526,9 +523,9 @@ async function obtenerInventario(){
       'Categoría'       : p.categoria ?? '',
       'Unidad'          : p.unidad ?? '',
       'Precio ($)'      : Number(p.precio ?? 0),
-      'Stock actual'    : stockNum,                  // número real
+      'Stock actual'    : stockNum,               
       'Unidades vendidas': '' ,      
-      'Stock bajo (<=10)': stockNum <= 10 ? 'Sí' : 'No', // filtro rápido opcional
+      'Stock bajo (<=10)': stockNum <= 10 ? 'Sí' : 'No', 
       'Activo'          : (p.activo === true ? 'Sí' : 'No'),
       'Creado en'       : p.creado_en ? new Date(p.creado_en).toLocaleString() : ''
     };
@@ -555,7 +552,7 @@ async function obtenerInventario(){
 
 return (data || []).map((aud, index) => {
   const prod = mapaProd.get(aud.producto_id) || {};
-  const row = index + 2; // Fila real en Excel (1 = encabezados)
+  const row = index + 2; 
 
   const stockSistema = Number(aud.stock_sistema ?? 0);
   const stockFisico  = Number(aud.stock_fisico ?? 0);
@@ -582,7 +579,6 @@ return (data || []).map((aud, index) => {
     'Precio compra unitario ($)': precioCompra,
     'Precio venta unitario ($)' : precioVenta,
 
-    // 🔥 FORMULAS DINÁMICAS (100% Excel)
     'Total compra ($)' : { f: `H${row}*I${row}` },
     'Total venta ($)'  : { f: `J${row}*K${row}` },
     'Utilidad bruta ($)': { f: `M${row}-L${row}` },
@@ -610,7 +606,6 @@ async function exportarExcelInventario(){
     const filasAud = await obtenerAuditorias();
     const wb = XLSX.utils.book_new();
 
-    // === Hoja 1: Inventario ===
    if (filasInv.length > 0) {
       const wsInv = XLSX.utils.json_to_sheet(filasInv);
       wsInv['!cols'] = autoAnchoColumnas(filasInv);
@@ -626,72 +621,56 @@ async function exportarExcelInventario(){
       wsInv['!autofilter'] = { ref: wsInv['!ref'] }; 
 
       XLSX.utils.book_append_sheet(wb, wsInv, 'Inventario');
-// === 🆕 HOJA 3: DASHBOARD ===
-// === HOJA 3: DASHBOARD CON FÓRMULAS REALES ===
+
 const wsDashboard = {};
 
-// Encabezados
+
 wsDashboard["A1"] = { t: "s", v: "Indicador" };
 wsDashboard["B1"] = { t: "s", v: "Valor" };
 
-// Fila 2
 wsDashboard["A2"] = { t: "s", v: "Total de productos" };
 wsDashboard["B2"] = { t: "n", f: "COUNTA(Inventario!A:A)-1" };
 
-// Fila 3
 wsDashboard["A3"] = { t: "s", v: "Stock total" };
 wsDashboard["B3"] = { t: "n", f: "SUM(Inventario!F:F)" };
 
-// Fila 4
 wsDashboard["A4"] = { t: "s", v: "Productos con stock bajo (<=10)" };
 wsDashboard["B4"] = { t: "n", f: 'COUNTIF(Inventario!F:F,"<=10")' };
 
-// Fila 5
 wsDashboard["A5"] = { t: "s", v: "Total compras ($)" };
 wsDashboard["B5"] = { t: "n", f: "SUM(Auditoría!M:M)" };
 
-// Fila 6
 wsDashboard["A6"] = { t: "s", v: "Total ventas ($)" };
 wsDashboard["B6"] = { t: "n", f: "SUM(Auditoría!N:N)" };
 
-// Fila 7
 wsDashboard["A7"] = { t: "s", v: "Utilidad bruta total ($)" };
 wsDashboard["B7"] = { t: "n", f: "SUM(Auditoría!O:O)" };
 
-// Fila 8
 wsDashboard["A8"] = { t: "s", v: "Utilidad promedio ($)" };
 wsDashboard["B8"] = { t: "n", f: "AVERAGE(Auditoría!O:O)" };
 
-// Título Top 5
 wsDashboard["A10"] = { t: "s", v: "Top 5 productos más vendidos" };
 
 wsDashboard["A11"] = { t: "s", v: "Producto" };
 wsDashboard["B11"] = { t: "s", v: "Unidades vendidas" };
 
-// Top 1
 wsDashboard["A12"] = { t: "s", f: "INDEX(Auditoría!C:C, MATCH(LARGE(Auditoría!J:J,1), Auditoría!J:J,0))" };
 wsDashboard["B12"] = { t: "n", f: "LARGE(Auditoría!J:J,1)" };
 
-// Top 2
 wsDashboard["A13"] = { t: "s", f: "INDEX(Auditoría!C:C, MATCH(LARGE(Auditoría!J:J,2), Auditoría!J:J,0))" };
 wsDashboard["B13"] = { t: "n", f: "LARGE(Auditoría!J:J,2)" };
 
-// Top 3
 wsDashboard["A14"] = { t: "s", f: "INDEX(Auditoría!C:C, MATCH(LARGE(Auditoría!J:J,3), Auditoría!J:J,0))" };
 wsDashboard["B14"] = { t: "n", f: "LARGE(Auditoría!J:J,3)" };
 
-// Top 4
 wsDashboard["A15"] = { t: "s", f: "INDEX(Auditoría!C:C, MATCH(LARGE(Auditoría!J:J,4), Auditoría!J:J,0))" };
 wsDashboard["B15"] = { t: "n", f: "LARGE(Auditoría!J:J,4)" };
 
-// Top 5
 wsDashboard["A16"] = { t: "s", f: "INDEX(Auditoría!C:C, MATCH(LARGE(Auditoría!J:J,5), Auditoría!J:J,0))" };
 wsDashboard["B16"] = { t: "n", f: "LARGE(Auditoría!J:J,5)" };
 
-// Rango visible
 wsDashboard["!ref"] = "A1:B16";
 
-// Estética
 wsDashboard["!cols"] = [
   { wch: 35 },
   { wch: 22 }
@@ -704,7 +683,6 @@ wsDashboard["!cols"] = [
   { wch: 20 }  
 ];
 
-// negrita en headers
 wsDashboard["A1"].s = { font: { bold: true } };
 wsDashboard["B1"].s = { font: { bold: true } };
 
@@ -716,7 +694,6 @@ XLSX.utils.book_append_sheet(wb, wsDashboard, "Dashboard");
 
     }
 
-    // === Hoja 2: Auditoría ===
     if (filasAud.length > 0) {
       const wsAud = XLSX.utils.json_to_sheet(filasAud);
       wsAud['!cols'] = autoAnchoColumnas(filasAud);
@@ -745,7 +722,6 @@ XLSX.utils.book_append_sheet(wb, wsDashboard, "Dashboard");
   document.getElementById('btn-exportar-inventario')
     ?.addEventListener('click', exportarExcelInventario);
 
-  // === CARGAR LISTA DE PRODUCTOS (EDICIÓN) ===
   async function cargarProductos() {
     const { data: productos, error } = await supabase
       .from('producto')
@@ -817,7 +793,6 @@ XLSX.utils.book_append_sheet(wb, wsDashboard, "Dashboard");
     })
   }
 
-  // === INSERT nuevo producto ===
   form.addEventListener('submit', async (e) => {
     e.preventDefault()
 
@@ -862,7 +837,6 @@ XLSX.utils.book_append_sheet(wb, wsDashboard, "Dashboard");
     cargarProductos()
   })
 
-  // === EDITAR producto ===
   async function editarProducto(id) {
     const descripcion = document.getElementById(`desc-${id}`).value.trim() || null
     const precio = parseFloat(document.getElementById(`precio-${id}`).value.replace(',', '.')) || 0
@@ -898,7 +872,6 @@ XLSX.utils.book_append_sheet(wb, wsDashboard, "Dashboard");
     cargarProductos()
   }
 
-  // === ELIMINAR producto ===
   async function eliminarProducto(id) {
     const { error } = await supabase.from('producto').delete().eq('producto_id', id)
     if (error) return mostrarMensaje('Error al eliminar: ' + error.message, 'red')
@@ -906,7 +879,6 @@ XLSX.utils.book_append_sheet(wb, wsDashboard, "Dashboard");
     cargarProductos()
   }
 
-  // === BUSCADOR PARA FILTRAR LISTA DE PRODUCTOS (EDICIÓN) ===
   const editSearch = document.getElementById('edit-search');
   if (editSearch) {
     editSearch.addEventListener('input', (e)=>{
@@ -920,7 +892,6 @@ XLSX.utils.book_append_sheet(wb, wsDashboard, "Dashboard");
     });
   }
 
-  // === BUSCADOR PARA AUDITORÍA ===
   let audProductoSeleccionado = null;
 
   async function audBuscar(query) {
@@ -977,14 +948,12 @@ XLSX.utils.book_append_sheet(wb, wsDashboard, "Dashboard");
       document.getElementById('aud-search').value = nombre;
       audResults.style.display = 'none';
 
-      // Mostrar formulario y llenar stock sistema
       const formAud = document.getElementById('aud-form');
       formAud.style.display = 'block';
       document.getElementById('aud-stock-sistema').value = stock;
     });
   }
 
-  // Guardar auditoría
   const btnGuardarAud = document.getElementById('btn-guardar-auditoria');
   if (btnGuardarAud) {
     btnGuardarAud.addEventListener('click', async ()=>{
@@ -1033,7 +1002,6 @@ XLSX.utils.book_append_sheet(wb, wsDashboard, "Dashboard");
 
       mostrarMensaje('✅ Auditoría registrada correctamente');
 
-      // Limpiar campos del formulario de auditoría (dejamos el buscador igual)
       document.getElementById('aud-semana').value = '';
       document.getElementById('aud-stock-fisico').value = '';
       document.getElementById('aud-compra').value = 0;
@@ -1046,7 +1014,6 @@ XLSX.utils.book_append_sheet(wb, wsDashboard, "Dashboard");
     });
   }
 
-  // Cargar lista inicial
   cargarProductos();
 </script>
 </body>

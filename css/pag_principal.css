@@ -1,8 +1,3 @@
-/* ===============================
-   Estilos exclusivos de página principal (mejorado y responsive)
-   =============================== */
-
-/* Fuente Caprasimo */
 @import url('https://fonts.googleapis.com/css2?family=Caprasimo&display=swap');
 
 
@@ -13,7 +8,6 @@ main {
   box-sizing: border-box;
 }
 
-/* ==== CARRUSEL ==== */
 .carousel-section {
   width: 100%;
   overflow: hidden;
@@ -30,7 +24,7 @@ main {
 .carousel-slide {
   flex: 0 0 100%;
   height: 350px;
-  background: #b22222; /* temporal */
+  background: #b22222; 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -54,7 +48,6 @@ main {
   font-size: 1.2rem;
 }
 
-/* Botones del carrusel */
 .carousel-btn {
   position: absolute;
   top: 50%;
@@ -72,22 +65,19 @@ main {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
 }
 
-/* Efecto hover */
 .carousel-btn:hover {
   background: rgba(200, 0, 0, 0.9);
   transform: translateY(-50%) scale(1.1);
 }
 
-/* Posiciones a los lados del carrusel */
 .carousel-btn.prev {
-  left: -20px;   /* fuera del carrusel */
+  left: -20px;  
 }
 
 .carousel-btn.next {
-  right: -20px;  /* fuera del carrusel */
+  right: -20px;  
 }
 
-/* Ajuste responsive: acercar los botones en móvil */
 @media (max-width: 768px) {
   .carousel-btn.prev { left: 5px; }
   .carousel-btn.next { right: 5px; }
@@ -103,8 +93,6 @@ main {
 .carousel-btn.next { right: 12px; }
 
 
-/* ==== CATEGORÍAS ==== */
-/* ==== CATEGORÍAS ==== */
 .categories-section {
   text-align: center;
 }
@@ -115,7 +103,6 @@ main {
   margin-bottom: 35px;
 }
 
-/* === Cards de categorías === */
 .categories-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -127,7 +114,7 @@ main {
   position: relative;
   display: flex;
   justify-content: center;
-  align-items: center; /* centra vertical y horizontal */
+  align-items: center; 
   height: 200px;
   border-radius: 15px;
   text-decoration: none;
@@ -135,7 +122,7 @@ main {
   color: #fff;
   font-weight: bold;
   font-size: 1.4rem;
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4); /* resalta el texto sin fondo */
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4); 
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   background-size: cover;
   background-position: center;
@@ -144,7 +131,7 @@ main {
 
 .category-card h3 {
   margin: 0;
-  background: none; /* quita fondo */
+  background: none; 
   padding: 0;
 }
 
@@ -154,7 +141,6 @@ main {
 }
 
 
-/* === Fondos por categoría === */
 .category-card.vacuno {
   background-image: url("../img/cards_principal/vacuno.png");
 }
@@ -177,9 +163,6 @@ main {
 
 
 
-/* ==== RESPONSIVE ==== */
-
-/* Tablets (<= 992px) */
 @media (max-width: 992px) {
   main { padding: 30px 15px; }
   .carousel-slide { height: 280px; }
@@ -188,7 +171,6 @@ main {
   .section-title { font-size: 1.7rem; }
 }
 
-/* Celulares grandes (<= 768px) */
 @media (max-width: 768px) {
   .carousel-slide { height: 220px; }
   .carousel-content h2 { font-size: 1.5rem; }
@@ -196,7 +178,6 @@ main {
   .category-card { width: 80%; max-width: 320px; height: 140px; }
 }
 
-/* Celulares pequeños (<= 480px) */
 @media (max-width: 480px) {
   main { padding: 20px 10px; }
   .carousel-slide { height: 180px; }

@@ -49,7 +49,6 @@ function render(list, q) {
       </div>
       <div class="price">${fmtCLP(p.precio)}</div>
     `;
-    // 🔁 ahora lleva directo al detalle
     li.addEventListener('click', () => {
       window.location.href = `producto.html?id=${p.producto_id}`;
     });
@@ -58,18 +57,15 @@ function render(list, q) {
 
   foot.innerHTML = `Ver todos los resultados para <b>"${q}"</b>`;
   foot.style.display = 'block';
-  // si quieres dejar este pie redirigiendo a una búsqueda global, lo mantenemos
   foot.onclick = () => window.location.href = `buscar.html?q=${encodeURIComponent(input.value.trim())}`;
 }
 
 async function query(q) {
   if (!q || q.length < 2) { ul.innerHTML=''; foot.style.display='none'; return; }
 
-  // Muestra “cargando”
   ul.innerHTML = `<div class="search-empty">Buscando…</div>`;
   foot.style.display = 'none';
 
-  // nombre o descripción que contenga q, solo activos
   const { data, error } = await supabase
     .from('producto')
     .select('producto_id, nombre, precio, imagen_url, categoria, stock, activo, descripcion')
@@ -86,7 +82,6 @@ async function query(q) {
   render(items, q);
 }
 
-// Eventos
 const doSearch = debounce(async () => {
   const q = input.value.trim();
   if (!q) { closePanel(); return; }
@@ -99,7 +94,6 @@ input.addEventListener('focus', () => {
 });
 input.addEventListener('input', doSearch);
 
-// navegación con teclado
 input.addEventListener('keydown', (e) => {
   if (!panel.classList.contains('open')) return;
   const count = ul.children.length;
@@ -121,7 +115,6 @@ input.addEventListener('keydown', (e) => {
     if (activeIndex >= 0 && ul.children[activeIndex]) {
       ul.children[activeIndex].click();
     } else {
-      // 👉 enter sin seleccionar nada → primer resultado
       if (items.length > 0) {
         window.location.href = `producto.html?id=${items[0].producto_id}`;
       } else {
@@ -135,7 +128,6 @@ input.addEventListener('keydown', (e) => {
   }
 });
 
-// cerrar al hacer click fuera
 document.addEventListener('click', (e) => {
   if (!panel.contains(e.target) && !host.contains(e.target)) closePanel();
 });

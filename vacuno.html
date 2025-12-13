@@ -19,11 +19,9 @@
 </head>
 
 <body>
-<!-- NAVBAR -->
 <header class="navbar">
   <div class="navbar-container">
 
-    <!-- LOGO + barra de búsqueda -->
     <div class="navbar-left">
       <h1 class="navbar-logo">Carnes Ttamiña</h1>
       <div class="navbar-search">
@@ -32,7 +30,6 @@
       </div>
     </div>
 
-    <!-- MENÚ DE NAVEGACIÓN -->
     <nav class="navbar-right">
       <ul>
         <li><a href="pag_principal.html"><i class="fa fa-home"></i> Inicio</a></li>
@@ -48,7 +45,6 @@
           </ul>
         </li>
 
-        <!-- Menú Categorías -->
         <li class="dropdown">
           <a href="#"><i class="fa fa-cut"></i> Categorías <i class="fa fa-caret-down"></i></a>
           <ul class="dropdown-menu">
@@ -60,7 +56,6 @@
           </ul>
         </li>
 
-        <!-- Carrito (debe estar dentro del UL) -->
         <li class="cart-icon">
           <a href="carrito.html">
             <i class="fa fa-shopping-cart"></i>
@@ -72,7 +67,6 @@
   </div>
 </header>
 
-  <!-- CATEGORÍAS -->
   <section class="categorias-destacadas">
     <a href="vacuno.html" class="categoria-boton vacuno">Vacuno</a>
     <a href="ave.html" class="categoria-boton ave">Ave</a>
@@ -81,7 +75,6 @@
     <a href="packs.html" class="categoria-boton packs">Packs</a>
   </section>
 
-  <!-- CONTENIDO -->
   <main class="catalogo-container">
     <div class="breadcrumb">
       <a href="pag_principal.html">Inicio</a> > <strong>Vacuno</strong>
@@ -104,7 +97,6 @@
       </select>
     </div>
 
-    <!-- Loader -->
     <div class="skeleton-loader" id="skeletonLoader">
       <div class="skeleton-card"></div>
       <div class="skeleton-card"></div>
@@ -126,7 +118,6 @@
 <footer class="footer">
   <div class="footer-container">
 
-    <!-- CATEGORÍAS -->
     <div class="footer-block">
       <h3>Categorías</h3>
       <ul>
@@ -138,14 +129,12 @@
       </ul>
     </div>
 
-    <!-- SERVICIO AL CLIENTE -->
     <div class="footer-block">
       <h3>Servicio al cliente</h3>
       <ul>
         <li><a href="#">Quiénes somos</a></li>
         <li class="phone">📞 +56 9 1234 5678</li>
         <li class="social-icons">
-          <!-- gente yo no se si manejan redes la carniceria pero si quieren los quitan -->
           <a href="#"><i class="fa-brands fa-facebook"></i></a>
           <a href="#"><i class="fa-brands fa-instagram"></i></a>
           <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
@@ -153,13 +142,11 @@
       </ul>
     </div>
 
-    <!-- HORARIOS -->
     <div class="footer-block">
       <h3>Horarios</h3>
       <p>De Martes a Domingo:<br>De 09:00 hasta las 15:00 por colación <br> Luego reabre desde las 16:30 <br> hasta las 21:00 de la noche </p>
     </div>
 
-    <!-- MÉTODOS DE PAGO -->
     <div class="footer-block">
       <h3>Métodos de pago</h3>
       <img src="img/webpay.png" alt="WebPay Plus" class="webpay-logo">
@@ -172,7 +159,6 @@
   </div>
 </footer>
 
-  <!-- SCRIPT PRINCIPAL -->
   <script type="module">
     import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
     import { agregarAlCarrito } from './js/carritoglobal.js'
@@ -198,16 +184,14 @@
         const sinProductos = document.getElementById('sinProductos');
 
         try {
-          // Mantener el skeleton visible hasta que todo cargue
           skeleton.style.display = 'grid';
           grid.style.display = 'none';
           sinProductos.style.display = 'none';
 
-          // ✅ CONSULTA ACTUALIZADA (usa "categoria" como texto, no ID)
           const { data: productos, error } = await supabase
             .from('producto')
             .select('*')
-            .eq('categoria', 'vacuno') // <-- texto
+            .eq('categoria', 'vacuno') 
             .order('nombre', { ascending: true });
 
           if (error) throw error;
@@ -216,7 +200,7 @@
 
           this.productos = productos || [];
 
-          await new Promise(resolve => setTimeout(resolve, 500)); // pequeño delay visual
+          await new Promise(resolve => setTimeout(resolve, 500)); 
 
           if (this.productos.length > 0) {
             this.mostrarProductos(this.productos);
@@ -304,7 +288,6 @@
           }
         `;
 
-        // ⚠️ CAMBIO 3: Conectar con el carrito global
         const boton = card.querySelector('.btn-flotante');
         if (boton && disponible) {
           boton.addEventListener('click', () => {

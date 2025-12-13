@@ -1,7 +1,5 @@
-/* Fuente Caprasimo */
 @import url('https://fonts.googleapis.com/css2?family=Caprasimo&display=swap');
 
-/* ===== NAVBAR GENERAL ===== */
 .navbar {
   background-color: #8b0000;
   color: #fff;
@@ -26,7 +24,6 @@ body { margin-top: 70px; }
   margin: 0 auto;
 }
 
-/* ===== LOGO ===== */
 .navbar-logo {
   font-family: 'Caprasimo', cursive;
   font-size: 1.8rem;
@@ -44,7 +41,6 @@ body { margin-top: 70px; }
   flex:0 0 auto;
 }
 
-/* ===== BÚSQUEDA ===== */
 .navbar-search {
   position: relative;               
   display: flex;
@@ -82,7 +78,6 @@ body { margin-top: 70px; }
 .navbar-search button:hover { background-color: #ffcc00; color: #8b0000; }
 .navbar-search:hover { border-color: #ffcc00; }
 
-/* ===== AUTOSUGGEST (panel de resultados) ===== */
 #search-panel{
   position: absolute;
   left: 0;
@@ -95,7 +90,7 @@ body { margin-top: 70px; }
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(0,0,0,.12);
   display: none;
-  z-index: 1000; /* por encima del resto de la navbar */
+  z-index: 1000; 
 }
 #search-panel.open{ display:block; }
 
@@ -143,7 +138,6 @@ body { margin-top: 70px; }
   }
 }
 
-/* ===== MENÚ DE NAVEGACIÓN ===== */
 .navbar-right {
   flex: 1;
   margin-left: 40px;
@@ -174,7 +168,6 @@ body { margin-top: 70px; }
 
 .navbar-right a:hover { color: #ffcc00; transform: scale(1.08); }
 
-/* === Dropdown === */
 .dropdown { position: relative; }
 
 .dropdown-menu {
@@ -214,7 +207,6 @@ body { margin-top: 70px; }
 .dropdown-menu li a i { margin-right: 8px; color: #8b0000; }
 .dropdown-menu li:hover a { font-weight: 600; }
 
-/* ===== MENSAJE "NO TIENES CUENTA" ===== */
 .no-cuenta {
   padding: 10px 15px;
   font-size: 0.95rem;
@@ -224,7 +216,6 @@ body { margin-top: 70px; }
 }
 .crear-cuenta { color: #8b0000; font-weight: bold; text-decoration: underline; }
 
-/* ===== CARRITO ===== */
 .cart-icon { margin-left: auto; }
 .cart-icon a { display: flex; align-items: center; gap: 5px; }
 .cart-count {
@@ -288,8 +279,6 @@ body { margin-top: 70px; }
   }
 }
 
-
-/* ===== BOTÓN HAMBURGUESA ===== */
 .menu-btn {
   background: none; border: none; color: #fff;
   font-size: 1.6rem; cursor: pointer; margin-right: 15px;
@@ -297,7 +286,6 @@ body { margin-top: 70px; }
 .menu-btn i { transition: transform 0.3s ease; }
 .menu-btn:hover i { transform: scale(1.1); }
 
-/* ===== MENÚ LATERAL ===== */
 .side-menu {
   position: fixed; top: 0; left: -260px; width: 260px; height: 100vh;
   background: #8b0000; color: white; box-shadow: 2px 0 6px rgba(0,0,0,0.3);

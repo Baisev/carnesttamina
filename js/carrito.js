@@ -4,12 +4,11 @@ import { actualizarContadorCarrito } from './carritoglobal.js';
 document.addEventListener('DOMContentLoaded', () => {
   mostrarCarrito();
   actualizarContadorCarrito();
-  // ================================
+// ================================
 // AUTOCOMPLETAR DATOS DEL CLIENTE
 // ================================
   async function cargarDatosCliente() {
     try {
-  // Esperar a que cargue la sesión real
   await new Promise(resolve => setTimeout(resolve, 200));
 
   const { data: authData } = await supabase.auth.getUser();
@@ -22,7 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const uid = authData.user.id;
 
-    // 2) Buscar usuario interno y obtener cliente_id
     const { data: usuarioData, error: userError } = await supabase
       .from("usuario")
       .select("cliente_id")
@@ -36,7 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const clienteId = usuarioData.cliente_id;
 
-    // 3) Obtener datos del cliente
     const { data: cliente, error: cliError } = await supabase
       .from("cliente")
       .select("nombre_razon, rut, telefono, calle")
@@ -48,7 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // 4) Autocompletar si los campos están vacíos
     if (document.getElementById("nombre").value.trim() === "")
       document.getElementById("nombre").value = cliente.nombre_razon || "";
 
@@ -66,7 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 }
 
-// Ejecutar
 cargarDatosCliente();
   sincronizarResumen();
 });
@@ -143,13 +138,11 @@ document.getElementById('vaciarCarrito').addEventListener('click', () => {
   mostrarCarrito();
 });
 
-// 🔄 SINCRONIZAR TOTAL AL RESUMEN (carrito-total)
 function sincronizarResumen() {
   const total = document.getElementById('total').textContent;
   const resumenTotal = document.getElementById('carrito-total');
   if (resumenTotal) resumenTotal.textContent = total;
 }
-// === REDIRECCIÓN A LA PASARELA ===
 document.getElementById('btnPagar').addEventListener('click', () => {
   const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
   if (!carrito.length) {
@@ -157,7 +150,6 @@ document.getElementById('btnPagar').addEventListener('click', () => {
     return;
   }
 
-// Guardar datos del cliente
 const nombre = document.getElementById("nombre").value.trim();
 const rut = document.getElementById("rut").value.trim();
 const direccion = document.getElementById("direccion").value.trim();

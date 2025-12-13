@@ -280,13 +280,9 @@ function configurarPanelEstadoEmpleado() {
   });
 }
 
-// ===============================
-// BOLETA PDF (simple)
-// ===============================
-
 async function generarBoletaPDF() {
   if (!pedidoGlobal || !itemsGlobal.length) {
-    alert("No hay datos del pedido para generar el comprobante.");
+    alert("No hay datos del pedido para generar el detalle.");
     return;
   }
 
@@ -308,7 +304,7 @@ async function generarBoletaPDF() {
   pdf.setFontSize(12);
   pdf.setFont("helvetica", "normal");
   pdf.setTextColor(0, 0, 0);
-  pdf.text("Comprobante de pago", 20, 30);
+  pdf.text("Detalle", 20, 30);
 
   const fecha = new Date(pedidoGlobal.fecha).toLocaleString("es-CL");
   pdf.text(`Pedido N°: ${pedidoGlobal.pedido_id || pedidoID}`, 20, 45);
@@ -343,7 +339,7 @@ async function generarBoletaPDF() {
     y
   );
 
-  pdf.save(`Pedido_Comprobante_${pedidoID}.pdf`);
+  pdf.save(`Detalle${pedidoID}.pdf`);
 }
 
 

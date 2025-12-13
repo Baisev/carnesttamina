@@ -1,6 +1,5 @@
 import { supabase } from './supabaseClient.js';
 
-// ==== UTILIDADES ====
 const qs  = (s)=>document.querySelector(s);
 const qsa = (s)=>Array.from(document.querySelectorAll(s));
 const fmtCLP = v => new Intl.NumberFormat('es-CL',{
@@ -52,7 +51,7 @@ function tabs(){
   });
 }
 
-// ==== INICIO PRINCIPAL ====
+
 (async function init(){
   const id = getId();
   if (!id) { 
@@ -72,13 +71,12 @@ function tabs(){
     return; 
   }
 
-  // --- Migas ---
+
   qs('#miga').innerHTML = `
     <a href="pag_principal.html">Inicio</a> /
     ${p.categoria ? `<a href="${p.categoria.toLowerCase()}.html">${p.categoria}</a> / ` : ''}
     <span>${p.nombre}</span>`;
 
-  // --- Datos principales ---
   document.title = `${p.nombre} | Carnes Ttamiña`;
   qs('#img').src = p.imagen_url || '';
   qs('#nombre').textContent = p.nombre;
@@ -91,7 +89,7 @@ function tabs(){
   stEl.textContent = st.t; 
   stEl.classList.add(st.cls);
 
-  // --- Cantidad y carrito ---
+
   const input = qs('#cantidad');
   qs('#menos').onclick = ()=>{ input.value = Math.max(1, (+input.value||1)-1); };
   qs('#mas').onclick   = ()=>{ input.value = (+input.value||1)+1; };
@@ -99,12 +97,12 @@ function tabs(){
   if ((p.stock ?? 0) <= 0) btnAgregar.disabled = true;
   btnAgregar.onclick = ()=> agregarAlCarrito(p, Math.max(1, +input.value||1));
 
-  // --- Descripción / pestañas ---
+
   qs('#desc-larga').innerHTML = (p.descripcion || '').replace(/\n/g,'<br>');
   qs('#specs').innerHTML = '<li>—</li>';
   tabs();
 
-  // --- Productos relacionados ---
+
   if (p.categoria){
     const { data: rel } = await supabase
       .from('producto')
@@ -125,7 +123,7 @@ function tabs(){
     `).join('');
   }
 
-  // --- MENÚ DESPLEGABLE INFO EXTRA ---
+
   document.querySelectorAll('.info-header').forEach(header => {
     header.addEventListener('click', () => {
       const item = header.parentElement;

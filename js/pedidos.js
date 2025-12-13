@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   contenedor.innerHTML = `<p>Cargando tus pedidos...</p>`;
 
   try {
-    // === 1) Obtener usuario actual ===
     const { data: { user }, error: userError } = await supabase.auth.getUser();
     if (userError || !user) {
       contenedor.innerHTML = `
@@ -26,7 +25,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.log("Rol detectado:", rol);
     console.log("Usuario actual UUID:", usuarioID);
 
-    // === 2) SELECT avanzado con relaciones (productos + imágenes) ===
     const SELECT_CON_RELACIONES = `
       *,
       pedido_item(
@@ -41,9 +39,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     let pedidosQuery;
 
-    // === 3) Query según ROL ===
     if (rol === 1) {
-      // CLIENTE: buscar su cliente_id real en tabla usuario
       const { data: usuarioRow, error: usrErr } = await supabase
         .from("usuario")
         .select("cliente_id")
@@ -59,7 +55,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       const clienteID = usuarioRow.cliente_id;
       console.log("cliente_id:", clienteID);
 
-      // Pedidos del cliente
       pedidosQuery = supabase
         .from("pedido")
         .select(SELECT_CON_RELACIONES)
@@ -68,7 +63,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       console.log("🧾 Modo cliente");
     } else if (rol === 2) {
-      // EMPLEADO: ve todos los pedidos
       pedidosQuery = supabase
         .from("pedido")
         .select(SELECT_CON_RELACIONES)
@@ -80,7 +74,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       return;
     }
 
-    // === 4) Ejecutar consulta ===
     const { data: pedidos, error } = await pedidosQuery;
     if (error) throw error;
 
@@ -89,23 +82,17 @@ document.addEventListener("DOMContentLoaded", async () => {
       return;
     }
 
-    // === 5) Normalizar totales (por si vienen como string) ===
     pedidos.forEach((p) => {
       if (typeof p.total === "string") {
         p.total = Number(p.total.trim().replace(",", "."));
       }
     });
 
-    // === 6) Formateo CLP ===
     const fmtCLP = (v) =>
       new Intl.NumberFormat("es-CL", {
         style: "currency",
         currency: "CLP",
       }).format(v ?? 0);
-
-    // ===========================================================
-    // 🔥 PAGINACIÓN + FILTROS (DE TU PRIMER CÓDIGO)
-    // ===========================================================
 
     const ITEMS_POR_PAGINA = 9;
     let paginaActual = 1;
@@ -123,7 +110,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       Math.ceil(pedidosFiltrados.length / ITEMS_POR_PAGINA)
     );
 
-    // === RENDER DE PÁGINA (usa cards con imagen y botón detalle como el 2º código) ===
     function renderPagina(pagina) {
       paginaActual = pagina;
 
@@ -145,7 +131,6 @@ document.addEventListener("DOMContentLoaded", async () => {
           const numeroPedido =
             rol === 1 ? inicio + index + 1 : p.pedido_id;
 
-          // Obtener imágenes desde pedido_item → producto.imagen_url
           const imagenes = p.pedido_item
             ?.map((i) => i.producto?.imagen_url)
             .filter((img) => img);
@@ -175,14 +160,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         })
         .join("");
 
-      // Actualizar paginación
       if (lblPagina) {
         lblPagina.textContent = `Página ${paginaActual} de ${totalPaginas}`;
       }
       if (btnPrev) btnPrev.disabled = paginaActual === 1;
       if (btnNext) btnNext.disabled = paginaActual === totalPaginas;
 
-      // Eventos de "Ver detalles"
       contenedor.querySelectorAll(".ver-detalle").forEach((btn) => {
         btn.addEventListener("click", (e) => {
           const id = e.target.dataset.id;
@@ -192,19 +175,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       if (paginacionDiv) paginacionDiv.style.display = "flex";
     }
-
-    // ===========================================================
-    // 🔥 FILTROS (ESTADO, ID PEDIDO, FECHA)
-    // ===========================================================
     const filtroEstado = document.getElementById("filtro-estado");
     const filtroPedido = document.getElementById("filtro-pedido");
     const filtroFecha = document.getElementById("filtro-fecha");
 
     function aplicarFiltros() {
-      // Empieza desde los originales SIEMPRE
       let filtrados = [...pedidosOriginales];
 
-      // --- FILTRO POR ESTADO ---
       if (filtroEstado && filtroEstado.value !== "todos") {
         const estadoBuscado = filtroEstado.value.toLowerCase();
         filtrados = filtrados.filter(
@@ -212,7 +189,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         );
       }
 
-      // --- FILTRO POR FECHA ---
       if (filtroFecha) {
         if (filtroFecha.value === "recientes") {
           filtrados.sort(
@@ -227,7 +203,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
       }
 
-      // --- FILTRO POR ID DE PEDIDO ---
       if (filtroPedido && filtroPedido.value.trim() !== "") {
         const numeroBuscado = Number(filtroPedido.value.trim());
         filtrados = filtrados.filter(
@@ -235,10 +210,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         );
       }
 
-      // Guardar
       pedidosFiltrados = filtrados;
 
-      // Recalcular páginas
       totalPaginas = Math.max(
         1,
         Math.ceil(pedidosFiltrados.length / ITEMS_POR_PAGINA)
@@ -264,19 +237,12 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
     }
 
-    // Render inicial
     renderPagina(1);
 
-    // ===========================================================
-    // 🔙 Botón volver (del segundo código)
-    // ===========================================================
     document.getElementById("btn-volver")?.addEventListener("click", () => {
       window.location.href = "pag_principal.html";
     });
 
-    // ===========================================================
-    // 🔍 Modal de imagen (compartido por ambos códigos)
-    // ===========================================================
     document.addEventListener("click", (e) => {
       if (e.target.classList.contains("pedido-img-img")) {
         const modal = document.getElementById("img-modal");
@@ -289,13 +255,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     });
 
-    // Cerrar modal con la X
     document.querySelector(".img-close")?.addEventListener("click", () => {
       const modal = document.getElementById("img-modal");
       if (modal) modal.style.display = "none";
     });
 
-    // Cerrar al hacer clic fuera de la imagen
     document.getElementById("img-modal")?.addEventListener("click", (e) => {
       if (e.target.id === "img-modal") {
         e.target.style.display = "none";
@@ -303,6 +267,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   } catch (err) {
     console.error("Error cargando pedidos:", err);
-    contenedor.innerHTML = `<p>❌ Ocurrió un error al cargar los pedidos.</p>`;
+    contenedor.innerHTML = `<p> Ocurrió un error al cargar los pedidos.</p>`;
   }
 });
