@@ -1,0 +1,229 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - generic [ref=e4]:
+        - heading "Carnes Ttamiña" [level=1] [ref=e5]
+        - generic [ref=e6]:
+          - textbox "Busca aquí tus productos..." [ref=e7]
+          - button "" [ref=e8] [cursor=pointer]:
+            - generic [ref=e9]: 
+      - navigation [ref=e10]:
+        - list [ref=e11]:
+          - listitem [ref=e12]:
+            - link " Inicio" [ref=e13] [cursor=pointer]:
+              - /url: pag_principal.html
+              - generic [ref=e14]: 
+              - text: Inicio
+          - listitem [ref=e15]:
+            - link " Mis Pedidos" [ref=e16] [cursor=pointer]:
+              - /url: pedidos.html
+              - generic [ref=e17]: 
+              - text: Mis Pedidos
+          - listitem [ref=e18]:
+            - link " Bienvenido" [ref=e19] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e20]: 
+              - text: Bienvenido
+          - listitem [ref=e21]:
+            - link " Categorías " [ref=e22] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e23]: 
+              - text: Categorías
+              - generic [ref=e24]: 
+          - listitem [ref=e25]:
+            - link " 0" [ref=e26] [cursor=pointer]:
+              - /url: carrito.html
+              - generic [ref=e27]: 
+              - generic [ref=e28]: "0"
+  - generic [ref=e29]:
+    - link "Vacuno" [ref=e30] [cursor=pointer]:
+      - /url: vacuno.html
+    - link "Ave" [ref=e31] [cursor=pointer]:
+      - /url: ave.html
+    - link "Cerdo" [ref=e32] [cursor=pointer]:
+      - /url: cerdo.html
+    - link "Todo para el Asado" [ref=e33] [cursor=pointer]:
+      - /url: todo_asado.html
+    - link "Packs" [ref=e34] [cursor=pointer]:
+      - /url: packs.html
+  - main [ref=e35]:
+    - generic [ref=e36]:
+      - link "Inicio" [ref=e37] [cursor=pointer]:
+        - /url: pag_principal.html
+      - text: ">"
+      - strong [ref=e38]: Vacuno
+    - heading "🐄 Cortes de Vacuno" [level=1] [ref=e39]
+    - paragraph [ref=e40]: Descubre nuestra selección premium de cortes de res, jugosos y llenos de sabor
+    - generic [ref=e41]:
+      - textbox "Buscar en vacuno..." [ref=e43]
+      - combobox [ref=e44] [cursor=pointer]:
+        - 'option "Ordenar por: Nombre" [selected]'
+        - 'option "Precio: Menor a Mayor"'
+        - 'option "Precio: Mayor a Menor"'
+        - option "Más disponible"
+    - generic [ref=e45]:
+      - generic [ref=e46] [cursor=pointer]:
+        - img "asadsadsadasd" [ref=e48]
+        - heading "asadsadsadasd" [level=3] [ref=e49]:
+          - link "asadsadsadasd" [ref=e50]:
+            - /url: producto.html?id=21
+        - generic [ref=e51]: $4.777
+        - generic [ref=e52]: /kg
+        - generic [ref=e53]:
+          - generic [ref=e54]: 
+          - text: "Stock: 20 un"
+      - generic [ref=e55] [cursor=pointer]:
+        - img "Asiento 1Kg" [ref=e57]
+        - heading "Asiento 1Kg" [level=3] [ref=e58]:
+          - link "Asiento 1Kg" [ref=e59]:
+            - /url: producto.html?id=11
+        - generic [ref=e60]: $13.000
+        - generic [ref=e61]: /kg
+        - generic [ref=e62]:
+          - generic [ref=e63]: 
+          - text: "Stock: 40 un"
+      - generic [ref=e64] [cursor=pointer]:
+        - img "Carne vacuno" [ref=e66]
+        - heading "Carne vacuno" [level=3] [ref=e67]:
+          - link "Carne vacuno" [ref=e68]:
+            - /url: producto.html?id=4
+        - generic [ref=e69]: $5.870
+        - generic [ref=e70]: /kg
+        - generic [ref=e71]:
+          - generic [ref=e72]: 
+          - text: "Stock: 20 un"
+      - generic [ref=e73] [cursor=pointer]:
+        - img "Cas" [ref=e75]
+        - heading "Cas" [level=3] [ref=e76]:
+          - link "Cas" [ref=e77]:
+            - /url: producto.html?id=10
+        - generic [ref=e78]: $2.000
+        - generic [ref=e79]: /kg
+        - generic [ref=e80]:
+          - generic [ref=e81]: 
+          - text: "Stock: 20 un"
+      - generic [ref=e82] [cursor=pointer]:
+        - img "Filete" [ref=e84]
+        - heading "Filete" [level=3] [ref=e85]:
+          - link "Filete" [ref=e86]:
+            - /url: producto.html?id=13
+        - generic [ref=e87]: $17
+        - generic [ref=e88]: /kg
+        - generic [ref=e89]:
+          - generic [ref=e90]: 
+          - text: "Stock: 100 un"
+      - generic [ref=e91] [cursor=pointer]:
+        - img "Huachalomo" [ref=e93]
+        - heading "Huachalomo" [level=3] [ref=e94]:
+          - link "Huachalomo" [ref=e95]:
+            - /url: producto.html?id=26
+        - generic [ref=e96]: $11.990
+        - generic [ref=e97]: /kg
+        - generic [ref=e98]:
+          - generic [ref=e99]: 
+          - text: "Stock: 20 un"
+      - generic [ref=e100] [cursor=pointer]:
+        - img "Lomo Liso" [ref=e102]
+        - heading "Lomo Liso" [level=3] [ref=e103]:
+          - link "Lomo Liso" [ref=e104]:
+            - /url: producto.html?id=14
+        - generic [ref=e105]: $17
+        - generic [ref=e106]: /kg
+        - generic [ref=e107]:
+          - generic [ref=e108]: 
+          - text: "Stock: 55 un"
+      - generic [ref=e109] [cursor=pointer]:
+        - img "Lomo Vetado" [ref=e111]
+        - heading "Lomo Vetado" [level=3] [ref=e112]:
+          - link "Lomo Vetado" [ref=e113]:
+            - /url: producto.html?id=15
+        - generic [ref=e114]: $17
+        - generic [ref=e115]: /kg
+        - generic [ref=e116]:
+          - generic [ref=e117]: 
+          - text: "Stock: 80 un"
+      - generic [ref=e118] [cursor=pointer]:
+        - img "Posta negra" [ref=e120]
+        - heading "Posta negra" [level=3] [ref=e121]:
+          - link "Posta negra" [ref=e122]:
+            - /url: producto.html?id=8
+        - generic [ref=e123]: $7.000
+        - generic [ref=e124]: /kg
+        - generic [ref=e125]:
+          - generic [ref=e126]: 
+          - text: "Stock: 5 un"
+      - generic [ref=e127] [cursor=pointer]:
+        - img "res" [ref=e129]
+        - heading "res" [level=3] [ref=e130]:
+          - link "res" [ref=e131]:
+            - /url: producto.html?id=22
+        - generic [ref=e132]: $1
+        - generic [ref=e133]: /kg
+        - generic [ref=e134]:
+          - generic [ref=e135]: 
+          - text: Agotado
+    - text: 
+  - contentinfo [ref=e136]:
+    - generic [ref=e137]:
+      - generic [ref=e138]:
+        - heading "Categorías" [level=3] [ref=e139]
+        - list [ref=e140]:
+          - listitem [ref=e141]:
+            - link "Vacuno" [ref=e142] [cursor=pointer]:
+              - /url: vacuno.html
+          - listitem [ref=e143]:
+            - link "Ave" [ref=e144] [cursor=pointer]:
+              - /url: ave.html
+          - listitem [ref=e145]:
+            - link "Cerdo" [ref=e146] [cursor=pointer]:
+              - /url: cerdo.html
+          - listitem [ref=e147]:
+            - link "Todo Asado" [ref=e148] [cursor=pointer]:
+              - /url: todo_asado.html
+          - listitem [ref=e149]:
+            - link "Packs" [ref=e150] [cursor=pointer]:
+              - /url: packs.html
+      - generic [ref=e151]:
+        - heading "Servicio al cliente" [level=3] [ref=e152]
+        - list [ref=e153]:
+          - listitem [ref=e154]:
+            - link "Quiénes somos" [ref=e155] [cursor=pointer]:
+              - /url: "#"
+          - listitem [ref=e156]: 📞 +56 9 1234 5678
+          - listitem [ref=e157]:
+            - link "" [ref=e158] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e159]: 
+            - link "" [ref=e160] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e161]: 
+            - link "" [ref=e162] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e163]: 
+      - generic [ref=e164]:
+        - heading "Horarios" [level=3] [ref=e165]
+        - paragraph [ref=e166]:
+          - text: "De Martes a Domingo:"
+          - text: De 09:00 hasta las 15:00 por colación
+          - text: Luego reabre desde las 16:30
+          - text: hasta las 21:00 de la noche
+      - generic [ref=e167]:
+        - heading "Métodos de pago" [level=3] [ref=e168]
+        - img "WebPay Plus" [ref=e169]
+    - generic [ref=e170]: Pagos seguros vía WebPay Plus. Despachos según disponibilidad del repartidor.
+  - complementary [ref=e171]:
+    - generic [ref=e172]:
+      - heading [level=3] [ref=e173]: Tu carrito
+      - button [ref=e174] [cursor=pointer]: ×
+    - paragraph [ref=e176]: Tu carrito está vacío.
+    - generic [ref=e177]:
+      - generic [ref=e178]:
+        - generic [ref=e179]: "Total:"
+        - strong [ref=e180]: $0
+      - generic [ref=e181]:
+        - button [ref=e182] [cursor=pointer]: Vaciar
+        - button [ref=e183] [cursor=pointer]: Ir a pagar
+```

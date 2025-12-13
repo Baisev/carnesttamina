@@ -1,0 +1,125 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e3]: 🥩 ¡Ahora puedes comprar en línea! 🚚 Pedidos sobre $55.000 tienen envío GRATIS. 💥 Ingresa a nuestra tienda y descubre todas las promociones 🔥
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - heading "Carnes Ttamiña" [level=1] [ref=e7]
+        - generic [ref=e8]:
+          - textbox "Busca aquí tus productos..." [ref=e9]
+          - button "" [ref=e10] [cursor=pointer]:
+            - generic [ref=e11]: 
+      - navigation [ref=e12]:
+        - list [ref=e13]:
+          - listitem [ref=e14]:
+            - link " Inicio" [ref=e15] [cursor=pointer]:
+              - /url: pag_principal.html
+              - generic [ref=e16]: 
+              - text: Inicio
+          - listitem [ref=e17]:
+            - link " Mis Pedidos" [ref=e18] [cursor=pointer]:
+              - /url: pedidos.html
+              - generic [ref=e19]: 
+              - text: Mis Pedidos
+          - listitem [ref=e20]:
+            - link " Bienvenido" [ref=e21] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e22]: 
+              - text: Bienvenido
+          - listitem [ref=e23]:
+            - link " Categorías " [ref=e24] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e25]: 
+              - text: Categorías
+              - generic [ref=e26]: 
+          - listitem [ref=e27]:
+            - link " 0" [ref=e28] [cursor=pointer]:
+              - /url: carrito.html
+              - generic [ref=e29]: 
+              - generic [ref=e30]: "0"
+  - main [ref=e31]:
+    - main [ref=e32]:
+      - generic [ref=e33]:
+        - button "‹" [ref=e38] [cursor=pointer]
+        - button "›" [ref=e39] [cursor=pointer]
+      - generic [ref=e40]:
+        - heading "Explora nuestras categorías" [level=2] [ref=e41]
+        - generic [ref=e42]:
+          - link "Vacuno" [ref=e43] [cursor=pointer]:
+            - /url: vacuno.html
+            - heading "Vacuno" [level=3] [ref=e44]
+          - link "Ave" [ref=e45] [cursor=pointer]:
+            - /url: ave.html
+            - heading "Ave" [level=3] [ref=e46]
+          - link "Cerdo" [ref=e47] [cursor=pointer]:
+            - /url: cerdo.html
+            - heading "Cerdo" [level=3] [ref=e48]
+          - link "Todo para el asado" [ref=e49] [cursor=pointer]:
+            - /url: todo_asado.html
+            - heading "Todo para el asado" [level=3] [ref=e50]
+          - link "Packs" [ref=e51] [cursor=pointer]:
+            - /url: packs.html
+            - heading "Packs" [level=3] [ref=e52]
+  - contentinfo [ref=e53]:
+    - generic [ref=e54]:
+      - generic [ref=e55]:
+        - heading "Categorías" [level=3] [ref=e56]
+        - list [ref=e57]:
+          - listitem [ref=e58]:
+            - link "Vacuno" [ref=e59] [cursor=pointer]:
+              - /url: vacuno.html
+          - listitem [ref=e60]:
+            - link "Ave" [ref=e61] [cursor=pointer]:
+              - /url: ave.html
+          - listitem [ref=e62]:
+            - link "Cerdo" [ref=e63] [cursor=pointer]:
+              - /url: cerdo.html
+          - listitem [ref=e64]:
+            - link "Todo Asado" [ref=e65] [cursor=pointer]:
+              - /url: todo_asado.html
+          - listitem [ref=e66]:
+            - link "Packs" [ref=e67] [cursor=pointer]:
+              - /url: packs.html
+      - generic [ref=e68]:
+        - heading "Servicio al cliente" [level=3] [ref=e69]
+        - list [ref=e70]:
+          - listitem [ref=e71]:
+            - link "Quiénes somos" [ref=e72] [cursor=pointer]:
+              - /url: "#"
+          - listitem [ref=e73]: 📞 +56 9 1234 5678
+          - listitem [ref=e74]:
+            - link "" [ref=e75] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e76]: 
+            - link "" [ref=e77] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e78]: 
+            - link "" [ref=e79] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e80]: 
+      - generic [ref=e81]:
+        - heading "Horarios" [level=3] [ref=e82]
+        - paragraph [ref=e83]:
+          - text: "De Martes a Domingo:"
+          - text: De 09:00 hasta las 15:00 por colación
+          - text: Luego reabre desde las 16:30
+          - text: hasta las 21:00 de la noche
+      - generic [ref=e84]:
+        - heading "Métodos de pago" [level=3] [ref=e85]
+        - img "WebPay Plus" [ref=e86]
+    - generic [ref=e87]: Pagos seguros vía WebPay Plus. Despachos según disponibilidad del repartidor.
+  - complementary [ref=e88]:
+    - generic [ref=e89]:
+      - heading [level=3] [ref=e90]: Tu carrito
+      - button [ref=e91] [cursor=pointer]: ×
+    - paragraph [ref=e93]: Tu carrito está vacío.
+    - generic [ref=e94]:
+      - generic [ref=e95]:
+        - generic [ref=e96]: "Total:"
+        - strong [ref=e97]: $0
+      - generic [ref=e98]:
+        - button [ref=e99] [cursor=pointer]: Vaciar
+        - button [ref=e100] [cursor=pointer]: Ir a pagar
+```
