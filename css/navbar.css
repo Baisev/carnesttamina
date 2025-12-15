@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Caprasimo&display=swap');
 
 .navbar {
-  background: linear-gradient(180deg, #8b0000 0%, #7c0505 55%, #680101 100%);
+  background:#8b0000;
   color: #fff;
   position: fixed;
   top: 0;
@@ -13,14 +13,7 @@
   font-weight: 500;
 }
 
-body { padding-top: 100px !important; }     
-@media (max-width: 900px) {
-  body { padding-top: 70px !important; } 
-}
-@media (max-width: 576px) {
-  body { padding-top: 60px !important; }
-}
-
+body { margin-top: 70px; }
 
 .navbar-container {
   display: flex;
