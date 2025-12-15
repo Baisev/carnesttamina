@@ -13,9 +13,9 @@
   font-weight: 500;
 }
 
-body { padding-top: 95px; }
+body { padding-top: 100px; }
 
-@media (max-width: 900px) { body { padding-top: 140px; } }
+@media (max-width: 900px) { body { padding-top: 110px; } }
 @media (max-width: 576px) { body { padding-top: 155px; } }
 
 
