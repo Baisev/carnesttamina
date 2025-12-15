@@ -13,7 +13,7 @@
   font-weight: 500;
 }
 
-body { padding-top: 96px !important; }     
+body { padding-top: 100px !important; }     
 @media (max-width: 900px) {
   body { padding-top: 70px !important; } 
 }
