@@ -148,8 +148,12 @@ body, .catalogo-container, .producto-card, .filtros-container, .btn-flotante {
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 1rem;
-  width: 250px;
+  width: min(420px, 100%);
   font-family: 'IBM Plex Serif', serif;
+}
+
+.filtro-orden {
+  width: min(320px, 100%);
 }
 
 .filtro-orden {
@@ -375,4 +379,49 @@ body, .catalogo-container, .producto-card, .filtros-container, .btn-flotante {
 }
 .producto-nombre .link-producto:hover{ text-decoration:underline; }
 
+/* =========================
+   Responsive extra (categorías)
+   - mejora filtros, padding y skeleton en móvil
+   ========================= */
 
+@media (max-width: 900px) {
+  .catalogo-container {
+    padding: 18px 22px;
+  }
+}
+
+@media (max-width: 600px) {
+  .catalogo-container {
+    margin: 30px auto;
+    padding: 14px 14px;
+  }
+
+  .filtros-container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .busqueda-vacuno {
+    width: 100%;
+  }
+
+  .busqueda-vacuno input,
+  .filtro-orden {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+/* Skeleton loader con la misma lógica de grilla que productos */
+@media (max-width: 1200px) {
+  .skeleton-loader { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 900px) {
+  .skeleton-loader { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .skeleton-loader { grid-template-columns: 1fr; }
+}
