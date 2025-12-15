@@ -13,8 +13,7 @@
   font-weight: 500;
 }
 
-/* Navbar es fixed, así que dejamos espacio arriba para que no tape el contenido */
-body { margin-top: 70px; }
+body { margin-top: 110px; }
 
 @media (max-width: 900px) {
   body { margin-top: 135px; }
