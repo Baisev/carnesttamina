@@ -224,4 +224,9 @@ main {
   }
 }
 
+body { padding-top: 80px !important; }  
+
+@media (max-width: 900px) { body { padding-top: 70px !important; } }
+@media (max-width: 576px) { body { padding-top: 60px !important; } }
+
 
