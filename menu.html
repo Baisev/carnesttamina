@@ -726,6 +726,7 @@ XLSX.utils.book_append_sheet(wb, wsDashboard, "Dashboard");
     const { data: productos, error } = await supabase
       .from('producto')
       .select('*')
+      .eq('activo', true)
       .order('producto_id', { ascending: true })
 
     if (error) {
@@ -873,7 +874,7 @@ XLSX.utils.book_append_sheet(wb, wsDashboard, "Dashboard");
   }
 
   async function eliminarProducto(id) {
-    const { error } = await supabase.from('producto').delete().eq('producto_id', id)
+    const { error } = await supabase.from('producto').update({ activo: false }).eq('producto_id', id)
     if (error) return mostrarMensaje('Error al eliminar: ' + error.message, 'red')
     mostrarMensaje('🗑️ Producto eliminado')
     cargarProductos()
@@ -1018,3 +1019,4 @@ XLSX.utils.book_append_sheet(wb, wsDashboard, "Dashboard");
 </script>
 </body>
 </html>
+
