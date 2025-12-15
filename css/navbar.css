@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Caprasimo&display=swap');
 
 .navbar {
-  background-color: #8b0000;
+  background: linear-gradient(180deg, #8b0000 0%, #6a0000 55%, #3d0000 100%);
   color: #fff;
   position: fixed;
   top: 0;
