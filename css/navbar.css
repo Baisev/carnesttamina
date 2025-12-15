@@ -13,14 +13,14 @@
   font-weight: 500;
 }
 
-body { padding-top: 90px; }     
+body { padding-top: 95px; }     
 
-@media (max-width: 900px) {
-  body { padding-top: 110px; }   
+@media (max-width: 800px) {
+  body { padding-top: 80px; }   
 }
 
-@media (max-width: 576px) {
-  body { padding-top: 155px; }   
+@media (max-width: 476px) {
+  body { padding-top: 90px; }   
 }
 
 .navbar-container {
