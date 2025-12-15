@@ -13,12 +13,12 @@
   font-weight: 500;
 }
 
-body { padding-top: 100px; }     
+body { padding-top: 100px !important; }     
 @media (max-width: 900px) {
-  body { padding-top: 155px; } 
+  body { padding-top: 70px !important; } 
 }
 @media (max-width: 576px) {
-  body { padding-top: 170px; }
+  body { padding-top: 60px !important; }
 }
 
 
