@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const rol = Number(localStorage.getItem('rol'));
 
   if (rol === 2) {
+
+    document.body.classList.add('is-staff');
     const navbarContainer = document.querySelector('.navbar-container');
 
 
@@ -35,4 +37,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
 
