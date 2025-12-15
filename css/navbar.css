@@ -366,4 +366,8 @@ body { padding-top: 90px !important; }
   }
 }
 
+.menu-btn { display: none !important; }
+
+body.is-employee .menu-btn { display: inline-flex !important; }
+
 
