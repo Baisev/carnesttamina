@@ -204,6 +204,7 @@ main {
   align-items: center;
   justify-content: center;
   z-index: 1;
+  margin-top: 40px;
 }
 
 
